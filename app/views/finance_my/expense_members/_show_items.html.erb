@@ -1,0 +1,10 @@
+<div class="ui modal" id="modal">
+  <i class="close icon"></i>
+  <div class="ui header blue">
+    Items
+  </div>
+  
+  <div class="content">
+    <%= render partial: 'items', locals: { expense_items: @expense_member.expense_items } %>
+  </div>
+</div>

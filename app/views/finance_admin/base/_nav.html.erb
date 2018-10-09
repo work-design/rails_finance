@@ -1,0 +1,26 @@
+<div class="ui vertical fluid icon menu">
+  <div class="header center link item" id="close_side">
+    <i class="content icon"></i>
+  </div>
+  <div class="item ui dropdown">
+    <a class="<%= active_helper(controllers: ['expenses', 'financial_taxons', 'payouts'], active_class: 'title active', item_class: 'title') %>">
+      <i class="money bill icon"></i>
+      <span>Finance</span>
+    </a>
+    <div class="<%= active_helper(controllers: ['expenses', 'financial_taxons', 'payouts'], active_class: 'menu content active', item_class: 'menu content') %>">
+      <%= link_to 'Expenses', finance_expenses_path, class: active_helper(controllers: 'expenses') %>
+      <%= link_to 'Financial Taxon', finance_financial_taxons_path, class: active_helper(controllers: 'financial_taxons') %>
+      <%= link_to 'Payouts', finance_payouts_path, class: active_helper(controllers: 'payouts') %>
+    </div>
+  </div>
+  <div class="ui dropdown item">
+    <a class="<%= active_helper(controllers: ['payment_methods'], active_class: 'title active', item_class: 'title') %>">
+      <i class="money bill icon"></i>
+      <span>Payment Methods</span>
+    </a>
+    <div class="<%= active_helper(controllers: ['payment_methods'], active_class: 'menu content active', item_class: 'menu content') %>">
+      <%= link_to 'Payment methods', admin_payment_methods_path, class: active_helper(controllers: 'payment_methods') %>
+    </div>
+  </div>
+</div>
+

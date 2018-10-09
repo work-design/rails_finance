@@ -1,0 +1,45 @@
+<%= render 'nav_expense' %>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Expense.human_attribute_name(:id) %></th>
+      <th><%= Expense.human_attribute_name(:type) %></th>
+      <th><%= Expense.human_attribute_name(:subject) %></th>
+      <th><%= Expense.human_attribute_name(:amount) %></th>
+      <th><%= Expense.human_attribute_name(:proof) %></th>
+      <th><%= Expense.human_attribute_name(:state) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= expense.id %></td>
+      <td><%= expense.type_i18n %></td>
+      <td><%= link_to expense.subject, my_expense_path(expense) %></td>
+      <td><%= expense.amount %></td>
+      <td>
+        <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
+      </td>
+      <td class="ui labels">
+        <span class="ui label"><%= expense.state_i18n %></span>
+      </td>
+      <td class="ui labels">
+        <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), remote: true, class: 'ui orange label' %>
+        <% if ['init', 'rejected'].include? expense.state %>
+          <%= link_to t('.edit'), edit_my_expense_path(expense), class: 'ui pink label' %>
+          <%= link_to t('.destroy'), my_expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @expenses %>

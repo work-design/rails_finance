@@ -1,0 +1,13 @@
+<div class="ui segment breadcrumb">
+  <%= link_to 'Back', my_expenses_path, class: 'section' %>
+  <div class="divider"> / </div>
+  <%= link_to @expense.subject, my_expense_path(@expense), class: 'section' %>
+  <div class="divider"> / </div>
+  <div class="active section">Edit</div>
+</div>
+
+<div class="ui segment">
+  <%= form_with model: @expense, scope: 'expense', url: my_expense_path(@expense), local: true do |f| %>
+    <%= render partial: 'form', locals: { f: f } %>
+  <% end %>
+</div>

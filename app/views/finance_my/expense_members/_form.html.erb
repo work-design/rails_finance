@@ -1,0 +1,9 @@
+<%= form_with model: @expense_member, url: my_expense_member_path(@expense_member), method: :patch, local: true do |f| %>
+  <%= render 'shared/error_messages', target: @expense_member %>
+  <%= f.number_field :advance %>
+  <div class="inline fields">
+    <%= f.collection_select :payment_method_id, @payment_methods, :id, :account_info, {on: {wrapper_all: false}} %>
+    <%= link_to 'Add', new_my_payment_method_path, remote: true, class: 'ui button' %>
+  </div>
+  <%= f.submit %>
+<% end %>

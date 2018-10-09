@@ -1,0 +1,5 @@
+<% if params[:item] == 'member' %>
+  $('#expense_expense_members_<%= params[:index] %>').remove();
+<% elsif params[:item] == 'item' %>
+  $('#expense_expense_items_<%= params[:index] %>').remove();
+<% end %>

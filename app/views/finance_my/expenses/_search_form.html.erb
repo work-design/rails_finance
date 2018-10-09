@@ -1,0 +1,17 @@
+<%= search_form_with model: Expense.new do |f| %>
+  <div class="fields">
+    <%= f.text_field :'subject-like' %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<dl>
+  <dt>State:</dt>
+  <dd>
+    <%= link_to 'All', filter_params(except: [:state]), class: active_params(state: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% Expense.states.keys.each do |state| %>
+      <%= link_to Expense.enum_i18n(:state, state), filter_params(state: state), class: active_params(state: state, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% end %>
+  </dd>
+</dl>
+

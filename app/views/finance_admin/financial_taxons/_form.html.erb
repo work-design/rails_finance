@@ -1,0 +1,10 @@
+<%= form_with model: [:finance, @financial_taxon], local: true do |f| %>
+  <%= render 'shared/error_messages', target: @financial_taxon %>
+  <%= f.text_field :name %>
+  <%= f.number_field :position %>
+  <%= render partial: 'nodes/children_select', locals: { f: f } %>
+  <%= f.select :verifier_id, options_for_select([], @financial_taxon.verifier_id), { include_blank: true } %>
+  <%= f.check_box :take_stock %>
+  <%= f.check_box :individual %>
+  <%= f.submit %>
+<% end %>

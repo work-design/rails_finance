@@ -1,0 +1,50 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Payouts</div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Payout.human_attribute_name(:id) %></th>
+      <th><%= Payout.human_attribute_name(:payout_uuid) %></th>
+      <th>
+        <p><%= Payout.human_attribute_name(:to_bank) %></p>
+        <p><%= Payout.human_attribute_name(:to_name) %></p>
+        <p><%= Payout.human_attribute_name(:to_identifier) %></p>
+      </th>
+      <th><%= Payout.human_attribute_name(:requested_amount) %></th>
+      <th><%= Payout.human_attribute_name(:actual_amount) %></th>
+      <th><%= Payout.human_attribute_name(:state) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @payouts.each do |payout| %>
+    <tr>
+      <td><%= payout.id %></td>
+      <td><%= payout.payout_uuid %></td>
+      <td>
+        <p><%= payout.to_bank %></p>
+        <p><%= payout.to_name %></p>
+        <p><%= payout.to_identifier %></p>
+      </td>
+      <td><%= payout.requested_amount %></td>
+      <td><%= payout.actual_amount %></td>
+      <td>
+        <span class="ui label"><%= payout.state_i18n %></span>
+      </td>
+      <td class="ui labels">
+        <%= link_to finance_payout_path(payout), class: 'ui blue mini icon button' do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @payouts %>

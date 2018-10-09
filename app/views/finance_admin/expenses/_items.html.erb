@@ -1,0 +1,20 @@
+<table class="ui very basic small table">
+  <tr>
+    <th><%= ExpenseItem.human_attribute_name(:id) %></th>
+    <th><%= ExpenseItem.human_attribute_name(:financial_taxon) %></th>
+    <th><%= ExpenseItem.human_attribute_name(:note) %></th>
+    <th><%= ExpenseItem.human_attribute_name(:budget) %></th>
+    <th><%= ExpenseItem.human_attribute_name(:amount) %></th>
+    <th></th>
+  </tr>
+  <% expense_items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.financial_taxon&.name %></td>
+      <td><%= item.note %></td>
+      <td><%= item.budget %></td>
+      <td><%= item.amount %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>

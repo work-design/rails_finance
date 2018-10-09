@@ -1,0 +1,117 @@
+<div class="ui segment breadcrumb">
+  <%= link_to 'Back', finance_expenses_path(id: @expense.id), class: 'section' %>
+  <div class="divider"> / </div>
+  <div class="active section">Expense members</div>
+</div>
+<%= render 'nav_expense' %>
+
+<table class="ui attached basic large table">
+  <tbody>
+    <tr>
+      <td class="six wide right aligned"><%= Expense.human_attribute_name(:subject) %></td>
+      <td><%= @expense.subject %></td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= Expense.human_attribute_name(:checks) %></td>
+      <td>
+        <table class="ui very basic table">
+          <% @expense.checks.each do |check| %>
+            <tr>
+              <td><%= Expense.enum_i18n(:state, check.state) %></td>
+              <td><%= check.comment %></td>
+              <td><%= check.member.name %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= Expense.human_attribute_name(:amount) %></td>
+      <td><%= @expense.amount %></td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= Expense.human_attribute_name(:expense_items) %></td>
+      <td>
+        <%= render partial: 'finance_admin/expenses/items', locals: { expense_items: @expense_items } %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="ui bottom attached table">
+  <thead>
+  <tr>
+    <th><%= ExpenseMember.human_attribute_name(:id) %></th>
+    <th>
+      <p><%= ExpenseMember.human_attribute_name(:member) %></p>
+      <p><%= Member.human_attribute_name(:department) %></p>
+    </th>
+    <th><%= ExpenseMember.human_attribute_name(:amount) %></th>
+    <th>
+      <p><%= ExpenseMember.human_attribute_name(:advance) %></p>
+      <p><%= ExpenseMember.human_attribute_name(:payout_amount) %></p>
+    </th>
+    <th><%= ExpenseMember.human_attribute_name(:state) %></th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @expense_members.each do |expense_member| %>
+    <tr>
+      <td><%= expense_member.id %></td>
+      <td>
+        <p><%= expense_member.member.name %></p>
+        <p><%= expense_member.member.department&.full_name %></p>
+      </td>
+      <td><%= expense_member.amount %></td>
+      <td>
+        <% if expense_member.advance %>
+          <p>
+            <%= expense_member.advance %>
+            <% if expense_member.advance_payout_id %>
+              <%= link_to finance_payout_path(expense_member.advance_payout_id) do %>
+                <i class="money bill alternate icon"></i>
+              <% end %>
+            <% else %>
+              <%= link_to to_advance_pay_finance_expense_member_path(expense_member), method: :patch, data: { tooltip: 'to pay', confirm: 'Are you sure?' } do %>
+                <i class="share icon"></i>
+              <% end %>
+            <% end %>
+          </p>
+        <% end %>
+        <p>
+          <%= expense_member.payout_amount %>
+          <% if expense_member.payout_id %>
+            <%= link_to finance_payout_path(expense_member.payout_id) do %>
+              <i class="money bill alternate icon"></i>
+            <% end %>
+          <% else %>
+            <%= link_to to_pay_finance_expense_member_path(expense_member), method: :patch, data: { tooltip: 'to pay', confirm: 'Are you sure?' } do %>
+              <i class="share icon"></i>
+            <% end %>
+          <% end %>
+        </p>
+      </td>
+      <td class="ui labels">
+        <span class="ui label"><%= expense_member.state_i18n %></span>
+        <% if expense_member.can_operate?(current_member) %>
+          <div class="ui mini buttons">
+            <%= link_to 'Approve', new_check_path('ExpenseMember', expense_member.id, state: expense_member.next_state(:state)), remote: true, class: 'ui mini positive button' %>
+            <div class="or"></div>
+            <%= link_to ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), remote: true, class: 'ui mini negative button' %>
+          </div>
+        <% end %>
+      </td>
+      <td class="ui labels">
+        <%= link_to 'items', items_my_expense_member_path(expense_member), remote: true, class: 'ui blue label' %>
+        <%= link_to edit_finance_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to finance_expense_member_path(expense_member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

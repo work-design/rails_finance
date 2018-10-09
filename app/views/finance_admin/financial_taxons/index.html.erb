@@ -1,0 +1,32 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Purchase Taxons</div>
+  <div class="right menu">
+    <div class="item"><%= link_to 'New Purchase Taxon', new_finance_financial_taxon_path, class: 'ui teal button' %></div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= FinancialTaxon.human_attribute_name(:name) %></th>
+      <th><%= FinancialTaxon.human_attribute_name(:position) %></th>
+      <th><%= FinancialTaxon.human_attribute_name(:verifier) %></th>
+      <th><%= FinancialTaxon.human_attribute_name(:take_stock) %></th>
+      <th><%= FinancialTaxon.human_attribute_name(:individual) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @financial_taxons.each do |financial_taxon| %>
+    <%= render partial: 'financial_taxon', locals: { node: financial_taxon } %>
+    <%= draw_tree(financial_taxon, partial: 'finance_admin/financial_taxons/financial_taxon') %>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @financial_taxons %>

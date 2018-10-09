@@ -1,0 +1,48 @@
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Expense.human_attribute_name(:id) %></th>
+      <th><%= Expense.human_attribute_name(:subject) %></th>
+      <th><%= Expense.human_attribute_name(:creator) %></th>
+      <th><%= Expense.human_attribute_name(:amount) %></th>
+      <th><%= Expense.human_attribute_name(:state) %></th>
+      <th><%= Expense.human_attribute_name(:create_at) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= expense.id %></td>
+      <td><%= expense.subject %></td>
+      <td><%= expense.creator.name %></td>
+      <td><%= expense.amount %></td>
+      <td class="ui labels">
+        <span class="ui label"><%= expense.state_i18n %></span>
+        <% if expense.can_operate?(current_member) %>
+          <div class="ui mini buttons">
+            <%= link_to 'Approve', new_check_path('Expense', expense.id, state: expense.next_state_state), remote: true, class: 'ui mini positive button' %>
+            <div class="or"></div>
+            <%= link_to Expense.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense.id, state: 'rejected'), remote: true, class: 'ui mini negative button' %>
+            <% if ['pending_om', 'pending_cfo'].include?(expense.state) %>
+              <div class="or"></div>
+              <%= link_to Expense.enum_i18n(:state, 'pending_md'), new_check_path('Expense', expense.id, state: 'pending_md'), remote: true, class: 'ui mini positive button' %>
+          <% end %>
+          </div>
+        <% end %>
+      </td>
+      <td>
+        <time><%= expense.created_at.to_s(:rfc822) %></time>
+      </td>
+      <td>
+        <%= link_to 'details', finance_expense_path(expense), class: 'ui blue label' %>
+        <%= link_to t('.edit'), edit_finance_expense_path(expense), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), finance_expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @expenses %>
