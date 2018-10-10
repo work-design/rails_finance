@@ -1,4 +1,4 @@
-class FinanceMy::BaseController < My::BaseController
+class Finance::My::BaseController < My::BaseController
 
   default_form_builder 'FinanceMyFormBuilder' do |config|
     config.css.label = 'three wide field'

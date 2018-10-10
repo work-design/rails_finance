@@ -1,4 +1,4 @@
-class FinanceAdmin::ExpensesController < FinanceAdmin::BaseController
+class Finance::Admin::ExpensesController < Finance::Admin::BaseController
   before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy]
 
   def index

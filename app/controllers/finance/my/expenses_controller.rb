@@ -1,4 +1,4 @@
-class FinanceMy::ExpensesController < FinanceMy::BaseController
+class Finance::My::ExpensesController < Finance::My::BaseController
   before_action :set_expense, only: [:show, :edit, :update, :requested, :transfer, :confirm, :bill, :destroy]
   # after_action only: [:create, :update, :destroy] do
   #   mark_audits(Purchase: [:purchase_items], note: 'record test')

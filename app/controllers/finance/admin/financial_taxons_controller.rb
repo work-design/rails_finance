@@ -1,4 +1,4 @@
-class FinanceAdmin::FinancialTaxonsController < FinanceAdmin::BaseController
+class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   before_action :set_financial_taxon, only: [:show, :edit, :update, :destroy]
 
   def index

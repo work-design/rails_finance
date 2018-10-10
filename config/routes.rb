@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :finance, module: 'finance_admin', as: 'finance' do
+  scope :finance, module: 'finance/admin', as: 'admin' do
     root to: 'home#index'
 
     resources :financial_taxons
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :payouts
   end
 
-  scope :my, module: 'finance_my', as: 'my' do
+  scope :my, module: 'finance/my', as: 'my' do
     resources :expenses do
       post :financial_taxons, on: :collection
       get 'add_item/:item' => :add_item, on: :collection, as: :add_item

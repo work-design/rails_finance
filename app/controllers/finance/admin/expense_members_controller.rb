@@ -1,4 +1,4 @@
-class FinanceAdmin::ExpenseMembersController < FinanceAdmin::BaseController
+class Finance::Admin::ExpenseMembersController < Finance::Admin::BaseController
   before_action :set_expense, only: [:index]
   before_action :set_expense_member, only: [:show, :edit, :update, :to_advance_pay, :to_pay, :destroy]
 

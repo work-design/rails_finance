@@ -1,4 +1,4 @@
-class FinanceAdmin::PayoutsController < FinanceAdmin::BaseController
+class Finance::Admin::PayoutsController < Finance::Admin::BaseController
   before_action :set_payout, only: [:show, :edit, :update, :destroy]
 
   def index
