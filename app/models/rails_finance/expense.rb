@@ -143,7 +143,7 @@ class Expense < ApplicationRecord
   end
 
   def sync_amount
-    self.amount = self.expense_items.sum { |ei| ei.amount }
+    self.amount = self.expense_items.sum(&:amount)
   end
 
   def sync_members
