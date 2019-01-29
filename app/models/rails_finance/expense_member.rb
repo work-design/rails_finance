@@ -100,32 +100,6 @@ class ExpenseMember < ApplicationRecord
     end
   end
 
-  def to_advance_payout
-    return unless payment_method
-    payout = self.payouts.find_or_initialize_by(advance: true)
-    payout.requested_amount = self.advance
-    payout.payment_method_id = self.payment_method_id
-
-    self.do_trigger state: 'advance_pay'
-  end
-
-  def advance_payout_id
-    self.payouts.find_by(advance: true)&.id
-  end
-
-  def to_payout
-    return unless payment_method
-    payout = self.payouts.find_or_initialize_by(advance: false)
-    payout.requested_amount = self.payout_amount
-    payout.payment_method_id = self.payment_method_id
-
-    self.do_trigger state: 'to_pay'
-  end
-
-  def payout_id
-    self.payouts.find_by(advance: false)&.id
-  end
-
   def details
     text = ''
     items = expense_items.limit(4).map do |item|
