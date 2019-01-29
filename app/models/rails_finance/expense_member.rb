@@ -1,11 +1,11 @@
 class ExpenseMember < ApplicationRecord
   include CheckMachine
+  include RailsWalletPayout
 
   attribute :state, :string, default: 'pending_borrow'
   belongs_to :expense
   belongs_to :member
   belongs_to :payment_method, optional: true
-  has_many :payouts, as: :payable, autosave: true
   has_many :expense_items, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id
 
   validates :member_id, uniqueness: { scope: [:expense_id] }
