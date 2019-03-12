@@ -35,6 +35,23 @@ class RailsFinanceInit < ActiveRecord::Migration[5.0]
       t.index ["verifier_id"], name: "index_expenses_on_verifier_id"
     end
 
+    create_table "expense_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+      t.bigint "expense_id"
+      t.bigint "member_id"
+      t.bigint "financial_taxon_id"
+      t.decimal "budget", precision: 10, scale: 2
+      t.decimal "amount", precision: 10, scale: 2
+      t.string "note"
+      t.string "state"
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+      t.integer "quantity", default: 1
+      t.decimal "price", precision: 10, scale: 2
+      t.index ["expense_id"], name: "index_expense_items_on_expense_id"
+      t.index ["financial_taxon_id"], name: "index_expense_items_on_financial_taxon_id"
+      t.index ["member_id"], name: "index_expense_items_on_member_id"
+    end
+
     create_table "financial_taxon_hierarchies", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
       t.integer "ancestor_id", null: false
       t.integer "descendant_id", null: false
