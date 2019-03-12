@@ -16,7 +16,6 @@ Rails.application.routes.draw do
         patch :to_advance_pay, on: :member
       end
     end
-    resources :payouts
   end
 
   scope :my, module: 'finance/my', as: 'my' do
