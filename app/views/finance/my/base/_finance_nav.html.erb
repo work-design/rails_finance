@@ -1,0 +1,9 @@
+<div class="item">
+  <span class="header">Financial</span>
+  <% unless Rails.env.production? %>
+    <div class="menu">
+      <%= link_to 'My Expenses', my_expense_members_path, class: active_helper(controllers: ['finance_my/expense_members', 'payment_methods']) %>
+      <%= link_to 'Admin Expenses', my_expenses_path, class: active_helper(controllers: ['finance_admin/expense_members', 'expenses']) %>
+    </div>
+  <% end %>
+</div>
