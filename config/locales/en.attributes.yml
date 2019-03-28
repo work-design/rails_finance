@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      expense:
+        amount: Total Amount
+        expense_members: Members

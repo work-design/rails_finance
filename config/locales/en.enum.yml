@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    enum:
+      expense/type:
+        BudgetExpense: Budget
+        PrepayExpense: Prepay
+        PayableExpense: Payout
+      expense/state:
+        init: Pending
+        rejected: Reject
+      payment_method/type:
+        CashMethod: Cash
+        BankMethod: Bank Account
+      purchase/type:
+        BulkPurchase: Bulk Purchase
+        PayoutPurchase: Payout

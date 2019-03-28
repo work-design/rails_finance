@@ -1,0 +1,6 @@
+zh:
+  activerecord:
+    attributes:
+      expense:
+        amount: 合计
+        expense_members: 报销人
