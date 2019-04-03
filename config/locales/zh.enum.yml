@@ -1,16 +1,19 @@
 zh:
   activerecord:
-    attributes:
-      expense/type:
-        BudgetExpense: 预算（采购）
-        PrepayExpense: 借支/报销
-        PayableExpense: 对公支付
-      expense/state:
-        init: 申请
-        rejected: 拒绝
-      payment_method/type:
-        CashMethod: 现金
-        BankMethod: 银行账号
-      purchase/type:
-        BulkPurchase: 采购
-        PayoutPurchase: 对公支付
+    enum:
+      expense:
+        type:
+          BudgetExpense: 预算（采购）
+          PrepayExpense: 借支/报销
+          PayableExpense: 对公支付
+        state:
+          init: 申请
+          rejected: 拒绝
+      payment_method:
+        type:
+          CashMethod: 现金
+          BankMethod: 银行账号
+      purchase:
+        type:
+          BulkPurchase: 采购
+          PayoutPurchase: 对公支付
