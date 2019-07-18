@@ -2,7 +2,7 @@
 <%= f.text_field :type, readonly: true, css: { wrapper_input: 'six wide disabled field' } %>
 <%= f.text_field :subject, required: true %>
 <%= f.collection_select :financial_taxon_id, FinancialTaxon.all, :id, :name, { prompt: 'Select Taxon', on: { wrapper_id: true } } %>
-<%= f.fields :expense_items, on: { wrapper_all: false, label: false, placeholder: true }, css: { wrapper_input: 'two wide field' } do |ef| %>
+<%= f.fields :expense_items, on: { wrapper_all: false, label: false, placeholder: true }, css: { wrapper_input: 'field' } do |ef| %>
   <%= render partial: 'item_form', locals: { ef: ef } %>
 <% end %>
 <%= f.text_area :note %>

@@ -1,34 +1,34 @@
-class ExpenseMember < ApplicationRecord
-  include CheckMachine
-  include RailsWalletPayout
-
-  attribute :state, :string, default: 'pending_borrow'
-  belongs_to :expense
-  belongs_to :member
-  belongs_to :payment_method, optional: true
-  has_many :expense_items, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id
-
-  validates :member_id, uniqueness: { scope: [:expense_id] }
-
-  enum state: {
-    pending_borrow: 'pending_borrow',
-    advance_pay: 'advance_pay',
-    advance_paid: 'advance_paid',
-    pending_reimburse: 'pending_reimburse',
-    to_pay: 'to_pay',
-    paid: 'paid'
-  }
-
-  acts_as_notify :default,
-                 only: [:amount, :advance],
-                 methods: [:expense_subject, :state_i18n]
-  acts_as_notify :request,
-                 only: [:amount, :advance],
-                 methods: [:member_name, :expense_subject]
-
-  delegate :subject, to: :expense, prefix: true
-  delegate :name, to: :member, prefix: true
-
+module RailsFinance::ExpenseMember
+  extend ActiveSupport::Concern
+  included do
+    attribute :state, :string, default: 'pending_borrow'
+    belongs_to :expense
+    belongs_to :member
+    belongs_to :payment_method, optional: true
+    has_many :expense_items, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id
+  
+    validates :member_id, uniqueness: { scope: [:expense_id] }
+  
+    enum state: {
+      pending_borrow: 'pending_borrow',
+      advance_pay: 'advance_pay',
+      advance_paid: 'advance_paid',
+      pending_reimburse: 'pending_reimburse',
+      to_pay: 'to_pay',
+      paid: 'paid'
+    }
+  
+    acts_as_notify :default,
+                   only: [:amount, :advance],
+                   methods: [:expense_subject, :state_i18n]
+    acts_as_notify :request,
+                   only: [:amount, :advance],
+                   methods: [:member_name, :expense_subject]
+  
+    delegate :subject, to: :expense, prefix: true
+    delegate :name, to: :member, prefix: true
+  end
+  
   def approve_config
     {
       pending_borrow: advance_verifier,

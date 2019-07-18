@@ -1,58 +1,58 @@
-class Expense < ApplicationRecord
-  include Auditable
-  include CheckMachine
-
-  attribute :state, :string, default: 'init'
-  belongs_to :creator, class_name: 'Member'
-  belongs_to :financial_taxon
-  belongs_to :payment_method, optional: true
-  belongs_to :verifier, optional: true
-  has_many :expense_members, dependent: :destroy
-  has_many :members, through: :expense_members
-  has_many :expense_items, dependent: :destroy
-
-  accepts_nested_attributes_for :expense_members, allow_destroy: true, reject_if: :all_blank
-  accepts_nested_attributes_for :expense_items, allow_destroy: true, reject_if: :all_blank
-
-  #validate :amount_sum
-  validates :subject, presence: true
-
-  has_one_attached :proof
-  has_one_attached :invoice
-
-  enum state: {
-    init: 'init',
-    pending_verifier: 'pending_verifier',
-    pending_financial: 'pending_financial',
-    pending_om: 'pending_om',
-    pending_cfo: 'pending_cfo',
-    pending_md: 'pending_md',
-    paying: 'paying',
-    upload_invoice: 'upload_invoice',
-    invoice_financial: 'invoice_financial',
-    finished: 'finished',
-    rejected: 'rejected'
-  }
-
-  enum type: {
-    BudgetExpense: 'BudgetExpense',
-    PayableExpense: 'PayableExpense',
-    PrepayExpense: 'PrepayExpense'
-  }
-
-  delegate :name, to: :creator, prefix: true
-  delegate :name, to: :verifier, prefix: true
-
-  acts_as_notify :default,
-                 only: [:subject, :amount, :type],
-                 methods: [:creator_name, :state_i18n]
-  acts_as_notify :request,
-                 only: [:subject, :amount, :type],
-                 methods: [:creator_name]
-
-  after_create :sync_members
-  before_save :sync_amount
-
+module RailsFinance::Expense
+  extend ActiveSupport::Concern
+  included do
+    attribute :state, :string, default: 'init'
+    belongs_to :creator, class_name: 'Member'
+    belongs_to :financial_taxon
+    belongs_to :payment_method, optional: true
+    belongs_to :verifier, optional: true
+    has_many :expense_members, dependent: :destroy
+    has_many :members, through: :expense_members
+    has_many :expense_items, dependent: :destroy
+  
+    accepts_nested_attributes_for :expense_members, allow_destroy: true, reject_if: :all_blank
+    accepts_nested_attributes_for :expense_items, allow_destroy: true, reject_if: :all_blank
+  
+    #validate :amount_sum
+    validates :subject, presence: true
+  
+    has_one_attached :proof
+    has_one_attached :invoice
+  
+    enum state: {
+      init: 'init',
+      pending_verifier: 'pending_verifier',
+      pending_financial: 'pending_financial',
+      pending_om: 'pending_om',
+      pending_cfo: 'pending_cfo',
+      pending_md: 'pending_md',
+      paying: 'paying',
+      upload_invoice: 'upload_invoice',
+      invoice_financial: 'invoice_financial',
+      finished: 'finished',
+      rejected: 'rejected'
+    }
+  
+    enum type: {
+      BudgetExpense: 'BudgetExpense',
+      PayableExpense: 'PayableExpense',
+      PrepayExpense: 'PrepayExpense'
+    }
+  
+    delegate :name, to: :creator, prefix: true
+    delegate :name, to: :verifier, prefix: true
+  
+    acts_as_notify :default,
+                   only: [:subject, :amount, :type],
+                   methods: [:creator_name, :state_i18n]
+    acts_as_notify :request,
+                   only: [:subject, :amount, :type],
+                   methods: [:creator_name]
+  
+    after_create :sync_members
+    before_save :sync_amount
+  end
+  
   def approve_config
     {
       pending_verifier: financial_taxon.verifier,

@@ -1,6 +1,4 @@
-require 'acts_as_list'
-class FinancialTaxon < ApplicationRecord
-  prepend TheNodeModel
+module RailsFinance::FinancialTaxon
   acts_as_list
 
   belongs_to :verifier, class_name: 'Member', optional: true
