@@ -1,4 +1,4 @@
-//= require rails_taxon/form
+import 'rails_taxon/form'
 $('#financial_taxon_verifier_id').dropdown({
   apiSettings: {
     url: '/my/member/search?q={query}',

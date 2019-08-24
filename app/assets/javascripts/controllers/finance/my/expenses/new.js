@@ -1,5 +1,3 @@
-//= require rails_com/fetch_xhr_script
-
 $('[data-title="expense_item_member"]').dropdown({
   apiSettings: {
     url: '/my/member/search?q={query}',
@@ -23,7 +21,7 @@ $('#expense_financial_taxon_id').dropdown({
     var data = new FormData(this.form);
     data.delete('_method');
 
-    fetch_xhr_script(search_url, { method: 'POST', body: data });
+    Rails.ajax({url: search_url, type: 'POST', body: data});
   }
 });
 

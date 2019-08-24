@@ -1,2 +1,2 @@
-//= require ./show
+import './show'
 
