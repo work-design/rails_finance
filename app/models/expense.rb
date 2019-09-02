@@ -1,5 +1,5 @@
 class Expense < ApplicationRecord
   include RailsFinance::Expense
-  include Auditable
-  include CheckMachine
+  include RailsAudit::Auditable
+  include RailsAudit::CheckMachine
 end unless defined? Expense
