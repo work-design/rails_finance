@@ -28,7 +28,7 @@
             <% if ['pending_om', 'pending_cfo'].include?(expense.state) %>
               <div class="or"></div>
               <%= link_to Expense.enum_i18n(:state, 'pending_md'), new_check_path('Expense', expense.id, state: 'pending_md'), remote: true, class: 'ui mini positive button' %>
-          <% end %>
+            <% end %>
           </div>
         <% end %>
       </td>
