@@ -12,13 +12,13 @@
   <%= form_with model: @expense, scope: 'expense', url: my_expense_path(@expense) do |f| %>
     <%= render 'shared/error_messages', target: @expense %>
     <% if @expense.type == 'PrepayExpense' %>
-      <%= f.fields :expense_members, on: { wrapper_all: false, label: false, placeholder: true }, css: { wrapper_input: 'two wide field' } do |ef| %>
+      <%= f.fields :expense_members, on: { wrap_all: false, label: false, placeholder: true }, css: { wrapper_input: 'two wide field' } do |ef| %>
         <%= render partial: 'member_form', locals: { ef: ef } %>
       <% end %>
     <% end %>
     <% if @expense.type == 'PayableExpense' %>
     <div class="inline fields">
-      <%= f.collection_select :payment_method_id, @payment_methods, :id, :account_info, { on: { wrapper_all: false } } %>
+      <%= f.collection_select :payment_method_id, @payment_methods, :id, :account_info, { on: { wrap_all: false } } %>
       <%= link_to 'Add', new_admin_payment_method_path, remote: true, class: 'ui button' %>
     </div>
     <% end %>

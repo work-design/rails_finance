@@ -4,15 +4,15 @@
   <% else %>
     <label class="three wide field"></label>
   <% end %>
-  <%= ef.select :member_id, options_for_select([[ef.object.member&.name, ef.object.member_id]], ef.object.member_id), {include_blank: true, css: { wrapper_input: 'three wide field' }}, { disabled: ef.object.persisted?, data: {title: 'expense_member_member'}} %>
-  <%= ef.number_field :advance, readonly: true, css: { wrapper_input: 'three wide field' } %>
-  <%= ef.number_field :amount, css: { wrapper_input: 'three wide field' } %>
+  <%= ef.select :member_id, options_for_select([[ef.object.member&.name, ef.object.member_id]], ef.object.member_id), {include_blank: true, css: { wrap_input: 'three wide field' }}, { disabled: ef.object.persisted?, data: {title: 'expense_member_member'}} %>
+  <%= ef.number_field :advance, readonly: true, css: { wrap_input: 'three wide field' } %>
+  <%= ef.number_field :amount, css: { wrap_input: 'three wide field' } %>
   <div class="field">
     <%= link_to add_item_my_expenses_path('member', index: ef.index), remote: true do %>
       <i class="plus circle icon"></i>
     <% end %>
     <% if ef.object.id %>
-      <%= ef.check_box :_destroy, { on: { offset: false }, css: { wrapper_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
+      <%= ef.check_box :_destroy, { on: { offset: false }, css: { wrap_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
     <% else %>
       <%= link_to remove_item_my_expenses_path('member', index: ef.index), remote: true do %>
         <i class="minus circle icon"></i>
