@@ -1,14 +1,20 @@
 module RailsFinance::ExpenseMember
   extend ActiveSupport::Concern
+
   included do
+    attribute :amount, :decimal, precision: 10, scale: 2
+    attribute :advance, :decimal, precision: 10, scale: 2
     attribute :state, :string, default: 'pending_borrow'
+    attribute :note, :string
+
     belongs_to :expense
     belongs_to :member
     belongs_to :payment_method, optional: true
+
     has_many :expense_items, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id
-  
+
     validates :member_id, uniqueness: { scope: [:expense_id] }
-  
+
     enum state: {
       pending_borrow: 'pending_borrow',
       advance_pay: 'advance_pay',
@@ -17,13 +23,17 @@ module RailsFinance::ExpenseMember
       to_pay: 'to_pay',
       paid: 'paid'
     }
-  
-    acts_as_notify :default,
-                   only: [:amount, :advance],
-                   methods: [:expense_subject, :state_i18n]
-    acts_as_notify :request,
-                   only: [:amount, :advance],
-                   methods: [:member_name, :expense_subject]
+
+    acts_as_notify(
+      :default,
+      only: [:amount, :advance],
+      methods: [:expense_subject, :state_i18n]
+    )
+    acts_as_notify(
+      :request,
+      only: [:amount, :advance],
+      methods: [:member_name, :expense_subject]
+    )
   
     delegate :subject, to: :expense, prefix: true
     delegate :name, to: :member, prefix: true

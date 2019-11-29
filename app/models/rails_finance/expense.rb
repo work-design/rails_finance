@@ -1,11 +1,20 @@
 module RailsFinance::Expense
   extend ActiveSupport::Concern
+
   included do
+    attribute :type, :string
     attribute :state, :string, default: 'init'
+    attribute :subject, :string
+    attribute :amount, :decimal, precision: 10, scale: 2
+    attribute :note, :string, limit: 4096
+    attribute :invoices_count, :integer
+    
+    belongs_to :payout, optional: true
     belongs_to :creator, class_name: 'Member'
     belongs_to :financial_taxon
     belongs_to :payment_method, optional: true
     belongs_to :verifier, optional: true
+
     has_many :expense_members, dependent: :destroy
     has_many :members, through: :expense_members
     has_many :expense_items, dependent: :destroy
@@ -42,13 +51,16 @@ module RailsFinance::Expense
     delegate :name, to: :creator, prefix: true
     delegate :name, to: :verifier, prefix: true
   
-    acts_as_notify :default,
-                   only: [:subject, :amount, :type],
-                   methods: [:creator_name, :state_i18n]
-    acts_as_notify :request,
-                   only: [:subject, :amount, :type],
-                   methods: [:creator_name]
-  
+    acts_as_notify(
+      :default,
+      only: [:subject, :amount, :type],
+      methods: [:creator_name, :state_i18n]
+    )
+    acts_as_notify(
+      :request,
+      only: [:subject, :amount, :type],
+      methods: [:creator_name]
+    )
     after_create :sync_members
     before_save :sync_amount
   end

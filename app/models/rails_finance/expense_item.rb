@@ -1,6 +1,14 @@
 module RailsFinance::ExpenseItem
   extend ActiveSupport::Concern
+
   included do
+    attribute :budget, :decimal, precision: 10, scale: 2
+    attribute :amount, :decimal, precision: 10, scale: 2
+    attribute :note, :string
+    attribute :state, :string
+    attribute :quantity, :integer, default: 1
+    attribute :price, precision: 10, scale: 2
+    
     belongs_to :expense
     belongs_to :member, optional: true
     belongs_to :financial_taxon, optional: true
