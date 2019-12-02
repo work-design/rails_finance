@@ -1,4 +1,4 @@
-<% form_object = default_form_object(@expense, css: { label: 'three wide field' }) %>
+<% form_object = form_object(@expense, css: { label: 'three wide field' }) %>
 
 
 var template = '<%= j(render partial: 'item_field', locals: { f: form_object, index: nil }) %>'
