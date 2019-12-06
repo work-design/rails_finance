@@ -24,32 +24,27 @@ class Finance::Admin::ExpenseMembersController < Finance::Admin::BaseController
   end
 
   def update
-    if @expense_member.update(expense_member_params)
-      redirect_to finance_expense_expense_members_url(@expense_member.expense_id), notice: 'Expense member was successfully updated.'
-    else
-      render :edit
+    @expense_member.assign_attribute(expense_member_params)
+      
+    unless @expense_member.save
+      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
     end
   end
 
   def to_advance_pay
-    if @expense_member.to_advance_payout
-      redirect_to finance_expense_expense_members_url(@expense_member.expense_id), notice: 'Expense member was successfully updated.'
-    else
-      render :edit
+    unless @expense_member.to_advance_payout
+      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
     end
   end
 
   def to_pay
-    if @expense_member.to_payout
-      redirect_to finance_expense_expense_members_url(@expense_member.expense_id), notice: 'Expense member was successfully updated.'
-    else
-      render :edit
+    unless @expense_member.to_payout
+      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @expense_member.destroy
-    redirect_to finance_expense_expense_members_url(@expense_member.expense_id), notice: 'Expense member was successfully destroyed.'
   end
 
   private

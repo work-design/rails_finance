@@ -26,9 +26,7 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
     @expense = Expense.new(expense_params)
 
     if @expense.save
-      redirect_to finance_expenses_url, notice: 'Expense was successfully created.'
-    else
-      render :new
+      render :new, locals: { model: @expense }, status: :unprocessable_entity
     end
   end
 
@@ -42,9 +40,7 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
 
   def update
     if @expense.update(expense_params)
-      redirect_to finance_expense_url(@expense), notice: 'Expense was successfully updated.'
-    else
-      render :edit
+      render :edit, locals: { model: @expense }, status: :unprocessable_entity
     end
   end
 
@@ -60,7 +56,6 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
 
   def destroy
     @expense.destroy
-    redirect_to finance_expenses_url, notice: 'Expense was successfully destroyed.'
   end
 
   private

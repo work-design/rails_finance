@@ -37,13 +37,12 @@ class Finance::My::ExpenseMembersController < Finance::My::BaseController
   end
 
   def update
-    if @expense_member.update(expense_member_params)
-      redirect_to my_expense_members_url, notice: 'Expense member was successfully updated.'
-    else
-      render :edit
+    unless @expense_member.update(expense_member_params)
+      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
     end
   end
 
+  private
   def set_expense_member
     @expense_member = ExpenseMember.find(params[:id])
   end

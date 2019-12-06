@@ -14,10 +14,8 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   def create
     @financial_taxon = FinancialTaxon.new(financial_taxon_params)
 
-    if @financial_taxon.save
-      redirect_to finance_financial_taxons_url, notice: 'Purchase taxon was successfully created.'
-    else
-      render :new
+    unless @financial_taxon.save
+      render :new, locals: { model: @financial_taxon }, status: :unprocessable_entity
     end
   end
 
@@ -28,16 +26,13 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   end
 
   def update
-    if @financial_taxon.update(financial_taxon_params)
-      redirect_to finance_financial_taxons_url, notice: 'Purchase taxon was successfully updated.'
-    else
-      render :edit
+    unless @financial_taxon.update(financial_taxon_params)
+      render :edit, locals: { model: @financial_taxon }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @financial_taxon.destroy
-    redirect_to finance_financial_taxons_url, notice: 'Purchase taxon was successfully destroyed.'
   end
 
   private

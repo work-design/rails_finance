@@ -1,3 +1,3 @@
-class Finance::Admin::BaseController < RailsFinance
+class Finance::Admin::BaseController < RailsFinance.config.admin_controller.constantize
 
 end

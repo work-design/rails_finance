@@ -20,10 +20,8 @@ class Finance::My::ExpensesController < Finance::My::BaseController
   def create
     @expense = current_member.created_expenses.build(expense_params)
 
-    if @expense.save
-      redirect_to my_expense_url(@expense), notice: 'Expense was successfully created.'
-    else
-      render :new
+    unless @expense.save
+      render :new, locals: { model: @expense }, status: :unprocessable_entity
     end
   end
 
@@ -75,10 +73,9 @@ class Finance::My::ExpensesController < Finance::My::BaseController
 
   def update
     @expense.assign_attributes(expense_params)
-    if @expense.save
-      redirect_to my_expense_url(@expense), notice: 'Expense was successfully updated.'
-    else
-      render :edit
+
+    unless @expense.save
+      render :edit, locals: { model: @expense }, status: :unprocessable_entity
     end
   end
 
@@ -112,7 +109,6 @@ class Finance::My::ExpensesController < Finance::My::BaseController
 
   def destroy
     @expense.destroy
-    redirect_to my_expenses_url, notice: 'Expense was successfully destroyed.'
   end
 
   private

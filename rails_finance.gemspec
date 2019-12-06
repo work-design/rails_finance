@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
   s.homepage = 'https://github.com/work-design/rails_finance'
-  s.summary = ' Summary of RailsDoc.'
+  s.summary = ' Summary of Rails .'
   s.description = ' Description of RailsDoc.'
   s.license = 'LGPL-3.0'
 
