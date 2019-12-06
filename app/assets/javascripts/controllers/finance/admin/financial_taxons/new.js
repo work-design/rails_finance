@@ -7,4 +7,4 @@ $('#financial_taxon_verifier_id').dropdown({
     name: 'name',
     value: 'id'
   }
-});
+})

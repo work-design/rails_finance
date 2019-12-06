@@ -3,5 +3,4 @@ $('.ui.checkbox').checkbox({
   className: {
     checked: ''
   }
-});
-
+})

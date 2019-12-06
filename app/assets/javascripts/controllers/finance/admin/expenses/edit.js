@@ -1,1 +1,1 @@
-$('#expense_state').dropdown();
+$('#expense_state').dropdown()

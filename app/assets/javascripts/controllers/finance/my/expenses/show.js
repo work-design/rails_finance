@@ -1,4 +1,4 @@
-$('#expense_payment_method_id').dropdown();
+$('#expense_payment_method_id').dropdown()
 $('[data-title="expense_member_member"]').dropdown({
   apiSettings: {
     url: '/my/member/search?q={query}',
@@ -7,4 +7,4 @@ $('[data-title="expense_member_member"]').dropdown({
     name: 'name',
     value: 'id'
   }
-});
+})
