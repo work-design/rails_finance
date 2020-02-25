@@ -3,10 +3,9 @@ class Finance::My::ExpensesController < Finance::My::BaseController
   # after_action only: [:create, :update, :destroy] do
   #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
   # end
-  skip_before_action :verify_authenticity_token, only: [:financial_taxons] #todo removed
 
   def index
-    q_params = params.fetch(:q, {}).permit!
+    q_params = {}
     q_params.merge! params.permit(:state)
     @expenses = current_member.created_expenses.default_where(q_params).page(params[:page])
   end

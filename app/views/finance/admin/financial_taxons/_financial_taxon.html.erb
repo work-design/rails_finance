@@ -7,17 +7,13 @@
   <td><%= node.position %></td>
   <td><%= node.verifier&.name %></td>
   <td>
-    <%= form_with model: node, scope: :financial_taxon, url: finance_financial_taxon_path(node), method: :patch, remote: true do |f| %>
-      <%= f.check_box :take_stock, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
-    <% end %>
+    <%= check_box_tag '[financial]take_stock', nil, node.take_stock, data: { method: :patch, remote: true, url: admin_financial_taxon_path(node), submit: true }, id: nil %>
   </td>
   <td>
-    <%= form_with model: node, scope: :financial_taxon, url: finance_financial_taxon_path(node), method: :patch, remote: true do |f| %>
-      <%= f.check_box :individual, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
-    <% end %>
+    <%= check_box_tag '[financial]individual', nil, node.individual, data: { method: :patch, remote: true, url: admin_financial_taxon_path(node), submit: true }, id: nil %>
   </td>
   <td>
-    <%= link_to t('.edit'), edit_finance_financial_taxon_path(node), class: 'ui pink label' %>
-    <%= link_to t('.destroy'), finance_financial_taxon_path(node), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+    <%= link_to t('.edit'), edit_admin_financial_taxon_path(node), remote: true, class: 'ui pink label' %>
+    <%= link_to t('.destroy'), admin_financial_taxon_path(node), method: :delete, data: { confirm: t('.confirm') }, remote: true, class: 'ui red label' %>
   </td>
 </tr>

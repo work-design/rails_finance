@@ -1,10 +1,5 @@
 <div class="ui top attached borderless menu">
   <%= link_to 'Admin Expenses', my_expenses_path(@lesson), class: active_helper(controllers: 'finance_my/expenses') %>
-  <%= link_to 'Pending Expenses', my_finance_expenses_path, class: active_helper('finance_admin/expenses': ['my']) %>
-  <%= link_to 'Pending Expense Members', my_finance_expense_members_path, class: active_helper('finance_admin/expense_members': ['my']) %>
-  <div class="right menu">
-    <div class="item">
-      <%= link_to 'Add', new_my_expense_path(type: 'BudgetExpense'), class: 'ui teal button' %>
-    </div>
-  </div>
+  <%= link_to 'Pending Expenses', my_admin_expenses_path, class: active_helper('finance_admin/expenses': ['my']) %>
+  <%= link_to 'Pending Expense Members', my_admin_expense_members_path, class: active_helper('finance_admin/expense_members': ['my']) %>
 </div>

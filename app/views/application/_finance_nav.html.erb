@@ -1,26 +1,14 @@
-<div class="ui vertical fluid icon menu">
-  <div class="header center link item" id="close_side">
-    <i class="content icon"></i>
-  </div>
-  <div class="item ui dropdown">
-    <a class="<%= active_helper(controllers: ['expenses', 'financial_taxons', 'payouts'], active_class: 'title active', item_class: 'title') %>">
-      <i class="money bill icon"></i>
-      <span>Finance</span>
-    </a>
-    <div class="<%= active_helper(controllers: ['expenses', 'financial_taxons', 'payouts'], active_class: 'menu content active', item_class: 'menu content') %>">
-      <%= link_to 'Expenses', finance_expenses_path, class: active_helper(controllers: 'expenses') %>
-      <%= link_to 'Financial Taxon', finance_financial_taxons_path, class: active_helper(controllers: 'financial_taxons') %>
-      <%= link_to 'Payouts', finance_payouts_path, class: active_helper(controllers: 'payouts') %>
-    </div>
-  </div>
-  <div class="ui dropdown item">
-    <a class="<%= active_helper(controllers: ['payment_methods'], active_class: 'title active', item_class: 'title') %>">
-      <i class="money bill icon"></i>
-      <span>Payment Methods</span>
-    </a>
-    <div class="<%= active_helper(controllers: ['payment_methods'], active_class: 'menu content active', item_class: 'menu content') %>">
-      <%= link_to 'Payment methods', admin_payment_methods_path, class: active_helper(controllers: 'payment_methods') %>
-    </div>
+<% if rails_role_user.any_role?('finance/admin') %>
+<div class="item">
+  <a class="<%= active_helper(modules: 'finance/admin', active_class: 'title active', item_class: 'title') %>">
+    <i class="money bill icon"></i>
+    <span><%= t('finance.admin.title') %></span>
+  </a>
+  <div class="<%= active_helper(controllers: ['expenses', 'financial_taxons', 'payouts'], active_class: 'menu content active', item_class: 'menu content') %>">
+    <%= link_to t('finance.admin.expenses.index.title'), admin_expenses_path, class: active_helper(controllers: 'expenses') %>
+    <%= link_to t('finance.admin.finance_taxons.index.title'), admin_financial_taxons_path, class: active_helper(controllers: 'financial_taxons') %>
+    <%= link_to t('finance.admin.payouts.index.title'), admin_payouts_path, class: active_helper(controllers: 'payouts') %>
+    <%= link_to t('finance.admin.payment_methods.index.title'), admin_payment_methods_path, class: active_helper(controllers: 'payment_methods') %>
   </div>
 </div>
-
+<% end %>

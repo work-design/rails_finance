@@ -4,3 +4,16 @@ zh:
       expense:
         amount: 合计
         expense_members: 报销人
+        subject: 报销内容
+  finance:
+    admin:
+      title: 财务管理
+      finance_taxons:
+        index:
+          title: 类别
+      expenses:
+        index:
+          title: 支出
+      payouts:
+        index:
+          title: 支付
