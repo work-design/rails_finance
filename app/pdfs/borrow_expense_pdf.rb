@@ -8,12 +8,6 @@ class BorrowExpensePdf
 
 	def initialize(expense_member_id = nil)
 		@document = RailsDataPdf.new
-
-    @document.font_families['Serif'] = {
-      bold: { file: "#{Rails.root}/public/fonts/SourceHanSerifCN-Bold.ttf" },
-      normal: { file: "#{Rails.root}/public/fonts/SourceHanSerifCN-Regular.ttf" }
-    }
-    @document.font('Serif')
 		@expense_member = ExpenseMember.find expense_member_id
 		write_content
 	end

@@ -8,12 +8,6 @@ class PayoutExpensePdf
 
 	def initialize(expense_id)
 		@document = RailsDataPdf.new
-
-    @document.font_families['Serif'] = {
-      bold: { file: "#{Rails.root}/public/fonts/SourceHanSerifCN-Bold.ttf" },
-      normal: { file: "#{Rails.root}/public/fonts/SourceHanSerifCN-Regular.ttf" }
-    }
-    @document.font('Serif')
 		@expense = Expense.find(expense_id)
 		write_content
 	end
