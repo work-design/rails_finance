@@ -1,5 +1,5 @@
 <div class="ui segment breadcrumb">
-  <%= link_to 'Back', finance_expenses_path(id: @expense.id), class: 'section' %>
+  <%= link_to 'Back', admin_expenses_path(id: @expense.id), class: 'section' %>
   <div class="divider"> / </div>
   <div class="active section">Expense members</div>
 </div>
@@ -32,7 +32,7 @@
     <tr>
       <td class="right aligned"><%= Expense.human_attribute_name(:expense_items) %></td>
       <td>
-        <%= render partial: 'finance_admin/expenses/items', locals: { expense_items: @expense_items } %>
+        <%= render partial: 'finance/admin/expenses/items', locals: { expense_items: @expense_items } %>
       </td>
     </tr>
   </tbody>
@@ -82,11 +82,11 @@
         <p>
           <%= expense_member.payout_amount %>
           <% if expense_member.payout_id %>
-            <%= link_to finance_payout_path(expense_member.payout_id) do %>
+            <%= link_to admin_payout_path(expense_member.payout_id) do %>
               <i class="money bill alternate icon"></i>
             <% end %>
           <% else %>
-            <%= link_to to_pay_finance_expense_member_path(expense_member), method: :patch, data: { tooltip: 'to pay', confirm: 'Are you sure?' } do %>
+            <%= link_to to_pay_admin_expense_member_path(expense_member), method: :patch, data: { tooltip: 'to pay', confirm: 'Are you sure?' } do %>
               <i class="share icon"></i>
             <% end %>
           <% end %>
@@ -102,12 +102,12 @@
           </div>
         <% end %>
       </td>
-      <td class="ui labels">
+      <td>
         <%= link_to 'items', items_my_expense_member_path(expense_member), remote: true, class: 'ui blue label' %>
-        <%= link_to edit_finance_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
+        <%= link_to edit_admin_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to finance_expense_member_path(expense_member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to admin_expense_member_path(expense_member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>

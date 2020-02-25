@@ -7,7 +7,7 @@ class PrepayExpensePdf
 	attr_reader :document, :expense_member
 
 	def initialize(expense_member_id = nil)
-		@document = TheDataPdf.new
+		@document = RailsDataPdf.new
 
     @document.font_families['Serif'] = {
       bold: { file: "#{Rails.root}/public/fonts/SourceHanSerifCN-Bold.ttf" },

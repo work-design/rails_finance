@@ -36,9 +36,9 @@
         <time><%= expense.created_at.to_s(:rfc822) %></time>
       </td>
       <td>
-        <%= link_to 'details', finance_expense_path(expense), class: 'ui blue label' %>
-        <%= link_to t('.edit'), edit_finance_expense_path(expense), class: 'ui pink label' %>
-        <%= link_to t('.destroy'), finance_expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+        <%= link_to t('.show'), admin_expense_path(expense), class: 'ui blue label' %>
+        <%= link_to t('.edit'), edit_admin_expense_path(expense), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), admin_expense_path(expense), method: :delete, data: { confirm: t('.confirm') }, remote: true, class: 'ui red label' %>
       </td>
     </tr>
   <% end %>
