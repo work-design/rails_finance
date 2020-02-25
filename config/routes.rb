@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   scope :finance, module: 'finance/admin', as: 'admin' do
-    root to: 'home#index'
-
     resources :financial_taxons
     resources :expense_members, only: [] do
       get :my, on: :collection

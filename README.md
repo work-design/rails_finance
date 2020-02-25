@@ -1,4 +1,4 @@
-# RailsDoc
+# RailsFinance
 Short description and motivation.
 
 ## Usage

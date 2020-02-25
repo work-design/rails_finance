@@ -1,3 +1,4 @@
+require 'prawn'
 class BorrowExpensePdf
 	include Prawn::View
 	include PdfTextHelper

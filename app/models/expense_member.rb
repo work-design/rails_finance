@@ -1,5 +1,5 @@
 class ExpenseMember < ApplicationRecord
   include RailsFinance::ExpenseMember
-  include CheckMachine
+  include RailsAudit::CheckMachine
   include RailsVip::Payout
 end unless defined? ExpenseMember

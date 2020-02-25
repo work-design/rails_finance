@@ -1,4 +1,4 @@
-module PrepayExpenseRecord
+module BorrowExpenseRecord
   extend RailsData::Record
 
   config do

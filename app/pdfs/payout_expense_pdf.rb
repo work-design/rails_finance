@@ -1,3 +1,4 @@
+require 'prawn'
 class PayoutExpensePdf
 	include Prawn::View
 	include PdfTextHelper
