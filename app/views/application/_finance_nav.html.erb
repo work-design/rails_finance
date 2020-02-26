@@ -1,8 +1,9 @@
 <% if rails_role_user.any_role?('finance/admin') %>
 <div class="item">
   <a class="<%= active_helper(modules: 'finance/admin', active_class: 'title active', item_class: 'title') %>">
-    <i class="money bill icon"></i>
+    <i class="fas fa-money-bill"></i>
     <span><%= t('finance.admin.title') %></span>
+    <i class="dropdown icon"></i>
   </a>
   <div class="<%= active_helper(controllers: ['expenses', 'financial_taxons', 'payouts'], active_class: 'menu content active', item_class: 'menu content') %>">
     <%= link_to t('finance.admin.expenses.index.title'), admin_expenses_path, class: active_helper(controllers: 'expenses') %>
