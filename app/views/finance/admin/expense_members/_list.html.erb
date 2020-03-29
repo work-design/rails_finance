@@ -35,7 +35,7 @@
             <i class="money bill alternate icon"></i>
           <% end %>
         <% else %>
-          <%= link_to to_advance_pay_finance_expense_member_path(expense_member), method: :patch, data: { tooltip: 'to pay', confirm: 'Are you sure?' } do %>
+          <%= link_to to_advance_pay_finance_expense_member_path(expense_member), method: :patch, aria: { label: 'to pay', confirm: 'Are you sure?' } do %>
             <i class="share icon"></i>
           <% end %>
         <% end %>
@@ -48,7 +48,7 @@
             <i class="money bill alternate icon"></i>
           <% end %>
         <% else %>
-          <%= link_to to_pay_finance_expense_member_path(expense_member), method: :patch, data: { tooltip: 'to pay', confirm: 'Are you sure?' } do %>
+          <%= link_to to_pay_finance_expense_member_path(expense_member), method: :patch, aria: { label: 'to pay', confirm: 'Are you sure?' } do %>
             <i class="share icon"></i>
           <% end %>
         <% end %>

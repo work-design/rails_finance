@@ -12,7 +12,7 @@
       <i class="plus circle icon"></i>
     <% end %>
     <% if ef.object.id %>
-      <%= ef.check_box :_destroy, { on: { offset: false }, css: { wrap_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
+      <%= ef.check_box :_destroy, { can: { offset: false }, css: { wrap_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
     <% else %>
       <%= link_to remove_item_my_expenses_path('member', index: ef.index), remote: true do %>
         <i class="minus circle icon"></i>

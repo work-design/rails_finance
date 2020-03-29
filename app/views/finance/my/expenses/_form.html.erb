@@ -1,8 +1,8 @@
 <%= render 'shared/error_messages', target: @expense %>
 <%= f.text_field :type, readonly: true, css: { wrap_input: 'six wide disabled field' } %>
 <%= f.text_field :subject, required: true %>
-<%= f.collection_select :financial_taxon_id, FinancialTaxon.all, :id, :name, { prompt: 'Select Taxon', on: { wrap_id: true } } %>
-<%= f.fields :expense_items, on: { wrap_all: false, label: false, placeholder: true }, css: { wrap_input: 'field' } do |ef| %>
+<%= f.collection_select :financial_taxon_id, FinancialTaxon.all, :id, :name, { prompt: 'Select Taxon', can: { wrap_id: true } } %>
+<%= f.fields :expense_items, can: { wrap_all: false, label: false, placeholder: true }, css: { wrap_input: 'field' } do |ef| %>
   <%= render partial: 'item_form', locals: { ef: ef } %>
 <% end %>
 <%= f.text_area :note %>
