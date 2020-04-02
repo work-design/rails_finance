@@ -1,17 +1,19 @@
 <%= form_with theme: 'search', model: Expense.new do |f| %>
-  <div class="fields">
+  <div class="field-body">
     <%= f.text_field 'subject-like', placeholder: 'Subject' %>
     <%= f.number_field :amount %>
-    <%= f.submit %>
+    <div class="field is-narrow">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>
 
 <dl>
   <dt>State:</dt>
   <dd>
-    <%= link_to 'All', filter_params(except: [:state]), class: active_params(state: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <%= link_to t('.all'), filter_params(except: [:state]), class: active_params(state: '', active_class: 'button is-info', item_class: 'button is-light') %>
     <% Expense.states.keys.each do |state| %>
-      <%= link_to Expense.enum_i18n(:state, state), filter_params(state: state), class: active_params(state: state, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+      <%= link_to Expense.enum_i18n(:state, state), filter_params(state: state), class: active_params(state: state, active_class: 'button is-info', item_class: 'button is-light') %>
     <% end %>
   </dd>
 </dl>
