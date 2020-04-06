@@ -13,7 +13,7 @@
         <p><%= ExpenseMember.human_attribute_name(:payout_amount) %></p>
       </th>
       <th><%= ExpenseMember.human_attribute_name(:state) %></th>
-      <th>Actions</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -64,13 +64,13 @@
           </div>
         <% end %>
       </td>
-      <td class="ui labels">
+      <td>
         <%= link_to 'items', items_my_expense_member_path(expense_member), remote: true, class: 'ui blue label' %>
-        <%= link_to edit_finance_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
-          <i class="pencil alternate icon"></i>
+        <%= link_to edit_finance_expense_member_path(expense_member), aria: { label: t('.edit') }, remote: true, class: 'ui pink mini icon button' do %>
+          <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to finance_expense_member_path(expense_member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
-          <i class="times icon"></i>
+        <%= link_to finance_expense_member_path(expense_member), method: :delete, data: { confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
+          <i class="fas fa-trash"></i>
         <% end %>
       </td>
     </tr>
