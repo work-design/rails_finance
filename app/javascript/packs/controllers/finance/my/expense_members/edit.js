@@ -1,1 +1,0 @@
-$('#expense_member_payment_method_id').dropdown();

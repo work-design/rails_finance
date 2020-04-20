@@ -1,1 +1,0 @@
-$('#expense_state').dropdown()
