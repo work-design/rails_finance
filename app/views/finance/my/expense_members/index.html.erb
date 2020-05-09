@@ -1,9 +1,11 @@
-<div class="ui top attached borderless menu">
-  <%= link_to 'My Expenses', my_expense_members_path, class: active_helper(controllers: 'finance_my/expense_members') %>
-  <%= link_to 'My Payment Methods', my_payment_methods_path, class: active_helper(controllers: 'payment_methods') %>
+<div class="tabs">
+  <ul>
+    <li><%= link_to 'My Expenses', my_expense_members_path, class: active_helper(controllers: 'finance_my/expense_members') %></li>
+    <li><%= link_to 'My Payment Methods', my_payment_methods_path, class: active_helper(controllers: 'payment_methods') %></li>
+  </ul>
 </div>
 
-<%= render 'search_form' %>
+<%= render 'filter_form' %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>

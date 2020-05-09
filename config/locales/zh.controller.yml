@@ -1,0 +1,15 @@
+zh:
+  finance:
+    admin:
+      title: 财务管理
+      finance_taxons:
+        index:
+          title: 类别
+      expenses:
+        index:
+          title: 支出
+      payouts:
+        index:
+          title: 支付
+    my:
+      title: 报销
