@@ -34,8 +34,8 @@
       <td class="ui labels">
         <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), remote: true, class: 'ui orange label' %>
         <% if ['init', 'rejected'].include? expense.state %>
-          <%= link_to t('.edit'), edit_my_expense_path(expense), class: 'ui pink label' %>
-          <%= link_to t('.destroy'), my_expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+          <%= link_to t('.edit'), edit_my_expense_path(expense), remote: true, class: 'ui pink label' %>
+          <%= link_to t('.destroy'), my_expense_path(expense), method: :delete, data: { confirm: t('.confirm') }, class: 'ui red label' %>
         <% end %>
       </td>
     </tr>
