@@ -1,4 +1,4 @@
-zh:
+en:
   finance:
     admin:
       title: 财务管理
@@ -15,7 +15,7 @@ zh:
       title: 报销
       expenses:
         index:
-          title: 报销列表
+          title: Admin Expenses
       expense_members:
         index:
-          title: 我的报销
+          title: My Expenses
