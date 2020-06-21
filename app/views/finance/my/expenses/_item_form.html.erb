@@ -1,4 +1,4 @@
-<div class="inline fields" id="expense_expense_items_<%= ef.index %>" data-title="expense_expense_items">
+<div class="field is-horizontal" id="expense_expense_items_<%= ef.index %>" data-title="expense_expense_items">
   <% if ef.index == 0 %>
     <%= ef.options[:parent_builder].label :expense_items %>
   <% else %>
@@ -25,15 +25,15 @@
     <%= ef.select :member_id, options_for_select([[ef.object.member&.name, ef.object.member_id]], ef.object.member_id), {include_blank: true, css: { wrapper_input: 'three wide field' }}, {data: {title: 'expense_item_member'}} %>
   <% end %>
   
-  <div class="field">
+  <div class="field has-addons">
     <%= link_to add_item_my_expenses_path('item', index: ef.index, type: ef.options[:parent_builder].object.type, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id), data: { title: 'add_item' }, remote: true do %>
-      <i class="plus circle icon"></i>
+      <i class="fas fa-plus"></i>
     <% end %>
     <% if ef.object.id %>
       <%= ef.check_box :_destroy, { on: { offset: false }, css: { wrap_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
     <% else %>
       <%= link_to remove_item_my_expenses_path('item', index: ef.index, type: ef.options[:parent_builder].object.type), remote: true do %>
-        <i class="minus circle icon"></i>
+        <i class="fas fa-minus"></i>
       <% end %>
     <% end %>
   </div>

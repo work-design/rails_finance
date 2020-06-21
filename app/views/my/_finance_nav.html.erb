@@ -1,5 +1,5 @@
 <span class="menu-label"><%= t('finance.my.title') %></span>
 <div class="menu-list">
-  <%= link_to t('finance.my.expense_members.index.title'), my_expense_members_path, class: active_helper(controllers: ['finance_my/expense_members', 'payment_methods'], active: 'is-active') %>
-  <%= link_to t('finance.my.expenses.index.title'), my_expenses_path, class: active_helper(controllers: ['finance_admin/expense_members', 'expenses'], active: 'is-active') %>
+  <%= link_to t('finance.my.expense_members.index.title'), my_expense_members_path, class: active_helper(controllers: ['finance/my/expense_members', 'payment_methods'], active: 'is-active') %>
+  <%= link_to t('finance.my.expenses.index.title'), my_expenses_path, class: active_helper(controllers: ['finance/my/expenses'], active: 'is-active') %>
 </div>

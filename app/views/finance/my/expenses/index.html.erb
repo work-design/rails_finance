@@ -12,7 +12,7 @@
       <th><%= Expense.human_attribute_name(:proof) %></th>
       <th><%= Expense.human_attribute_name(:state) %></th>
       <th>
-        <%= link_to new_my_expense_path(type: 'BudgetExpense'), remote: true, class: 'ui teal button' do %>
+        <%= link_to new_my_expense_path(type: 'BudgetExpense'), remote: true, class: 'button is-link' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -28,7 +28,7 @@
       <td>
         <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
       </td>
-      <td class="ui labels">
+      <td>
         <span class="ui label"><%= expense.state_i18n %></span>
       </td>
       <td class="ui labels">

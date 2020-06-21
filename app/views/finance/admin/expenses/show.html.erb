@@ -8,11 +8,11 @@
 <table class="ui attached basic large table">
   <tbody>
     <tr>
-      <td class="six wide right aligned"><%= Expense.human_attribute_name(:subject) %></td>
+      <td class="six wide has-text-right"><%= Expense.human_attribute_name(:subject) %></td>
       <td><%= @expense.subject %></td>
     </tr>
     <tr>
-      <td class="right aligned"><%= Expense.human_attribute_name(:checks) %></td>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:checks) %></td>
       <td>
         <table class="ui very basic table">
           <% @expense.checks.each do |check| %>
@@ -26,11 +26,11 @@
       </td>
     </tr>
     <tr>
-      <td class="right aligned"><%= Expense.human_attribute_name(:amount) %></td>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:amount) %></td>
       <td><%= @expense.amount %></td>
     </tr>
     <tr>
-      <td class="right aligned"><%= Expense.human_attribute_name(:expense_items) %></td>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:expense_items) %></td>
       <td>
         <%= render partial: 'finance/admin/expenses/items', locals: { expense_items: @expense_items } %>
       </td>
