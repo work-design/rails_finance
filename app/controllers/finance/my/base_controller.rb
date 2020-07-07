@@ -1,7 +1,3 @@
-class Finance::My::BaseController < RailsFinance.config.my_controller.constantize
+class Finance::My::BaseController < MyController
 
-  def current_member
-    Member.first
-  end
-
-end
+end unless defined? Finance::My::BaseController
