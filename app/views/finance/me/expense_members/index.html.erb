@@ -1,7 +1,7 @@
 <div class="tabs">
   <ul>
-    <li><%= link_to 'My Expenses', my_expense_members_path, class: active_helper(controllers: 'finance_my/expense_members') %></li>
-    <li><%= link_to 'My Payment Methods', my_payment_methods_path, class: active_helper(controllers: 'payment_methods') %></li>
+    <li><%= link_to 'My Expenses', me_expense_members_path, class: active_helper(controllers: 'finance_me/expense_members') %></li>
+    <li><%# link_to 'My Payment Methods', me_payment_methods_path, class: active_helper(controllers: 'payment_methods') %></li>
   </ul>
 </div>
 
@@ -26,7 +26,7 @@
   <% @expense_members.each do |expense_member| %>
     <tr>
       <td><%= expense_member.id %></td>
-      <td><%= link_to expense_member.expense.subject, my_expense_member_path(expense_member.id) %></td>
+      <td><%= link_to expense_member.expense.subject, me_expense_member_path(expense_member.id) %></td>
       <td><%= expense_member.advance %></td>
       <td><%= expense_member.amount %></td>
       <td><%= expense_member.payment_method&.account_info %></td>
@@ -35,10 +35,10 @@
         <span class="ui label"><%= expense_member.state_i18n %></span>
       </td>
       <td class="ui labels">
-        <%= link_to my_expense_member_path(expense_member), class: 'ui blue mini icon button' do %>
+        <%= link_to me_expense_member_path(expense_member), class: 'ui blue mini icon button' do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to edit_my_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
+        <%= link_to edit_me_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
       </td>

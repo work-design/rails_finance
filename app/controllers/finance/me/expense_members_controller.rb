@@ -1,4 +1,4 @@
-class Finance::My::ExpenseMembersController < Finance::My::BaseController
+class Finance::Me::ExpenseMembersController < Finance::Me::BaseController
   before_action :set_expense_member, only: [:show, :items, :edit, :update, :bill]
 
   def index

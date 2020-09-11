@@ -12,7 +12,7 @@
       <th><%= Expense.human_attribute_name(:proof) %></th>
       <th><%= Expense.human_attribute_name(:state) %></th>
       <th>
-        <%= link_to new_my_expense_path(type: 'BudgetExpense'), remote: true, class: 'button is-link' do %>
+        <%= link_to new_me_expense_path(type: 'BudgetExpense'), remote: true, class: 'button is-link' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -23,7 +23,7 @@
   <% @expenses.each do |expense| %>
     <tr>
       <td><%= expense.type_i18n %></td>
-      <td><%= link_to expense.subject, my_expense_path(expense) %></td>
+      <td><%= link_to expense.subject, me_expense_path(expense) %></td>
       <td><%= expense.amount %></td>
       <td>
         <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
@@ -34,8 +34,8 @@
       <td class="ui labels">
         <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), remote: true, class: 'ui orange label' %>
         <% if ['init', 'rejected'].include? expense.state %>
-          <%= link_to t('.edit'), edit_my_expense_path(expense), remote: true, class: 'ui pink label' %>
-          <%= link_to t('.destroy'), my_expense_path(expense), method: :delete, data: { confirm: t('.confirm') }, class: 'ui red label' %>
+          <%= link_to t('.edit'), edit_me_expense_path(expense), remote: true, class: 'ui pink label' %>
+          <%= link_to t('.destroy'), me_expense_path(expense), method: :delete, data: { confirm: t('.confirm') }, class: 'ui red label' %>
         <% end %>
       </td>
     </tr>

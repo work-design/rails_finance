@@ -1,0 +1,7 @@
+<div class="tabs">
+  <ul>
+    <li><%= link_to 'Admin Expenses', me_expenses_path(@lesson), class: active_helper(controllers: 'finance/me/expenses') %></li>
+    <li><%# link_to 'Pending Expenses', me_admin_expenses_path, class: active_helper('finance/me/expenses': ['me']) %></li>
+    <li><%# link_to 'Pending Expense Members', me_admin_expense_members_path, class: active_helper('finance/me/expense_members': ['me']) %></li>
+  </ul>
+</div>

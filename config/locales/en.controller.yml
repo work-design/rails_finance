@@ -11,7 +11,7 @@ en:
       payouts:
         index:
           title: 支付
-    my:
+    me:
       title: 报销
       expenses:
         index:

@@ -8,10 +8,13 @@ zh:
       expenses:
         index:
           title: 支出
+      payment_methods:
+        index:
+          title: 支付方式
       payouts:
         index:
           title: 支付
-    my:
+    me:
       title: 报销
       expenses:
         index:
