@@ -2,7 +2,7 @@ zh:
   finance:
     admin:
       title: 财务管理
-      finance_taxons:
+      financial_taxons:
         index:
           title: 类别
       expenses:

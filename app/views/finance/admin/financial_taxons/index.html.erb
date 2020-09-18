@@ -1,4 +1,4 @@
-<%= render 'filter' %>
+<%= render 'filter_form' %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>
@@ -9,7 +9,7 @@
       <th><%= FinancialTaxon.human_attribute_name(:take_stock) %></th>
       <th><%= FinancialTaxon.human_attribute_name(:individual) %></th>
       <th>
-        <%= link_to new_admin_financial_taxon_path, remote: true, class: 'ui teal button' do %>
+        <%= link_to new_admin_financial_taxon_path, remote: true, class: 'button is-small' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
