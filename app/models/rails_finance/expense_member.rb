@@ -34,11 +34,11 @@ module RailsFinance::ExpenseMember
       only: [:amount, :advance],
       methods: [:member_name, :expense_subject]
     )
-  
+
     delegate :subject, to: :expense, prefix: true
     delegate :name, to: :member, prefix: true
   end
-  
+
   def approve_config
     {
       pending_borrow: advance_verifier,
@@ -47,7 +47,7 @@ module RailsFinance::ExpenseMember
       pending_reimburse: verifier,
       to_pay: member.cashier,
       paid: member
-    }.with_indifferent_access
+    }
   end
 
   def next_operator

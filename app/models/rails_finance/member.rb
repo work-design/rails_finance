@@ -1,4 +1,4 @@
-module RailsFinance::User
+module RailsFinance::Member
   extend ActiveSupport::Concern
 
   included do
