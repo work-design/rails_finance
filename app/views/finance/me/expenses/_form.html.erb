@@ -2,7 +2,7 @@
 <%= f.text_field :type, disabled: true %>
 <%= f.text_field :subject, required: true %>
 <%= f.collection_select :financial_taxon_id, FinancialTaxon.all, :id, :name, { prompt: 'Select Taxon' } %>
-<%= f.fields :expense_items, wrap: { all: nil, input: 'field' }, on: { label: false }, placeholder: true do |ef| %>
+<%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false }, placeholder: true do |ef| %>
   <%= render partial: 'item_form', locals: { ef: ef } %>
 <% end %>
 <%= f.text_area :note %>

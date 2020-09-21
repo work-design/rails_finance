@@ -15,10 +15,10 @@ zh:
         index:
           title: 支付
     me:
-      title: 报销
+      title: 支出
       expenses:
         index:
-          title: 报销列表
+          title: 支出列表
       expense_members:
         index:
-          title: 我的报销
+          title: 我的支出

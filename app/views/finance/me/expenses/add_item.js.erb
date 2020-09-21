@@ -1,52 +1,7 @@
 <% form_object = form_object(@expense, can: { wrap_id: true }) %>
 
 <% if params[:item] == 'member' %>
-var template = '<%= j(render partial: 'member_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>'
-
-$('#expense_expense_members_<%= params[:index] %>').after(template);
-$('[data-title="expense_member_member"]').dropdown({
-  apiSettings: {
-    url: '/my/member/search?q={query}'
-  },
-  fields: {
-    name: 'name',
-    value: 'id'
-  }
-});
-
+document.getElementById('expense_expense_members_<%= params[:index] %>').insertAdjacentHTML('afterend', '<%= j(render partial: 'member_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>')
 <% elsif params[:item] == 'item' %>
-var template = '<%= j(render partial: 'item_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>'
-
-$('#expense_expense_items_<%= params[:index] %>').after(template);
-$('[data-title="expense_item_member"]').dropdown({
-  apiSettings: {
-    url: '/my/member/search?q={query}'
-  },
-  fields: {
-    name: 'name',
-    value: 'id'
-  }
-});
-$('[data-title="expense_item_financial_taxon"]').dropdown({
-  placeholder: true
-});
-
-$('[name*="expense[expense_items_attributes]["]').filter('[name$="][price]"]').on('change', function() {
-  var names = this.id.split('_');
-  names.pop();
-  var _quantity = names.concat('quantity').join('_');
-  var _budget = names.concat('budget').join('_');
-  var quantity = document.getElementById(_quantity);
-  document.getElementById(_budget).value = (this.value * quantity.value).toFixed(2);
-});
-
-$('[name*="expense[expense_items_attributes]["]').filter('[name$="][quantity]"]').on('change', function() {
-  var names = this.id.split('_');
-  names.pop();
-  var _price = names.concat('price').join('_');
-  var _budget = names.concat('budget').join('_');
-  var price = document.getElementById(_price);
-  document.getElementById(_budget).value = (this.value * price.value).toFixed(2);
-});
-
+document.getElementById('expense_expense_items_<%= params[:index] %>').insertAdjacentHTML('afterend', '<%= j(render partial: 'item_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>')
 <% end %>
