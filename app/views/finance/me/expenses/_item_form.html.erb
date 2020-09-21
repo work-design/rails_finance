@@ -2,7 +2,7 @@
   <% if ef.index == 0 %>
     <%= ef.options[:parent_builder].label :expense_items %>
   <% else %>
-    <label class="field is-normal"></label>
+    <label class="field-label is-normal"></label>
   <% end %>
   <div class="field-body">
   <%# ef.select :financial_taxon_id, options_for_select(@taxon_options, ef.object.financial_taxon_id), { include_blank: 'Select Taxon', css: { wrapper_input: 'three wide field' }}, {data: {title: 'expense_item_financial_taxon'}} %>
