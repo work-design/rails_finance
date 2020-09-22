@@ -1,7 +1,6 @@
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><%= Expense.human_attribute_name(:id) %></th>
       <th><%= Expense.human_attribute_name(:subject) %></th>
       <th><%= Expense.human_attribute_name(:creator) %></th>
       <th><%= Expense.human_attribute_name(:amount) %></th>
@@ -14,7 +13,6 @@
   <tbody>
   <% @expenses.each do |expense| %>
     <tr>
-      <td><%= expense.id %></td>
       <td><%= expense.subject %></td>
       <td><%= expense.creator.name %></td>
       <td><%= expense.amount %></td>

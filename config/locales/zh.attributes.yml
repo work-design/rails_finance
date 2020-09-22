@@ -7,3 +7,6 @@ zh:
         expense_items: 条目
         financial_taxon_id: 支出类别
         subject: 支出内容
+      financial_taxon:
+        individual: 可盘点
+        take_stock: 库存
