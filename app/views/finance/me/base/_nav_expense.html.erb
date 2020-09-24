@@ -1,7 +1,9 @@
+<% content_for :breadcrumb do %>
 <div class="tabs">
   <ul>
-    <li><%= link_to 'Admin Expenses', me_expenses_path(@lesson), class: active_helper(controllers: 'finance/me/expenses') %></li>
-    <li><%# link_to 'Pending Expenses', me_admin_expenses_path, class: active_helper('finance/me/expenses': ['me']) %></li>
-    <li><%# link_to 'Pending Expense Members', me_admin_expense_members_path, class: active_helper('finance/me/expense_members': ['me']) %></li>
+    <li><%= link_to t('finance.me.expenses.index.title'), me_expenses_path, class: active_helper('finance/me/expenses': ['index']) %></li>
+    <li><%= link_to t('finance.me.expenses.admin.title'), admin_me_expenses_path, class: active_helper('finance/me/expenses': ['admin']) %></li>
+    <li><%= link_to t('finance.me.expense_members.admin.title'), admin_me_expense_members_path, class: active_helper('finance/me/expense_members': ['admin']) %></li>
   </ul>
 </div>
+<% end %>

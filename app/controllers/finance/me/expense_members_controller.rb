@@ -5,6 +5,15 @@ class Finance::Me::ExpenseMembersController < Finance::Me::BaseController
     @expense_members = current_member.expense_members.page(params[:page])
   end
 
+  def admin
+    q_params = {
+      'expense_member.verifier_id': current_member.id
+    }
+    q_params.merge! params.permit(:state, :id)
+
+    @expense_members = ExpenseMember.default_where(q_params).page(params[:page])
+  end
+
   def show
   end
 

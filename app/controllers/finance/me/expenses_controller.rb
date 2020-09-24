@@ -10,6 +10,15 @@ class Finance::Me::ExpensesController < Finance::Me::BaseController
     @expenses = current_member.created_expenses.default_where(q_params).page(params[:page])
   end
 
+  def admin
+    q_params = {
+      verifier_id: current_member.id
+    }
+    q_params.merge! params.permit(:state, :id)
+
+    @expenses = Expense.default_where(q_params).page(params[:page])
+  end
+
   def new
     @expense = current_member.created_expenses.build(type: params[:type])
     @expense.expense_items.build(member_id: current_member.id)

@@ -19,6 +19,10 @@ zh:
       expenses:
         index:
           title: 支出列表
+        admin:
+          title: 待审核
       expense_members:
         index:
           title: 我的支出
+        admin:
+          title: 待我审核

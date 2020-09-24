@@ -7,17 +7,6 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
     @expenses = Expense.default_where(q_params).page(params[:page])
   end
 
-  def my
-    q_params = {
-      verifier_id: current_member.id
-    }
-    q_params.merge! params.fetch(:q, {}).permit!
-    q_params.merge! params.permit(:state, :id)
-    @expenses = Expense.default_where(q_params).page(params[:page])
-
-    render :my, layout: 'my'
-  end
-
   def new
     @expense = Expense.new
   end

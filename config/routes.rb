@@ -2,11 +2,7 @@ Rails.application.routes.draw do
 
   scope :admin, module: 'finance/admin', as: :admin do
     resources :financial_taxons
-    resources :expense_members, only: [] do
-      get :my, on: :collection
-    end
     resources :expenses do
-      get :my, on: :collection
       member do
         patch :next
         patch :trigger
@@ -22,9 +18,12 @@ Rails.application.routes.draw do
 
   scope :me, module: 'finance/me', as: :me do
     resources :expenses do
-      post :financial_taxons, on: :collection
-      get 'add_item/:item' => :add_item, on: :collection, as: :add_item
-      get 'remove_item/:item' => :remove_item, on: :collection, as: :remove_item
+      collection do
+        post :financial_taxons
+        get :admin
+        get 'add_item/:item' => :add_item, as: :add_item
+        get 'remove_item/:item' => :remove_item, as: :remove_item
+      end
       member do
         patch :transfer
         get :confirm
@@ -33,6 +32,9 @@ Rails.application.routes.draw do
       end
     end
     resources :expense_members, only: [:index, :show, :edit, :update] do
+      collection do
+        get :admin
+      end
       member do
         get :bill
         get :items

@@ -6,17 +6,6 @@ class Finance::Admin::ExpenseMembersController < Finance::Admin::BaseController
     @expense_members = @expense.expense_members.page(params[:page])
   end
 
-  def my
-    q_params = {
-      'expense_member.verifier_id': current_member.id
-    }
-    q_params.merge! params.fetch(:q, {}).permit!
-    q_params.merge! params.permit(:state, :id)
-    @expense_members = ExpenseMember.default_where(q_params).page(params[:page])
-
-    render :my, layout: 'my'
-  end
-
   def show
   end
 
@@ -25,7 +14,7 @@ class Finance::Admin::ExpenseMembersController < Finance::Admin::BaseController
 
   def update
     @expense_member.assign_attribute(expense_member_params)
-      
+
     unless @expense_member.save
       render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
     end
