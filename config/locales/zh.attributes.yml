@@ -9,6 +9,10 @@ zh:
         invoices_count: 凭证数
         subject: 支出内容
         state: 状态
+      expense_item:
+        budget: 预算
+        amount: 金额
+        note: 备注
       financial_taxon:
         individual: 可盘点
         take_stock: 库存

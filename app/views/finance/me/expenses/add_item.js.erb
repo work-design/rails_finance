@@ -1,4 +1,4 @@
-<% form_object = form_object(@expense, can: { wrap_id: true }) %>
+<% form_object = form_object(@expense) %>
 
 <% if params[:item] == 'member' %>
 document.getElementById('expense_expense_members_<%= params[:index] %>').insertAdjacentHTML('afterend', '<%= j(render partial: 'member_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>')
