@@ -30,14 +30,10 @@ module RailsFinance::Expense
 
     enum state: {
       init: 'init',
-      pending_verifier: 'pending_verifier',
-      pending_financial: 'pending_financial',
-      pending_om: 'pending_om',
-      pending_cfo: 'pending_cfo',
-      pending_md: 'pending_md',
+      verifying: 'verifying',
       paying: 'paying',
       upload_invoice: 'upload_invoice',
-      invoice_financial: 'invoice_financial',
+      invoice_verifying: 'invoice_verifying',
       finished: 'finished',
       rejected: 'rejected'
     }

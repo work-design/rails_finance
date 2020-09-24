@@ -6,8 +6,13 @@
   </td>
   <td>
     <% financial_taxon.verifiers.each do |verifier| %>
-      <p><%= verifier.member.name %></p>
+      <p><%= verifier.job_title.name %><%= verifier.member&.name %></p>
     <% end %>
+    <p>
+      <%= link_to new_admin_verifier_path('FinancialTaxon', financial_taxon.id), remote: true, class: 'button is-rounded is-small' do %>
+        <i class="fas fa-user-check"></i>
+      <% end %>
+    </p>
   </td>
   <td>
     <div data-controller="input">

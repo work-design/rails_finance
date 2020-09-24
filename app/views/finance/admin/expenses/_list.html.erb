@@ -5,7 +5,7 @@
       <th><%= Expense.human_attribute_name(:creator) %></th>
       <th><%= Expense.human_attribute_name(:amount) %></th>
       <th><%= Expense.human_attribute_name(:state) %></th>
-      <th><%= Expense.human_attribute_name(:create_at) %></th>
+      <th><%= Expense.human_attribute_name(:created_at) %></th>
       <th></th>
     </tr>
   </thead>
@@ -16,8 +16,8 @@
       <td><%= expense.subject %></td>
       <td><%= expense.creator.name %></td>
       <td><%= expense.amount %></td>
-      <td class="ui labels">
-        <span class="ui label"><%= expense.state_i18n %></span>
+      <td class="tags">
+        <span class="tag"><%= expense.state_i18n %></span>
         <% if expense.can_operate?(current_member) %>
           <div class="ui mini buttons">
             <%= link_to 'Approve', new_check_path('Expense', expense.id, state: expense.next_state_state), remote: true, class: 'ui mini positive button' %>

@@ -8,6 +8,11 @@ zh:
           PayableExpense: 对公支付
         state:
           init: 申请
+          verifying: 审核中
+          paying: 支付中
+          upload_invoice: 上传单据
+          invoice_verifying: 单据审核
+          finished: 已完结
           rejected: 拒绝
       payment_method:
         type:
