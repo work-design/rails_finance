@@ -1,16 +1,17 @@
+<% content_for :breadcrumb do %>
 <div class="tabs">
   <ul>
-    <li><%= link_to 'My Expenses', me_expense_members_path, class: active_helper(controllers: 'finance_me/expense_members') %></li>
+    <li><%= link_to t('finance.me.expense_members.index.title'), me_expense_members_path, class: active_helper(controllers: 'finance/me/expense_members') %></li>
     <li><%# link_to 'My Payment Methods', me_payment_methods_path, class: active_helper(controllers: 'payment_methods') %></li>
   </ul>
 </div>
+<% end %>
 
 <%= render 'filter_form' %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><%= ExpenseMember.human_attribute_name(:id) %></th>
       <th><%= Expense.human_attribute_name(:subject) %></th>
       <th><%= ExpenseMember.human_attribute_name(:advance) %></th>
       <th><%= ExpenseMember.human_attribute_name(:amount) %></th>
@@ -25,7 +26,6 @@
   <tbody>
   <% @expense_members.each do |expense_member| %>
     <tr>
-      <td><%= expense_member.id %></td>
       <td><%= link_to expense_member.expense.subject, me_expense_member_path(expense_member.id) %></td>
       <td><%= expense_member.advance %></td>
       <td><%= expense_member.amount %></td>
