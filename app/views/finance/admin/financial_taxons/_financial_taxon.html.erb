@@ -1,19 +1,32 @@
-<tr data-depth="<%= node.depth_str %>">
+<tr data-depth="<%= financial_taxon.depth_str %>">
   <td>
-    <span><%= ('&emsp;' * node.depth * 2).html_safe %></span>
+    <span><%= ('&emsp;' * financial_taxon.depth * 2).html_safe %></span>
     <a onclick="collapse(this)" href="javascript:void(0)"><i class="grey caret down icon"></i></a>
-    <span><%= node.name %></span>
-  </td>
-  <td><%= node.position %></td>
-  <td><%= node.verifier&.name %></td>
-  <td>
-    <%= check_box_tag '[financial]take_stock', nil, node.take_stock, data: { method: :patch, remote: true, url: admin_financial_taxon_path(node), submit: true }, id: nil %>
+    <span><%= financial_taxon.name %></span>
   </td>
   <td>
-    <%= check_box_tag '[financial]individual', nil, node.individual, data: { method: :patch, remote: true, url: admin_financial_taxon_path(node), submit: true }, id: nil %>
+    <% financial_taxon.verifiers.each do |verifier| %>
+      <p><%= verifier.member.name %></p>
+    <% end %>
   </td>
   <td>
-    <%= link_to t('.edit'), edit_admin_financial_taxon_path(node), remote: true, class: 'ui pink label' %>
-    <%= link_to t('.destroy'), admin_financial_taxon_path(node), method: :delete, data: { confirm: t('.confirm') }, remote: true, class: 'ui red label' %>
+    <div data-controller="input">
+      <%= check_box_tag '[financial_taxon]take_stock', nil, financial_taxon.take_stock, data: { method: :patch, remote: true, url: admin_financial_taxon_path(financial_taxon), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
+      <label></label>
+    </div>
+  </td>
+  <td>
+    <div data-controller="input">
+      <%= check_box_tag '[financial_taxon]individual', nil, financial_taxon.individual, data: { method: :patch, remote: true, url: admin_financial_taxon_path(financial_taxon), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
+      <label></label>
+    </div>
+  </td>
+  <td>
+    <%= link_to edit_admin_financial_taxon_path(financial_taxon), aria: { label: t('.edit') }, remote: true, class: 'button is-rounded is-small' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to admin_financial_taxon_path(financial_taxon), aria: { label: t('.destroy') }, method: :delete, data: { confirm: t('.confirm') }, remote: true, class: 'button is-rounded is-small' do %>
+      <i class="fas fa-trash"></i>
+    <% end %>
   </td>
 </tr>

@@ -11,3 +11,4 @@ zh:
       financial_taxon:
         individual: 可盘点
         take_stock: 库存
+        verifiers: 审核人

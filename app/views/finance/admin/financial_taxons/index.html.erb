@@ -4,8 +4,7 @@
   <thead>
     <tr>
       <th><%= FinancialTaxon.human_attribute_name(:name) %></th>
-      <th><%= FinancialTaxon.human_attribute_name(:position) %></th>
-      <th><%= FinancialTaxon.human_attribute_name(:verifier) %></th>
+      <th><%= FinancialTaxon.human_attribute_name(:verifiers) %></th>
       <th><%= FinancialTaxon.human_attribute_name(:take_stock) %></th>
       <th><%= FinancialTaxon.human_attribute_name(:individual) %></th>
       <th>
@@ -18,7 +17,7 @@
 
   <tbody>
   <% @financial_taxons.each do |financial_taxon| %>
-    <%= render partial: 'financial_taxon', locals: { node: financial_taxon } %>
+    <%= render partial: 'financial_taxon', locals: { financial_taxon: financial_taxon } %>
     <%= draw_tree(partial: 'finance_admin/financial_taxons/financial_taxon', object: financial_taxon) %>
   <% end %>
   </tbody>
