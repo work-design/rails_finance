@@ -1,5 +1,5 @@
 <%= render 'shared/error_messages', target: @expense %>
-<%= f.text_field :type, disabled: true %>
+<%= f.select :type, options_for_select(Expense.options_i18n(:type), @expense.type) %>
 <%= f.text_field :subject, required: true %>
 <%= f.collection_select :financial_taxon_id, FinancialTaxon.all, :id, :name, { prompt: true } %>
 <%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>

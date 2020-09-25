@@ -1,7 +1,8 @@
-<div class="ui segment breadcrumb">
-  <%= link_to 'Back', my_expenses_path, class: 'section' %>
-  <div class="divider"> / </div>
-  <div class="active section">Show</div>
+<div class="breadcrumb">
+  <ul>
+    <li><%= link_to 'Back', my_expenses_path %></li>
+    <li class="is-active">Show</li>
+  </ul>
 </div>
 
-<%= render 'table' %>
+<%= render 'show_table' %>

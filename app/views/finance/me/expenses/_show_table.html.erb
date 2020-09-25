@@ -1,7 +1,7 @@
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th class="three wide"></th>
+      <th></th>
       <th>
         <%= link_to t('.confirm'), confirm_me_expense_path(@expense), class: 'ui mini green right floated button' %>
         <%= link_to t('.edit'), edit_me_expense_path(@expense), class: 'ui mini blue right floated button' %>
@@ -39,7 +39,7 @@
     <tr>
       <td class="has-text-right"><%= Expense.human_attribute_name(:expense_members) %></td>
       <td class="negative">
-        <table class="ui very basic small table">
+        <table class="table">
           <tr>
             <th><%= ExpenseMember.human_attribute_name(:member) %></th>
             <th><%= ExpenseMember.human_attribute_name(:advance) %></th>
@@ -119,7 +119,7 @@
         <% if @expense.init? %>
           <%= link_to 'Request', requested_me_expense_path(@expense), method: :patch, data: { confirm: 'Confirm!' }, class: 'ui pink label' %>
         <% end %>
-        <% @expense.next_type_states.each do |type| %>
+        <% @expense.next_states(:type).each do |type| %>
           <%= link_to "Transfer to #{Expense.enum_i18n(:type, type)}", transfer_me_expense_path(@expense, type: type), method: :patch, class: 'ui mini blue right floated button' %>
         <% end %>
       </td>

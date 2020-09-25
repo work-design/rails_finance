@@ -19,24 +19,26 @@
       <td class="tags">
         <span class="tag"><%= expense.state_i18n %></span>
         <% if expense.can_operate?(current_member) %>
-          <div class="ui mini buttons">
-            <%= link_to 'Approve', new_check_path('Expense', expense.id, state: expense.next_state_state), remote: true, class: 'ui mini positive button' %>
-            <div class="or"></div>
-            <%= link_to Expense.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense.id, state: 'rejected'), remote: true, class: 'ui mini negative button' %>
+          <div class="buttons has-addons">
+            <%= link_to 'Approve', new_check_path('Expense', expense.id, state: expense.next_state_state), remote: true, class: 'button is-primary' %>
+            <%= link_to Expense.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense.id, state: 'rejected'), remote: true, class: 'button is-danger' %>
             <% if ['pending_om', 'pending_cfo'].include?(expense.state) %>
-              <div class="or"></div>
               <%= link_to Expense.enum_i18n(:state, 'pending_md'), new_check_path('Expense', expense.id, state: 'pending_md'), remote: true, class: 'ui mini positive button' %>
             <% end %>
           </div>
         <% end %>
       </td>
+      <td><time><%= expense.created_at.to_s(:rfc822) %></time></td>
       <td>
-        <time><%= expense.created_at.to_s(:rfc822) %></time>
-      </td>
-      <td>
-        <%= link_to t('.show'), admin_expense_path(expense), class: 'ui blue label' %>
-        <%= link_to t('.edit'), edit_admin_expense_path(expense), class: 'ui pink label' %>
-        <%= link_to t('.destroy'), admin_expense_path(expense), method: :delete, data: { confirm: t('.confirm') }, remote: true, class: 'ui red label' %>
+        <%= link_to admin_expense_path(expense), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-eye"></i>
+        <% end %>
+        <%= link_to edit_admin_expense_path(expense), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to admin_expense_path(expense), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
       </td>
     </tr>
   <% end %>

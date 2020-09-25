@@ -3,7 +3,7 @@ module RailsFinance::Expense
 
   included do
     attribute :type, :string
-    attribute :state, :string, default: 'init'
+    attribute :state, :string
     attribute :subject, :string
     attribute :amount, :decimal, precision: 10, scale: 2
     attribute :note, :string, limit: 4096
@@ -13,6 +13,7 @@ module RailsFinance::Expense
     belongs_to :payout, optional: true
     belongs_to :creator, class_name: 'Member'
     belongs_to :financial_taxon
+    belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
     belongs_to :payment_method, optional: true
 
     has_many :expense_members, dependent: :destroy
@@ -36,16 +37,13 @@ module RailsFinance::Expense
       invoice_verifying: 'invoice_verifying',
       finished: 'finished',
       rejected: 'rejected'
-    }
+    }, _default: 'init'
 
     enum type: {
       BudgetExpense: 'BudgetExpense',
       PayableExpense: 'PayableExpense',
       PrepayExpense: 'PrepayExpense'
     }
-
-    delegate :name, to: :creator, prefix: true
-    delegate :name, to: :verifier, prefix: true
 
     acts_as_notify(
       :default,
@@ -94,7 +92,7 @@ module RailsFinance::Expense
 
   def next_state_states
     next_states(:state) do |states|
-      unless self.financial_taxon&.verifier
+      unless self.financial_taxon.verifiers
         states - ['pending_verifier']
       end
 
