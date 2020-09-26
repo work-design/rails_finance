@@ -9,7 +9,6 @@
       <th></th>
     </tr>
   </thead>
-
   <tbody>
   <% @expenses.each do |expense| %>
     <tr>
@@ -20,11 +19,8 @@
         <span class="tag"><%= expense.state_i18n %></span>
         <% if expense.can_operate?(current_member) %>
           <div class="buttons has-addons">
-            <%= link_to 'Approve', new_check_path('Expense', expense.id, state: expense.next_state_state), remote: true, class: 'button is-primary' %>
+            <%= link_to 'Approve', new_check_path('Expense', expense.id), remote: true, class: 'button is-primary' %>
             <%= link_to Expense.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense.id, state: 'rejected'), remote: true, class: 'button is-danger' %>
-            <% if ['pending_om', 'pending_cfo'].include?(expense.state) %>
-              <%= link_to Expense.enum_i18n(:state, 'pending_md'), new_check_path('Expense', expense.id, state: 'pending_md'), remote: true, class: 'ui mini positive button' %>
-            <% end %>
           </div>
         <% end %>
       </td>
