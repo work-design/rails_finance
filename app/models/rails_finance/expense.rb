@@ -59,20 +59,6 @@ module RailsFinance::Expense
     before_save :sync_amount
   end
 
-  def approve_config
-    {
-      pending_verifier: financial_taxon.verifier,
-      pending_financial: creator.financial,
-      pending_om: creator.office.leader,
-      pending_cfo: Member.find_by(email: SETTING['cfo_email']),
-      pending_md: Member.find_by(email: SETTING['md_email'])
-    }.with_indifferent_access
-  end
-
-  def next_operator(_state = next_state_state)
-    approve_config[_state]
-  end
-
   def can_operate?(member)
     return true if member.admin?
     self.next_operator == current_member && !['init', 'rejected', 'finished'].include?(self.state)
@@ -108,19 +94,18 @@ module RailsFinance::Expense
 
   def do_trigger(params = {})
     self.trigger_to(state: params[:state])
-    self.verifier_id = next_operator(params[:state])&.id
 
     self.class.transaction do
       self.save!
       to_notification(
-        receiver: creator,
-        link: url_helpers.my_expenses_url(id: self.id),
+        member: creator,
+        link: url_helpers.me_expenses_url(id: self.id),
         verbose: true
       )
-      if next_operator(params[:state])
+      if next_verifier
         to_notification(
-          receiver: next_operator(params[:state]),
-          link: url_helpers.my_finance_expenses_url(id: self.id),
+          member: next_verifier.member,
+          link: url_helpers.admin_me_expenses_url(id: self.id),
           code: :request,
           verbose: true
         )

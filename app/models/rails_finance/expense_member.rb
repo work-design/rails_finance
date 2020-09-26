@@ -101,7 +101,7 @@ module RailsFinance::ExpenseMember
       self.save!
       if next_operator
         to_notification(
-          receiver: next_operator,
+          member: next_operator,
           link: url_helpers.finance_expense_url(self.expense_id),
           code: :request,
           verbose: true
