@@ -29,7 +29,14 @@
         <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
       </td>
       <td>
-        <span class="ui label"><%= expense.state_i18n %></span>
+        <span class="tag"><%= expense.state_i18n %></span>
+        <% expense.all_verifications.each do |verification| %>
+          <p>
+            <%= verification.job_title&.name %>
+            <%= verification.member&.name %>
+            <span class="tag"><%= verification.confirmed_i18n %></span>
+          </p>
+        <% end %>
       </td>
       <td class="ui labels">
         <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), remote: true, class: 'button is-small is-rounded is-light' %>

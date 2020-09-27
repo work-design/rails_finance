@@ -1,5 +1,5 @@
 class FinancialTaxon < ApplicationRecord
   include RailsTaxon::Node
   include RailsFinance::FinancialTaxon
-  include RailsAudit::Verifiable
+  include RailsAuditExt::Verifiable
 end unless defined? FinancialTaxon

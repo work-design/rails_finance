@@ -16,6 +16,7 @@ module RailsFinance::Expense
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
     belongs_to :payment_method, optional: true
 
+    has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
     has_many :expense_members, dependent: :destroy
     has_many :members, through: :expense_members
     has_many :expense_items, dependent: :destroy
