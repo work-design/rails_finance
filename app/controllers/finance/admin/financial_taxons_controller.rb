@@ -2,8 +2,10 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   before_action :set_financial_taxon, only: [:show, :edit, :update, :destroy]
 
   def index
-    q_params = {}.with_indifferent_access
-    q_params.merge! params.fetch(:q, {}).permit!
+    q_params = {}
+    q_params.merge! default_params
+    q_params.merge! params.permit(:name)
+
     @financial_taxons = FinancialTaxon.roots.default_where(q_params).page(params[:page])
   end
 
@@ -26,7 +28,9 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   end
 
   def update
-    unless @financial_taxon.update(financial_taxon_params)
+    @financial_taxon.assign_attributes(financial_taxon_params)
+
+    unless @financial_taxon.save
       render :edit, locals: { model: @financial_taxon }, status: :unprocessable_entity
     end
   end
@@ -41,7 +45,7 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   end
 
   def financial_taxon_params
-    params.fetch(:financial_taxon, {}).permit(
+    p = params.fetch(:financial_taxon, {}).permit(
       :name,
       :position,
       :verifier_id,
@@ -50,6 +54,7 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
       :individual,
       :take_stock
     )
+    p.merge! default_form_params
   end
 
 end

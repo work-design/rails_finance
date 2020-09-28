@@ -1,8 +1,12 @@
-<div class="ui segment breadcrumb">
-  <%= link_to 'Back', admin_expenses_path(id: @expense.id), class: 'section' %>
-  <div class="divider"> / </div>
-  <div class="active section">Expense members</div>
+<% content_for :breadcrumb do %>
+<div class="breadcrumb has-succeeds-separator">
+  <ul>
+    <li><%= link_to 'Back', admin_expenses_path(id: @expense.id) %></li>
+    <li class="is-active">Expense members</li>
+  </ul>
 </div>
+<% end %>
+
 <%= render 'nav_expense' %>
 
 <table class="ui attached basic large table">

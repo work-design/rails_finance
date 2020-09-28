@@ -9,9 +9,10 @@ module RailsFinance::Expense
     attribute :note, :string, limit: 4096
     attribute :invoices_count, :integer
 
+    belongs_to :organ, optional: true
+    belongs_to :creator, class_name: 'Member'
     belongs_to :expendable, polymorphic: true, optional: true
     belongs_to :payout, optional: true
-    belongs_to :creator, class_name: 'Member'
     belongs_to :financial_taxon
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
     belongs_to :payment_method, optional: true

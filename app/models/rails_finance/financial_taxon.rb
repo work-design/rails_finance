@@ -7,6 +7,7 @@ module RailsFinance::FinancialTaxon
     attribute :take_stock, :boolean, default: false, comment: '是否有库存'
     attribute :individual, :boolean, default: false, comment: '是否可盘点'
 
+    belongs_to :organ, optional: true
     has_many :expense_items, dependent: :nullify
 
     before_save :sync_verifier, if: -> { parent_id_changed? && parent }

@@ -2,8 +2,10 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
   before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy]
 
   def index
-    q_params = params.fetch(:q, {}).permit!
+    q_params = {}
+    q_params.merge! default_params
     q_params.merge! params.permit(:state, :id)
+
     @expenses = Expense.default_where(q_params).page(params[:page])
   end
 
@@ -14,7 +16,7 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
   def create
     @expense = Expense.new(expense_params)
 
-    if @expense.save
+    unless @expense.save
       render :new, locals: { model: @expense }, status: :unprocessable_entity
     end
   end
@@ -28,19 +30,19 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
   end
 
   def update
-    if @expense.update(expense_params)
+    @expense.assign_attributes expense_params
+
+    unless @expense.save
       render :edit, locals: { model: @expense }, status: :unprocessable_entity
     end
   end
 
   def next
     @expense.do_next(state: params[:state], auditor_id: current_member.id)
-    redirect_to finance_expenses_url(member_id: @expense.member_id)
   end
 
   def trigger
     @expense.do_trigger(state: params[:state], auditor_id: current_member.id)
-    redirect_to finance_expenses_url(member_id: @expense.member_id)
   end
 
   def destroy
@@ -53,7 +55,10 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
   end
 
   def expense_params
-    params.fetch(:expense, {}).permit(:state)
+    p = params.fetch(:expense, {}).permit(
+      :state
+    )
+    p.merge! default_form_params
   end
 
 end
