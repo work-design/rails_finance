@@ -1,4 +1,5 @@
-class Finance::Me::ExpensesController < Finance::Me::BaseController
+class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
+  include FinanceController::Me
   before_action :set_expense, only: [:show, :edit, :update, :requested, :transfer, :confirm, :bill, :destroy]
   # after_action only: [:create, :update, :destroy] do
   #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
