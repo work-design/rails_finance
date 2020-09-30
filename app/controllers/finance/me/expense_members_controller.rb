@@ -1,5 +1,6 @@
 class Finance::Me::ExpenseMembersController < Finance::Admin::ExpenseMembersController
   include FinanceController::Me
+  skip_before_action :set_expense, only: [:index]
   before_action :set_expense_member, only: [:show, :items, :edit, :update, :bill]
 
   def index

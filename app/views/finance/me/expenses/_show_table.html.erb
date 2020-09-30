@@ -76,11 +76,11 @@
       <td class="has-text-right"><%= Expense.human_attribute_name(:checks) %></td>
       <td>
         <table class="ui very basic table">
-          <% @expense.checks.each do |check| %>
+          <% @expense.all_verifications.each do |verification| %>
             <tr>
-              <td><%= Expense.enum_i18n(:state, check.state) %></td>
-              <td><%= check.comment %></td>
-              <td><%= check.member.name %></td>
+              <td><%= Expense.enum_i18n(:state, verification.state) %></td>
+              <td><%= verification.note %></td>
+              <td><%= verification.member&.name %></td>
             </tr>
           <% end %>
         </table>
