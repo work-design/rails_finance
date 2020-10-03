@@ -4,7 +4,7 @@ module RailsFinance::ExpenseMember
   included do
     attribute :amount, :decimal, precision: 10, scale: 2
     attribute :advance, :decimal, precision: 10, scale: 2
-    attribute :state, :string, default: 'pending_borrow'
+    attribute :state, :string
     attribute :note, :string
 
     belongs_to :expense
@@ -22,7 +22,7 @@ module RailsFinance::ExpenseMember
       pending_reimburse: 'pending_reimburse',
       to_pay: 'to_pay',
       paid: 'paid'
-    }
+    }, _default: 'pending_borrow'
 
     acts_as_notify(
       :default,

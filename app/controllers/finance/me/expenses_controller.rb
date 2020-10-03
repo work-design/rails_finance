@@ -76,7 +76,11 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
     if @expense.expense_members.count == 0
       @expense.expense_members.build(member_id: current_member.id)
     end
-    @payment_methods = current_member.payment_methods.where(myself: true)
+    if current_member.respond_to? :payment_methods
+      @payment_methods = current_member.payment_methods.where(myself: true)
+    else
+      @payment_methods = []
+    end
     @taxon_options = FinancialTaxon.roots.map { |i| [i.name, i.id] }
   end
 
@@ -90,7 +94,6 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
 
   def transfer
     @expense.transfer(params[:type])
-    redirect_to confirm_my_expense_url(@expense), notice: 'Purchase was successfully requested.'
   end
 
   def confirm

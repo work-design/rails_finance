@@ -13,7 +13,13 @@ zh:
       expense_item:
         budget: 预算
         amount: 金额
+        price: 价格
         note: 备注
+      expense_member:
+        advance: 借款
+        amount: 金额
+        state: 状态
+        payment_method_id: 支付方式
       financial_taxon:
         individual: 可盘点
         take_stock: 库存

@@ -1,16 +1,3 @@
-$('[data-title="expense_item_member"]').dropdown({
-  apiSettings: {
-    url: '/my/member/search?q={query}',
-  },
-  fields: {
-    name: 'name',
-    value: 'id'
-  }
-})
-
-$('[data-title="expense_item_financial_taxon"]').dropdown({
-  placeholder: true
-})
 
 $('#expense_financial_taxon_id').dropdown({
   onChange: function (value, text, $selectedItem) {
