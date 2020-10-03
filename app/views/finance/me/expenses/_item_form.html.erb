@@ -1,4 +1,4 @@
-<div class="field is-horizontal" id="expense_expense_items_<%= ef.index %>" data-title="expense_expense_items">
+<div class="field is-horizontal" id="expense_expense_items_<%= ef.index %>" data-controller="expense">
   <% if ef.index == 0 %>
     <%= ef.options[:parent_builder].label :expense_items %>
   <% else %>
@@ -9,8 +9,8 @@
   <%= ef.text_field :note %>
   
   <% if ef.options[:parent_builder].object.financial_taxon&.take_stock %>
-    <%= ef.number_field :quantity %>
-    <%= ef.number_field :price %>
+    <%= ef.number_field :quantity, step: 1, data: { action: 'expense#updateQuantity' } %>
+    <%= ef.number_field :price, data: { action: 'expense#updatePrice' } %>
   <% else %>
     <%= ef.hidden_field :quantity %>
     <%= ef.hidden_field :price %>

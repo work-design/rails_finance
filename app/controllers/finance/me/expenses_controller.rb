@@ -35,8 +35,7 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
   end
 
   def financial_taxons
-    q = expense_params
-    q['expense_items_attributes'].each do |_, v|
+    q = expense_params['expense_items_attributes'].each do |_, v|
       v.delete('id')
     end
     q.fetch('expense_members_attributes', {}).each do |_, v|
@@ -44,11 +43,6 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
     end
     @expense = current_member.created_expenses.build(q)
     @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
-
-    respond_to do |format|
-      format.js
-      format.json { render json: { values: @results } }
-    end
   end
 
   def add_item
@@ -105,7 +99,6 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
 
   def requested
     @expense.request!
-    redirect_to my_expenses_url, notice: 'Purchase was successfully requested.'
   end
 
   def bill

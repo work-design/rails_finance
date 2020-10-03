@@ -15,6 +15,7 @@ zh:
         amount: 金额
         price: 价格
         note: 备注
+        quantity: 数量
       expense_member:
         advance: 借款
         amount: 金额
