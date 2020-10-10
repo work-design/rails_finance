@@ -5,7 +5,8 @@ module RailsFinance::Expense
     attribute :type, :string
     attribute :state, :string
     attribute :subject, :string
-    attribute :amount, :decimal, precision: 10, scale: 2
+    attribute :budget, :decimal
+    attribute :amount, :decimal
     attribute :note, :string, limit: 4096
     attribute :invoices_count, :integer
 
