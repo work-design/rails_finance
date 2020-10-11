@@ -1,0 +1,124 @@
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th></th>
+      <th>
+        <%= link_to t('.confirm'), confirm_me_expense_path(@expense), class: 'ui mini green right floated button' %>
+        <%= link_to t('.edit'), edit_me_expense_path(@expense), remote: true, class: 'ui mini blue right floated button' %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:type) %></td>
+      <td><%= @expense.type_i18n %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:subject) %></td>
+      <td>
+        <%= @expense.subject %>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:state) %></td>
+      <td>
+        <span class="ui label"><%= @expense.state_i18n %></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:expense_items) %></td>
+      <td class="positive">
+        <%= render partial: 'finance/me/expense_members/items', locals: { expense_items: @expense.expense_items } %>
+      </td>
+    </tr>
+    <% if @expense.financial_taxon&.individual %>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:expense_members) %></td>
+      <td class="negative">
+        <table class="table">
+          <tr>
+            <th><%= ExpenseMember.human_attribute_name(:member) %></th>
+            <th><%= ExpenseMember.human_attribute_name(:advance) %></th>
+            <th><%= ExpenseMember.human_attribute_name(:amount) %></th>
+            <th><%= ExpenseMember.human_attribute_name(:payout_amount) %></th>
+            <th></th>
+          </tr>
+          <% @expense.expense_members.each do |member| %>
+            <tr>
+              <td><%= member.member.name %></td>
+              <td><%= member.advance %></td>
+              <td><%= member.amount %></td>
+              <td><%= member.payout_amount %></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:amount) %></td>
+      <td>
+        <%= @expense.amount %>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:note) %></td>
+      <td>
+        <%= @expense.note %>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:checks) %></td>
+      <td>
+        <table class="ui very basic table">
+          <% @expense.all_verifications.each do |verification| %>
+            <tr>
+              <td><%= Expense.enum_i18n(:state, verification.state) %></td>
+              <td><%= verification.note %></td>
+              <td><%= verification.member&.name %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <% if @expense.payment_method %>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:payment_method) %></td>
+      <td>
+        <p><%= @expense.payment_method.account_name %></p>
+        <p><%= @expense.payment_method.account_num %></p>
+        <p><%= @expense.payment_method.bank %></p>
+      </td>
+    </tr>
+    <% end %>
+    <% if @expense.type == 'PayableExpense' %>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:invoices) %></td>
+      <td>
+        <%= link_to 'pdf', bill_me_expense_path(@expense, format: 'pdf') %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td class="has-text-right"><%= Expense.human_attribute_name(:items) %></td>
+      <td>
+        <%= link_to 'items', direct_data_list_table_lists_path('ExpenseItemExport', expense_id: @expense.id, format: 'xlsx') %>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <% if @expense.init? %>
+          <%= link_to 'Request', requested_me_expense_path(@expense), method: :patch, data: { confirm: 'Confirm!' }, class: 'ui pink label' %>
+        <% end %>
+        <% @expense.next_states(:type).each do |type| %>
+          <%= link_to "Transfer to #{Expense.enum_i18n(:type, type)}", transfer_me_expense_path(@expense, type: type), method: :patch, class: 'ui mini blue right floated button' %>
+        <% end %>
+      </td>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,3 @@
+<%= f.fields :expense_items, child_index: index, wrap: { all: false, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
+  <%= render partial: 'item_form', locals: { ef: ef } %>
+<% end %>

@@ -1,0 +1,44 @@
+<% form_object = form_object(@expense, css: { label: 'three wide field' }) %>
+
+
+var template = '<%= j(render partial: 'item_field', locals: { f: form_object, index: nil }) %>'
+
+$('#expense_financial_taxon_id_wrapper').nextAll('[id^="expense_expense_items_"]').remove()
+$('#expense_financial_taxon_id_wrapper').after(template)
+
+$('[data-title="expense_item_member"]').dropdown({
+  apiSettings: {
+    url: '/my/member/search?q={query}'
+  },
+  fields: {
+    name: 'name',
+    value: 'id'
+  }
+});
+$('[data-title="expense_item_financial_taxon"]').dropdown({
+  placeholder: true
+});
+
+$('[data-title="add_item"]').each(function(){
+  var add_item_link = new URL(this.href);
+  add_item_link.searchParams.set('financial_taxon_id', '<%= params[:financial_taxon_id] %>');
+  this.setAttribute('href', add_item_link)
+});
+
+$('[name*="expense[expense_items_attributes]["]').filter('[name$="][price]"]').on('change', function() {
+  var names = this.id.split('_');
+  names.pop();
+  var _quantity = names.concat('quantity').join('_');
+  var _budget = names.concat('budget').join('_');
+  var quantity = document.getElementById(_quantity);
+  document.getElementById(_budget).value = (this.value * quantity.value).toFixed(2);
+});
+
+$('[name*="expense[expense_items_attributes]["]').filter('[name$="][quantity]"]').on('change', function() {
+  var names = this.id.split('_');
+  names.pop();
+  var _price = names.concat('price').join('_');
+  var _budget = names.concat('budget').join('_');
+  var price = document.getElementById(_price);
+  document.getElementById(_budget).value = (this.value * price.value).toFixed(2);
+});

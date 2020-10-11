@@ -2,4 +2,5 @@
 <div class="menu-list">
   <%= link_to t('finance.me.expense_members.index.title'), me_expense_members_path, class: active_helper(controllers: ['finance/me/expense_members', 'payment_methods'], active: 'is-active') %>
   <%= link_to t('finance.me.expenses.index.title'), me_expenses_path, class: active_helper(controllers: ['finance/me/expenses'], active: 'is-active') %>
+  <%= link_to t('finance.me.budget_expenses.index.title'), me_budget_expenses_path, class: active_helper(controllers: ['finance/me/budget_expenses'], active: 'is-active') %>
 </div>

@@ -25,10 +25,14 @@ Rails.application.routes.draw do
         get 'remove_item/:item' => :remove_item, as: :remove_item
       end
       member do
-        patch :transfer
         get :confirm
         patch :requested
         get :bill
+      end
+    end
+    resources :budget_expenses do
+      member do
+        patch :transfer
       end
     end
     resources :expense_members, only: [:index, :show, :edit, :update] do
