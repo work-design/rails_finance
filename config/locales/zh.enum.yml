@@ -3,7 +3,6 @@ zh:
     enum:
       expense:
         type:
-          BudgetExpense: 预算（采购）
           PrepayExpense: 借支/报销
           PayableExpense: 对公支付
         state:

@@ -10,6 +10,7 @@ module RailsFinance::ExpenseItem
     attribute :price, :decimal, precision: 10, scale: 2
 
     belongs_to :expense
+    belongs_to :budget, optional: true
     belongs_to :member, optional: true
     belongs_to :financial_taxon, optional: true
     has_one :expense_member, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id

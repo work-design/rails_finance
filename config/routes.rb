@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   end
 
   scope :me, module: 'finance/me', as: :me do
+    resources :budgets do
+      member do
+        patch :transfer
+      end
+    end
     resources :expenses do
       collection do
         post :financial_taxons
@@ -28,11 +33,6 @@ Rails.application.routes.draw do
         get :confirm
         patch :requested
         get :bill
-      end
-    end
-    resources :budget_expenses do
-      member do
-        patch :transfer
       end
     end
     resources :expense_members, only: [:index, :show, :edit, :update] do

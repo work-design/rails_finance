@@ -1,4 +1,4 @@
-class Finance::Me::BudgetExpensesController < Finance::Admin::ExpensesController
+class Finance::Me::BudgetsController < Finance::Admin::ExpensesController
   include FinanceController::Me
   before_action :set_expense, only: [:show, :edit, :update, :requested, :transfer, :confirm, :bill, :destroy]
   before_action :prepare_form

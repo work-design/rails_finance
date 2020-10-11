@@ -1,25 +1,19 @@
-module RailsFinance::Expense
+module RailsFinance::Budget
   extend ActiveSupport::Concern
 
   included do
-    attribute :type, :string
     attribute :state, :string
     attribute :subject, :string
     attribute :amount, :decimal
     attribute :note, :string, limit: 4096
-    attribute :invoices_count, :integer
 
     belongs_to :organ, optional: true
     belongs_to :creator, class_name: 'Member'
-    belongs_to :budget, optional: true
     belongs_to :expendable, polymorphic: true, optional: true
-    belongs_to :payout, optional: true
     belongs_to :financial_taxon
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
-    belongs_to :payment_method, optional: true
 
     has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
-    has_many :expense_members, dependent: :destroy
     has_many :members, through: :expense_members
     has_many :expense_items, dependent: :destroy
 
@@ -138,6 +132,18 @@ module RailsFinance::Expense
 
   def sync_amount
     self.amount = self.expense_items.sum(&:amount)
+  end
+
+  def transfer(type = self.next_state(:type))
+    self.trigger_to type: type
+    self.save
+  end
+
+  def next_type_states
+    [
+      'PrepayExpense',
+      'PayableExpense'
+    ]
   end
 
   def sync_members

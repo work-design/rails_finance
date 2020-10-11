@@ -16,9 +16,9 @@ zh:
           title: 支付
     me:
       title: 支出
-      budget_expenses:
+      budgets:
         index:
-          title: 预算列表
+          title: 预算（采购）
       expenses:
         index:
           title: 支出列表
