@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   scope :admin, module: 'finance/admin', as: :admin do
     resources :financial_taxons
+    resources :budgets
     resources :expenses do
       member do
         patch :next
@@ -18,6 +19,10 @@ Rails.application.routes.draw do
 
   scope :me, module: 'finance/me', as: :me do
     resources :budgets do
+      collection do
+        get 'add_item' => :add_item, as: :add_item
+        get 'remove_item' => :remove_item, as: :remove_item
+      end
       member do
         patch :transfer
       end
@@ -26,8 +31,6 @@ Rails.application.routes.draw do
       collection do
         post :financial_taxons
         get :admin
-        get 'add_item/:item' => :add_item, as: :add_item
-        get 'remove_item/:item' => :remove_item, as: :remove_item
       end
       member do
         get :confirm

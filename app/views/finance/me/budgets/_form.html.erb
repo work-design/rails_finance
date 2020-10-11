@@ -1,9 +1,8 @@
-<%= render 'shared/error_messages', target: @expense %>
+<%= render 'shared/error_messages', target: @budget %>
 <%= f.text_field :subject, required: true %>
 <%= f.collection_select :financial_taxon_id, @financial_taxons, :id, :name, include_blank: true %>
 <%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
   <%= render partial: 'item_form', locals: { ef: ef } %>
 <% end %>
 <%= f.text_area :note %>
-<%= f.file_field :proof %>
 <%= f.submit %>

@@ -3,7 +3,6 @@ en:
     enum:
       expense:
         type:
-          BudgetExpense: Budget
           PrepayExpense: Prepay
           PayableExpense: Payout
         state:

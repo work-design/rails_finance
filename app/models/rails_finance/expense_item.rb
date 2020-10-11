@@ -2,14 +2,14 @@ module RailsFinance::ExpenseItem
   extend ActiveSupport::Concern
 
   included do
-    attribute :budget, :decimal, precision: 10, scale: 2
-    attribute :amount, :decimal, precision: 10, scale: 2
+    attribute :budget_amount, :decimal
+    attribute :amount, :decimal
     attribute :note, :string
     attribute :state, :string
     attribute :quantity, :integer, default: 1
-    attribute :price, :decimal, precision: 10, scale: 2
+    attribute :price, :decimal
 
-    belongs_to :expense
+    belongs_to :expense, optional: true
     belongs_to :budget, optional: true
     belongs_to :member, optional: true
     belongs_to :financial_taxon, optional: true
@@ -27,7 +27,7 @@ module RailsFinance::ExpenseItem
   end
 
   def ensure_amount
-    self.amount = budget if expense.init?
+    self.amount = budget_amount if budget
   end
 
   def sync_member_amount

@@ -43,7 +43,6 @@ module RailsFinance::Expense
     }, _default: 'init'
 
     enum type: {
-      BudgetExpense: 'BudgetExpense',
       PayableExpense: 'PayableExpense',
       PrepayExpense: 'PrepayExpense'
     }

@@ -5,11 +5,10 @@
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><%= Expense.human_attribute_name(:type) %></th>
-      <th><%= Expense.human_attribute_name(:subject) %></th>
-      <th><%= Expense.human_attribute_name(:amount) %></th>
-      <th><%= Expense.human_attribute_name(:proof) %></th>
-      <th><%= Expense.human_attribute_name(:state) %></th>
+      <th><%= Budget.human_attribute_name(:subject) %></th>
+      <th><%= Budget.human_attribute_name(:amount) %></th>
+      <th><%= Budget.human_attribute_name(:proof) %></th>
+      <th><%= Budget.human_attribute_name(:state) %></th>
       <th>
         <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
           <i class="fas fa-plus"></i><span><%= t('.new') %></span>
@@ -19,17 +18,16 @@
   </thead>
 
   <tbody>
-  <% @expenses.each do |expense| %>
+  <% @budgets.each do |budget| %>
     <tr>
-      <td><%= expense.type_i18n %></td>
-      <td><%= link_to expense.subject, me_expense_path(expense), remote: true %></td>
-      <td><%= expense.amount %></td>
+      <td><%= link_to budget.subject, { action: 'show', id: budget.id }, remote: true %></td>
+      <td><%= budget.amount %></td>
       <td>
-        <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
+        <%= link_to budget.proof.filename, rails_blob_path(budget.proof, disposition: 'attachment') if budget.proof.attached? %>
       </td>
       <td>
-        <span class="tag"><%= expense.state_i18n %></span>
-        <% expense.all_verifications.each do |verification| %>
+        <span class="tag"><%= budget.state_i18n %></span>
+        <% budget.all_verifications.each do |verification| %>
           <p>
             <%= verification.job_title&.name %>
             <%= verification.member&.name %>
@@ -37,13 +35,13 @@
           </p>
         <% end %>
       </td>
-      <td class="ui labels">
-        <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), remote: true, class: 'button is-small is-rounded is-light' %>
-        <% if ['init', 'rejected'].include? expense.state %>
-          <%= link_to edit_me_expense_path(expense), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <td>
+        <%= link_to 'History', audits_path(budget.class.base_class.name, budget.id), remote: true, class: 'button is-small is-rounded is-light' %>
+        <% if ['init', 'rejected'].include? budget.state %>
+          <%= link_to edit_me_expense_path(budget), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
             <i class="fas fa-pencil-alt"></i>
           <% end %>
-          <%= link_to me_expense_path(expense), method: :delete, remote: true, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
+          <%= link_to me_expense_path(budget), method: :delete, remote: true, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
             <i class="fas fa-trash"></i>
           <% end %>
         <% end %>
@@ -53,4 +51,4 @@
   </tbody>
 </table>
 
-<%= paginate @expenses %>
+<%= paginate @budgets %>

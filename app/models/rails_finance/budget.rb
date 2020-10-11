@@ -2,22 +2,18 @@ module RailsFinance::Budget
   extend ActiveSupport::Concern
 
   included do
-    attribute :state, :string
     attribute :subject, :string
     attribute :amount, :decimal
     attribute :note, :string, limit: 4096
 
     belongs_to :organ, optional: true
-    belongs_to :creator, class_name: 'Member'
-    belongs_to :expendable, polymorphic: true, optional: true
+    belongs_to :member
+    belongs_to :budgeting, polymorphic: true, optional: true
     belongs_to :financial_taxon
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
 
     has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
-    has_many :members, through: :expense_members
     has_many :expense_items, dependent: :destroy
-
-    accepts_nested_attributes_for :expense_members, allow_destroy: true, reject_if: :all_blank
     accepts_nested_attributes_for :expense_items, allow_destroy: true, reject_if: :all_blank
 
     #validate :amount_sum
@@ -35,12 +31,6 @@ module RailsFinance::Budget
       finished: 'finished',
       rejected: 'rejected'
     }, _default: 'init'
-
-    enum type: {
-      BudgetExpense: 'BudgetExpense',
-      PayableExpense: 'PayableExpense',
-      PrepayExpense: 'PrepayExpense'
-    }
 
     acts_as_notify(
       :default,

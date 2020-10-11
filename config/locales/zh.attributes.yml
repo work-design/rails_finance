@@ -1,6 +1,14 @@
 zh:
   activerecord:
     attributes:
+      budget:
+        amount: 合计
+        expense_items: 条目
+        financial_taxon_id: 支出类别
+        invoices_count: 凭证数
+        subject: 支出内容
+        subject-like: 支出内容
+        state: 状态
       expense:
         amount: 合计
         expense_members: 责任人
@@ -11,7 +19,7 @@ zh:
         subject-like: 支出内容
         state: 状态
       expense_item:
-        budget: 预算
+        budget_amount: 预算
         amount: 金额
         price: 价格
         note: 备注
