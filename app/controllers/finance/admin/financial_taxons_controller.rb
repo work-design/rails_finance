@@ -1,5 +1,6 @@
 class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   before_action :set_financial_taxon, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_form
 
   def index
     q_params = {}
@@ -10,7 +11,7 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   end
 
   def new
-    @financial_taxon = FinancialTaxon.new
+    @financial_taxon = FinancialTaxon.new(default_form_params)
   end
 
   def create
@@ -42,6 +43,10 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
   private
   def set_financial_taxon
     @financial_taxon = FinancialTaxon.find(params[:id])
+  end
+
+  def prepare_form
+    @financial_taxon_root = FinancialTaxon.new(default_form_params)
   end
 
   def financial_taxon_params

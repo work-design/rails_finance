@@ -8,17 +8,16 @@
       <th><%= FinancialTaxon.human_attribute_name(:take_stock) %></th>
       <th><%= FinancialTaxon.human_attribute_name(:individual) %></th>
       <th>
-        <%= link_to new_admin_financial_taxon_path, remote: true, class: 'button is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
+        <%= link_to new_admin_financial_taxon_path, remote: true, class: 'button is-small is-link' do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
         <% end %>
       </th>
     </tr>
   </thead>
-
-  <tbody>
+  <tbody data-controller="tree">
   <% @financial_taxons.each do |financial_taxon| %>
     <%= render partial: 'financial_taxon', locals: { financial_taxon: financial_taxon } %>
-    <%= draw_tree(partial: 'finance_admin/financial_taxons/financial_taxon', object: financial_taxon) %>
+    <%= draw_tree(partial: 'financial_taxon', object: financial_taxon) %>
   <% end %>
   </tbody>
 </table>

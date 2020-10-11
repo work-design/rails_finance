@@ -1,7 +1,11 @@
 <tr data-depth="<%= financial_taxon.depth_str %>">
   <td>
-    <span><%= ('&emsp;' * financial_taxon.depth * 2).html_safe %></span>
-    <a onclick="collapse(this)" href="javascript:void(0)"><i class="grey caret down icon"></i></a>
+    <span style="width: <%= financial_taxon.depth * 1.43 %>em; display: inline-block"></span>
+    <% if !financial_taxon.leaf? %>
+      <i class="fas fa-caret-down fa-fw" data-action="click->tree#collapse" style="cursor: pointer"></i>
+    <% else %>
+      <i class="fas fa-minus fa-fw"></i>
+    <% end %>
     <span><%= financial_taxon.name %></span>
   </td>
   <td>
