@@ -48,20 +48,23 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
 
   def add_item
     @expense = current_member.created_expenses.build(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
-    if params[:item] == 'member'
-      @expense.expense_members.build
-    elsif params[:item] == 'item'
-      if @expense.financial_taxon
-        @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
-      else
-        @taxon_options = []
-      end
-      @expense.expense_items.build
+    if @expense.financial_taxon
+      @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
+    else
+      @taxon_options = []
     end
+    @expense.expense_items.build
   end
 
   def remove_item
+  end
 
+  def add_member
+    @expense = current_member.created_expenses.build(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
+    @expense.expense_members.build
+  end
+
+  def remove_member
   end
 
   def show

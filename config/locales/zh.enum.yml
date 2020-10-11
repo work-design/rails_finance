@@ -1,6 +1,12 @@
 zh:
   activerecord:
     enum:
+      budget:
+        state:
+          init: 申请
+          verifying: 审核中
+          finished: 已完结
+          rejected: 拒绝
       expense:
         type:
           PrepayExpense: 借支/报销

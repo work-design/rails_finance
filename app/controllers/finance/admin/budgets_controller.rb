@@ -1,61 +1,61 @@
 class Finance::Admin::BudgetsController < Finance::Admin::BaseController
-  before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy]
+  before_action :set_budget, only: [:show, :edit, :update, :trigger, :destroy]
 
   def index
     q_params = {}
     q_params.merge! default_params
     q_params.merge! params.permit(:state, :id)
 
-    @expenses = Expense.default_where(q_params).page(params[:page])
+    @budgets = Budget.default_where(q_params).page(params[:page])
   end
 
   def new
-    @expense = Expense.new
+    @budget = Budget.new
   end
 
   def create
-    @expense = Expense.new(expense_params)
+    @budget = Budget.new(budget_params)
 
-    unless @expense.save
-      render :new, locals: { model: @expense }, status: :unprocessable_entity
+    unless @budget.save
+      render :new, locals: { model: @budget }, status: :unprocessable_entity
     end
   end
 
   def show
-    @expense_members = @expense.expense_members
-    @expense_items = @expense.expense_items.where(member_id: nil)
+    @budget_members = @budget.budget_members
+    @budget_items = @budget.budget_items.where(member_id: nil)
   end
 
   def edit
   end
 
   def update
-    @expense.assign_attributes expense_params
+    @budget.assign_attributes budget_params
 
-    unless @expense.save
-      render :edit, locals: { model: @expense }, status: :unprocessable_entity
+    unless @budget.save
+      render :edit, locals: { model: @budget }, status: :unprocessable_entity
     end
   end
 
   def next
-    @expense.do_next(state: params[:state], auditor_id: current_member.id)
+    @budget.do_next(state: params[:state], auditor_id: current_member.id)
   end
 
   def trigger
-    @expense.do_trigger(state: params[:state], auditor_id: current_member.id)
+    @budget.do_trigger(state: params[:state], auditor_id: current_member.id)
   end
 
   def destroy
-    @expense.destroy
+    @budget.destroy
   end
 
   private
-  def set_expense
-    @expense = Expense.find(params[:id])
+  def set_budget
+    @budget = Budget.find params[:id]
   end
 
-  def expense_params
-    p = params.fetch(:expense, {}).permit(
+  def budget_params
+    p = params.fetch(:budget, {}).permit(
       :state
     )
     p.merge! default_form_params

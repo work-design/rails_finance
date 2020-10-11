@@ -1,6 +1,6 @@
 class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   include FinanceController::Me
-  before_action :set_expense, only: [:show, :edit, :update, :requested, :transfer, :confirm, :bill, :destroy]
+  before_action :set_budget, only: [:show, :edit, :update, :requested, :transfer, :confirm, :bill, :destroy]
   before_action :prepare_form
   # after_action only: [:create, :update, :destroy] do
   #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
@@ -28,7 +28,7 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def create
-    @budget = current_member.budgets.build(expense_params)
+    @budget = current_member.budgets.build(budget_params)
 
     unless @budget.save
       render :new, locals: { model: @budget }, status: :unprocessable_entity
@@ -36,7 +36,7 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def financial_taxons
-    q = expense_params['expense_items_attributes'].each do |_, v|
+    q = budget_params['expense_items_attributes'].each do |_, v|
       v.delete('id')
     end
     q.fetch('expense_members_attributes', {}).each do |_, v|
@@ -47,17 +47,13 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def add_item
-    @budget = current_member.budgets.build(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
-    if params[:item] == 'member'
-      @budget.expense_members.build
-    elsif params[:item] == 'item'
-      if @budget.financial_taxon
-        @taxon_options = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
-      else
-        @taxon_options = []
-      end
-      @budget.expense_items.build
+    @budget = current_member.budgets.build(financial_taxon_id: params[:financial_taxon_id])
+    if @budget.financial_taxon
+      @taxon_options = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
+    else
+      @taxon_options = []
     end
+    @budget.expense_items.build
   end
 
   def remove_item
@@ -72,7 +68,7 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def update
-    @budget.assign_attributes(expense_params)
+    @budget.assign_attributes(budget_params)
 
     unless @budget.save
       render :edit, locals: { model: @budget }, status: :unprocessable_entity
@@ -110,8 +106,8 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   private
-  def set_expense
-    @budget = Budget.find(params[:id])
+  def set_budget
+    @budget = Budget.find params[:id]
   end
 
   def prepare_form
@@ -121,16 +117,12 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
     @financial_taxons = FinancialTaxon.default_where(q_params)
   end
 
-  def expense_params
+  def budget_params
     params.fetch(:budget, {}).permit(
       :subject,
-      :type,
       :amount,
       :note,
-      :proof,
       :financial_taxon_id,
-      :payment_method_id,
-      expense_members_attributes: {},
       expense_items_attributes: {}
     )
   end

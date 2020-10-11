@@ -38,7 +38,7 @@
       <td>
         <%= link_to 'History', audits_path(budget.class.base_class.name, budget.id), remote: true, class: 'button is-small is-rounded is-light' %>
         <% if ['init', 'rejected'].include? budget.state %>
-          <%= link_to edit_me_expense_path(budget), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <%= link_to({ action: 'edit', id: budget.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
             <i class="fas fa-pencil-alt"></i>
           <% end %>
           <%= link_to me_expense_path(budget), method: :delete, remote: true, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>

@@ -25,9 +25,6 @@ module RailsFinance::Budget
     enum state: {
       init: 'init',
       verifying: 'verifying',
-      paying: 'paying',
-      upload_invoice: 'upload_invoice',
-      invoice_verifying: 'invoice_verifying',
       finished: 'finished',
       rejected: 'rejected'
     }, _default: 'init'
