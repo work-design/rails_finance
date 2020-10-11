@@ -3,16 +3,12 @@
     <tr>
       <th></th>
       <th>
-        <%= link_to t('.confirm'), confirm_me_expense_path(@expense), class: 'ui mini green right floated button' %>
-        <%= link_to t('.edit'), edit_me_expense_path(@expense), remote: true, class: 'ui mini blue right floated button' %>
+        <%= link_to t('.confirm'), confirm_me_expense_path(@expense), class: 'button' %>
+        <%= link_to t('.edit'), { action: 'edit', id: @expense.id }, remote: true, class: 'button' %>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:type) %></td>
-      <td><%= @expense.type_i18n %></td>
-    </tr>
     <tr>
       <td class="has-text-right"><%= Expense.human_attribute_name(:subject) %></td>
       <td>
@@ -31,31 +27,6 @@
         <%= render partial: 'finance/me/expense_members/items', locals: { expense_items: @expense.expense_items } %>
       </td>
     </tr>
-    <% if @expense.financial_taxon&.individual %>
-    <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:expense_members) %></td>
-      <td class="negative">
-        <table class="table">
-          <tr>
-            <th><%= ExpenseMember.human_attribute_name(:member) %></th>
-            <th><%= ExpenseMember.human_attribute_name(:advance) %></th>
-            <th><%= ExpenseMember.human_attribute_name(:amount) %></th>
-            <th><%= ExpenseMember.human_attribute_name(:payout_amount) %></th>
-            <th></th>
-          </tr>
-          <% @expense.expense_members.each do |member| %>
-            <tr>
-              <td><%= member.member.name %></td>
-              <td><%= member.advance %></td>
-              <td><%= member.amount %></td>
-              <td><%= member.payout_amount %></td>
-              <td></td>
-            </tr>
-          <% end %>
-        </table>
-      </td>
-    </tr>
-    <% end %>
     <tr>
       <td class="has-text-right"><%= Expense.human_attribute_name(:amount) %></td>
       <td>
@@ -82,24 +53,6 @@
         </table>
       </td>
     </tr>
-    <% if @expense.payment_method %>
-    <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:payment_method) %></td>
-      <td>
-        <p><%= @expense.payment_method.account_name %></p>
-        <p><%= @expense.payment_method.account_num %></p>
-        <p><%= @expense.payment_method.bank %></p>
-      </td>
-    </tr>
-    <% end %>
-    <% if @expense.type == 'PayableExpense' %>
-    <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:invoices) %></td>
-      <td>
-        <%= link_to 'pdf', bill_me_expense_path(@expense, format: 'pdf') %>
-      </td>
-    </tr>
-    <% end %>
     <tr>
       <td class="has-text-right"><%= Expense.human_attribute_name(:items) %></td>
       <td>
