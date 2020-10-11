@@ -1,6 +1,6 @@
 class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   include FinanceController::Me
-  before_action :set_budget, only: [:show, :edit, :update, :requested, :transfer, :confirm, :bill, :destroy]
+  before_action :set_budget, only: [:show, :edit, :update, :submit, :transfer, :bill, :destroy]
   before_action :prepare_form
   # after_action only: [:create, :update, :destroy] do
   #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
@@ -57,7 +57,6 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def remove_item
-
   end
 
   def show
@@ -79,14 +78,7 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
     @budget.transfer(params[:type])
   end
 
-  def confirm
-    @payment_methods = PaymentMethod.where(myself: false)
-    if @budget.type == 'PrepayExpense'
-      @budget.expense_members.build(member_id: current_member.id, amount: @budget.amount)
-    end
-  end
-
-  def requested
+  def submit
     @budget.request!
   end
 

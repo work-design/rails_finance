@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       end
       member do
         patch :transfer
+        patch :submit
       end
     end
     resources :expenses do
