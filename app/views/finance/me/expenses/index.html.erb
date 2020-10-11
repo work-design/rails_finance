@@ -1,5 +1,4 @@
 <%= render 'nav_expense' %>
-
 <%= render 'filter_form' %>
 <%= render 'filter_table' %>
 
@@ -12,8 +11,8 @@
       <th><%= Expense.human_attribute_name(:proof) %></th>
       <th><%= Expense.human_attribute_name(:state) %></th>
       <th>
-        <%= link_to new_me_expense_path(type: 'BudgetExpense'), remote: true, class: 'button is-link' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
+        <%= link_to new_me_expense_path(type: 'BudgetExpense'), remote: true, class: 'button is-small is-link' do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
         <% end %>
       </th>
     </tr>
