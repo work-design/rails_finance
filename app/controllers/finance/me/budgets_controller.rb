@@ -36,7 +36,7 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def financial_taxons
-    q = budget_params.fetch('expense_items_attributes', {}).each do |_, v|
+    budget_params.fetch('expense_items_attributes', {}).each do |_, v|
       v.delete('id')
     end
     @budget = current_member.budgets.build(financial_taxon_id: budget_params[:financial_taxon_id])

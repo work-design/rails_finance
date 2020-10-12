@@ -1,7 +1,7 @@
 <% form_object = form_object(@budget) %>
 
-var template = '<%= j(render partial: 'item_field', locals: { f: form_object, index: nil }) %>'
-
-$('#expense_financial_taxon_id_wrapper').nextAll('[id^="expense_expense_items_"]').remove()
-$('#expense_financial_taxon_id_wrapper').after(template)
-
+<% params.fetch('budget', {}).fetch('expense_items_attributes', {}).each do |index, item| %>
+var template = document.createElement('div')
+template.innerHTML = '<%= j(render partial: 'item_field', locals: { f: form_object, index: index }) %>'
+document.getElementById('budget_expense_items_wrapper_<%= ef.index %>').parentNode.replaceChild(input, template)
+<% end %>

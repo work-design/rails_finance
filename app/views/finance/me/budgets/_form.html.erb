@@ -5,7 +5,7 @@
       :financial_taxon_id,
       @financial_taxons, :id, :name,
       { include_blank: true },
-      { data: { controller: 'typer', url: financial_taxons_me_budgets_url } }
+      { data: { controller: 'typer', method: 'post', url: financial_taxons_me_budgets_url } }
   )
 %>
 <%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>

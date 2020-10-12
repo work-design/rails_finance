@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   scope :me, module: 'finance/me', as: :me do
     resources :budgets do
       collection do
-        get :financial_taxons
+        match :financial_taxons, via: [:get, :post]
         get :add_item
         get :remove_item
         get :admin
