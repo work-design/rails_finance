@@ -1,0 +1,9 @@
+<%= form_with theme: 'search', model: Budget.new do |f| %>
+  <div class="field-body">
+    <%= f.text_field 'subject-like' %>
+    <%= f.number_field :amount %>
+    <div class="field is-narrow">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

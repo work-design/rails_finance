@@ -22,6 +22,8 @@ zh:
       budgets:
         index:
           title: 预算（采购）
+        admin:
+          title: 待审核
       expenses:
         index:
           title: 支出列表

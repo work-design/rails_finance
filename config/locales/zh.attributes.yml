@@ -19,6 +19,7 @@ zh:
         subject-like: 支出内容
         state: 状态
       expense_item:
+        financial_taxon_id: 分类
         budget_amount: 预算
         amount: 金额
         price: 价格

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       collection do
         get :add_item
         get :remove_item
+        get :admin
       end
       member do
         patch :transfer

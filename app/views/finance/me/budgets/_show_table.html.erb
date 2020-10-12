@@ -23,7 +23,7 @@
     <tr>
       <td class="has-text-right"><%= Budget.human_attribute_name(:expense_items) %></td>
       <td class="positive">
-        <%= render partial: 'finance/me/expense_members/items', locals: { expense_items: @budget.expense_items } %>
+        <%= render partial: 'items', locals: { expense_items: @budget.expense_items } %>
       </td>
     </tr>
     <tr>
