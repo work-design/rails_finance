@@ -6,8 +6,8 @@ zh:
         expense_items: 条目
         financial_taxon_id: 支出类别
         invoices_count: 凭证数
-        subject: 支出内容
-        subject-like: 支出内容
+        subject: 预算内容
+        subject-like: 预算内容
         state: 状态
       expense:
         amount: 合计
