@@ -36,14 +36,11 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def financial_taxons
-    q = budget_params['expense_items_attributes'].each do |_, v|
+    q = budget_params.fetch('expense_items_attributes', {}).each do |_, v|
       v.delete('id')
     end
-    q.fetch('expense_members_attributes', {}).each do |_, v|
-      v.delete('id')
-    end
-    @budget = current_member.budgets.build(q)
-    @taxon_options = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
+    @budget = current_member.budgets.build(financial_taxon_id: budget_params[:financial_taxon_id])
+    @financial_taxons = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
   end
 
   def add_item

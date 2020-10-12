@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   scope :me, module: 'finance/me', as: :me do
     resources :budgets do
       collection do
+        get :financial_taxons
         get :add_item
         get :remove_item
         get :admin
@@ -31,11 +32,11 @@ Rails.application.routes.draw do
     end
     resources :expenses do
       collection do
+        get :financial_taxons
         get :add_item
         get :remove_item
         get :add_member
         get :remove_member
-        post :financial_taxons
         get :admin
       end
       member do

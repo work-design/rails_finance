@@ -1,11 +1,14 @@
 <table class="table">
-  <tr>
-    <th><%= ExpenseItem.human_attribute_name(:financial_taxon_id) %></th>
-    <th><%= ExpenseItem.human_attribute_name(:note) %></th>
-    <th><%= ExpenseItem.human_attribute_name(:budget_amount) %></th>
-    <th><%= ExpenseItem.human_attribute_name(:amount) %></th>
-    <th></th>
-  </tr>
+  <thead>
+    <tr>
+      <th><%= ExpenseItem.human_attribute_name(:financial_taxon_id) %></th>
+      <th><%= ExpenseItem.human_attribute_name(:note) %></th>
+      <th><%= ExpenseItem.human_attribute_name(:budget_amount) %></th>
+      <th><%= ExpenseItem.human_attribute_name(:amount) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
   <% expense_items.each do |item| %>
     <tr>
       <td><%= item.financial_taxon&.name %></td>
@@ -15,4 +18,5 @@
       <td></td>
     </tr>
   <% end %>
+  </tbody>
 </table>

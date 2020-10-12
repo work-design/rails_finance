@@ -1,6 +1,13 @@
 <%= render 'shared/error_messages', target: @budget %>
 <%= f.text_field :subject, required: true %>
-<%= f.collection_select :financial_taxon_id, @financial_taxons, :id, :name, include_blank: true %>
+<%=
+  f.collection_select(
+      :financial_taxon_id,
+      @financial_taxons, :id, :name,
+      { include_blank: true },
+      { data: { controller: 'typer', url: financial_taxons_me_budgets_url } }
+  )
+%>
 <%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
   <%= render partial: 'item_form', locals: { ef: ef } %>
 <% end %>
