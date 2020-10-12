@@ -65,10 +65,10 @@
       </td>
       <td>
         <% if @budget.init? %>
-          <%= link_to 'Request', submit_me_budget_path(@budget), method: :patch, data: { confirm: t('.confirm') }, class: 'button is-small' %>
+          <%= link_to t('finance.me.budgets.submit.title'), { action: 'submit', id: @budget.id }, remote: true, method: :patch, data: { confirm: t('.confirm') }, class: 'button is-small' %>
         <% end %>
         <% Expense.types.each do |_, type| %>
-          <%= link_to "Transfer to #{Budget.enum_i18n(:type, type)}", transfer_me_budget_path(@budget, type: type), method: :patch, class: 'button is-small' %>
+          <%= link_to "Transfer to #{Budget.enum_i18n(:type, type.to_s)}", { action: 'transfer', id: @budget.id, type: type }, remote: true, method: :patch, class: 'button is-small' %>
         <% end %>
       </td>
     </tr>

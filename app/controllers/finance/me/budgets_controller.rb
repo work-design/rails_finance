@@ -76,7 +76,8 @@ class Finance::Me::BudgetsController < Finance::Admin::BudgetsController
   end
 
   def submit
-    @budget.request!
+    @budget.state = 'verifying' if @budget.init?
+    @budget.save
   end
 
   def bill

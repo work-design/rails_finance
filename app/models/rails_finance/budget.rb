@@ -14,6 +14,7 @@ module RailsFinance::Budget
 
     has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
     has_many :expense_items, dependent: :destroy
+    has_many :expenses, dependent: :destroy
     accepts_nested_attributes_for :expense_items, allow_destroy: true, reject_if: :all_blank
 
     #validate :amount_sum
@@ -46,10 +47,6 @@ module RailsFinance::Budget
   def can_operate?(member)
     return true if member.admin?
     self.next_operator == current_member && !['init', 'rejected', 'finished'].include?(self.state)
-  end
-
-  def request!
-    next_to! state: 'pending_verifier'
   end
 
   def next_state_state
@@ -121,16 +118,13 @@ module RailsFinance::Budget
     self.amount = self.expense_items.sum(&:amount)
   end
 
-  def transfer(type = self.next_state(:type))
-    self.trigger_to type: type
-    self.save
-  end
-
-  def next_type_states
-    [
-      'PrepayExpense',
-      'PayableExpense'
-    ]
+  def transfer(type)
+    expense = self.expenses.build(type: type)
+    expense.assign_attributes self.attributes.slice('financial_taxon_id', 'subject', 'amount')
+    expense.creator_id = member_id
+    expense.expendable_type = budgeting_type
+    expense.expendable_id = budgeting_id
+    expense.save!
   end
 
   def sync_members

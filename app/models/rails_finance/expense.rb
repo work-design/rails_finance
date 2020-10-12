@@ -57,17 +57,15 @@ module RailsFinance::Expense
       only: [:subject, :amount, :type],
       methods: [:creator_name]
     )
+
     after_create :sync_members
     before_save :sync_amount
+    after_save :sync_items, if: -> { saved_change_to_budget_id? && budget }
   end
 
   def can_operate?(member)
     return true if member.admin?
     self.next_operator == current_member && !['init', 'rejected', 'finished'].include?(self.state)
-  end
-
-  def request!
-    next_to! state: 'pending_verifier'
   end
 
   def next_state_state
@@ -137,6 +135,10 @@ module RailsFinance::Expense
 
   def sync_amount
     self.amount = self.expense_items.sum(&:amount)
+  end
+
+  def sync_items
+    budget.expense_items.update_all expense_id: self.id
   end
 
   def sync_members

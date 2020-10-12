@@ -90,10 +90,6 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
     end
   end
 
-  def transfer
-    @expense.transfer(params[:type])
-  end
-
   def confirm
     @payment_methods = PaymentMethod.where(myself: false)
     if @expense.type == 'PrepayExpense'
@@ -101,8 +97,9 @@ class Finance::Me::ExpensesController < Finance::Admin::ExpensesController
     end
   end
 
-  def requested
-    @expense.request!
+  def submit
+    @expense.state = 'verifying' if @expense.init?
+    @expense.save
   end
 
   def bill

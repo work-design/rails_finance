@@ -7,7 +7,6 @@
     <tr>
       <th><%= Budget.human_attribute_name(:subject) %></th>
       <th><%= Budget.human_attribute_name(:amount) %></th>
-      <th><%= Budget.human_attribute_name(:proof) %></th>
       <th><%= Budget.human_attribute_name(:state) %></th>
       <th>
         <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
@@ -22,9 +21,6 @@
     <tr>
       <td><%= link_to budget.subject, { action: 'show', id: budget.id }, remote: true %></td>
       <td><%= budget.amount %></td>
-      <td>
-        <%= link_to budget.proof.filename, rails_blob_path(budget.proof, disposition: 'attachment') if budget.proof.attached? %>
-      </td>
       <td>
         <span class="tag"><%= budget.state_i18n %></span>
         <% budget.all_verifications.each do |verification| %>
