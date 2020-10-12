@@ -4,7 +4,7 @@ class BudgetController extends Controller {
   static targets = ['quantity', 'budget', 'price']
 
   connect() {
-    console.debug('Expense Controller Works')
+    console.debug('Budget Controller Works')
   }
 
   updatePrice(event) {
@@ -12,7 +12,7 @@ class BudgetController extends Controller {
     let quantity = document.getElementById(price.id.replace('price', 'quantity'))
     let result = (price.value * quantity.value).toFixed(2)
 
-    let budget = document.getElementById(price.id.replace('price', 'budget'))
+    let budget = document.getElementById(price.id.replace('price', 'budget_amount'))
     if (budget) {
       budget.value = result
     }
@@ -27,7 +27,7 @@ class BudgetController extends Controller {
     let price = document.getElementById(quantity.id.replace('quantity', 'price'))
     let result = (price.value * quantity.value).toFixed(2)
 
-    let budget = document.getElementById(quantity.id.replace('quantity', 'budget'))
+    let budget = document.getElementById(quantity.id.replace('quantity', 'budget_amount'))
     if (budget) {
       budget.value = result
     }
@@ -39,4 +39,4 @@ class BudgetController extends Controller {
 
 }
 
-application.register('expense', ExpenseController)
+application.register('budget', BudgetController)
