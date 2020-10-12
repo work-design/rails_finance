@@ -4,8 +4,7 @@
   f.collection_select(
       :financial_taxon_id,
       @financial_taxons, :id, :name,
-      { include_blank: true },
-      { data: { controller: 'typer', method: 'post', url: financial_taxons_me_budgets_url } }
+      { include_blank: true }
   )
 %>
 <%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
