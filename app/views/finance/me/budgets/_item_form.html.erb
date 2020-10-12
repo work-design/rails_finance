@@ -1,4 +1,4 @@
-<div class="field is-horizontal" id="budget_expense_items_wrapper_<%= ef.index %>" data-controller="expense">
+<div class="field is-horizontal" id="budget_expense_items_wrapper_<%= ef.index %>" data-controller="budget">
   <% if ef.index == 0 %>
     <%= ef.options[:parent_builder].label :expense_items %>
   <% else %>
@@ -6,9 +6,9 @@
   <% end %>
   <div class="field-body">
   <%= ef.text_field :note %>
-  <%= ef.number_field :quantity, step: 1, data: { action: 'expense#updateQuantity' } %>
-  <%= ef.number_field :price, data: { action: 'expense#updatePrice' } %>
-  <%= ef.number_field :budget_amount %>
+  <%= ef.number_field :quantity, step: 1, data: { action: 'budget#updateQuantity' } %>
+  <%= ef.number_field :price, data: { action: 'budget#updatePrice' } %>
+  <%= ef.number_field :budget_amount, step: 0.01 %>
   <div class="field has-addons is-flex">
     <%= link_to({ action: 'add_item', index: ef.index, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id }, { data: { title: 'add_item' }, remote: true }) do %>
       <i class="fas fa-plus"></i>
