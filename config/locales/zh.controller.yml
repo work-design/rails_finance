@@ -5,6 +5,9 @@ zh:
       financial_taxons:
         index:
           title: 类别
+      budgets:
+        index:
+          title: 预算（采购）
       expenses:
         index:
           title: 支出
