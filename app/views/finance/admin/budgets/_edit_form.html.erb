@@ -1,4 +1,3 @@
-<%= form_with model: @expense, scope: :expense, url: finance_expense_path(@expense), method: :patch do |f| %>
-  <%= render 'shared/error_messages', target: @expense %>
-  <%= f.submit %>
+<%= form_with model: @budget, url: { action: 'update', id: @budget.id } do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
 <% end %>
