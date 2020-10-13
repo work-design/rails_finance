@@ -1,4 +1,4 @@
-module RailsFinanceExt::Budgeting
+module RailsFinanceExt::Financial
   extend ActiveSupport::Concern
 
   included do
@@ -15,7 +15,7 @@ module RailsFinanceExt::Budgeting
   def compute_budget_amount
     self.budget_amount = budgets.sum(:amount)
   end
-  
+
   def compute_expense_amount
     self.expense_amount = expenses.sum(:amount)
   end

@@ -1,4 +1,4 @@
-module RailsFinance::FundItem
+module RailsFinance::FundIncome
   extend ActiveSupport::Concern
 
   included do

@@ -4,3 +4,5 @@ gemspec
 
 gem 'rails'
 gem 'puma'
+
+gem 'rails_com', github: 'work-design/rails_com'

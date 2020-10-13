@@ -6,10 +6,11 @@ module RailsFinance::Fund
     attribute :budget, :decimal
     attribute :amount, :decimal
     attribute :note, :string
-    attribute :x
 
     has_one_attached :proof
 
+    has_many :fund_incomes, dependent: :destroy
+    has_many :fund_plans, dependent: :destroy
   end
 
 
