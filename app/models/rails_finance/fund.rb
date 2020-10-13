@@ -1,4 +1,4 @@
-module RailsFinance::ProjectFund
+module RailsFinance::Fund
   extend ActiveSupport::Concern
 
   included do
@@ -7,8 +7,8 @@ module RailsFinance::ProjectFund
     attribute :visible, :boolean, default: true
     attribute :note, :string
 
-    belongs_to :project
     belongs_to :user
+    belongs_to :financial, polymorphic: true, optional: true
 
     has_one_attached :proof
 

@@ -8,7 +8,7 @@ module RailsFinance::Budget
 
     belongs_to :organ, optional: true
     belongs_to :member
-    belongs_to :budgeting, polymorphic: true, optional: true
+    belongs_to :financial, polymorphic: true, optional: true
     belongs_to :financial_taxon
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
 

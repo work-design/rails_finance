@@ -13,9 +13,9 @@ module RailsFinance::Expense
     belongs_to :creator, class_name: 'Member'
     belongs_to :budget, optional: true
     belongs_to :fund, optional: true
-    belongs_to :expendable, polymorphic: true, optional: true
-    belongs_to :payout, optional: true
     belongs_to :financial_taxon
+    belongs_to :financial, polymorphic: true, optional: true
+    belongs_to :payout, optional: true
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
     belongs_to :payment_method, optional: true
 
