@@ -34,3 +34,8 @@ zh:
         individual: 个人
         take_stock: 可盘点
         verifiers: 审核人
+      fund:
+        budget: 预算
+        amount: 金额
+        note: 备注
+        proof: 凭证

@@ -12,6 +12,7 @@ module RailsFinance::Expense
     belongs_to :organ, optional: true
     belongs_to :creator, class_name: 'Member'
     belongs_to :budget, optional: true
+    belongs_to :fund, optional: true
     belongs_to :expendable, polymorphic: true, optional: true
     belongs_to :payout, optional: true
     belongs_to :financial_taxon
