@@ -1,3 +1,3 @@
-class FundItem < ApplicationRecord
-  include RailsFinance::FundItem
-end unless defined? FundItem
+class FundIncome < ApplicationRecord
+  include RailsFinance::FundIncome
+end unless defined? FundIncome

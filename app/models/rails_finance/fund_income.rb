@@ -4,6 +4,7 @@ module RailsFinance::FundIncome
   included do
     attribute :name, :string
     attribute :visible, :boolean, default: false
+    attribute :amount, :decimal
 
     belongs_to :fund
     belongs_to :user, optional: true

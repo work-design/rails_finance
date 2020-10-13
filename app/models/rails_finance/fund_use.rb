@@ -1,8 +1,9 @@
-module RailsFinance::FundIncome
+module RailsFinance::FundUse
   extend ActiveSupport::Concern
 
   included do
-    attribute :budget, :decimal
+    attribute :budget_amount, :decimal
+    attribute :amount, :decimal
 
     belongs_to :fund
     belongs_to :financial, polymorphic: true, optional: true
