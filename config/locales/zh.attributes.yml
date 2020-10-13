@@ -39,3 +39,7 @@ zh:
         amount: 金额
         note: 备注
         proof: 凭证
+      fund_use:
+        fund_id: 资金
+        budget_amount: 预算金额
+        amount: 实际支出

@@ -7,7 +7,7 @@ module RailsFinanceExt::Financial
     attribute :budget_amount, :decimal
     attribute :expense_amount, :decimal
 
-    has_many :fund_items, as: :financial, dependent: :nullify
+    has_many :fund_uses, as: :financial, dependent: :nullify
     has_many :budgets, as: :financial
     has_many :expenses, as: :financial
   end
