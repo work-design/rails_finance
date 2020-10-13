@@ -4,7 +4,7 @@ module RailsFinance::Fund
   included do
     attribute :name, :string
     attribute :budget, :decimal
-    attribute :amount, :decimal
+    attribute :amount, :decimal, default: 0
     attribute :note, :string
 
     has_one_attached :proof

@@ -1,0 +1,50 @@
+<% content_for :breadcrumb do %>
+<div class="breadcrumb has-succeeds-separator">
+  <ul>
+    <li><%= link_to t('finance.admin.funds.index.title'), { controller: 'finance/admin/funds', action: 'index' } %></li>
+    <li><%= link_to @fund.name, { controller: 'finance/admin/funds', action: 'show', id: @fund.id } %></li>
+    <li class="is-active"><%= t('.title') %></li>
+  </ul>
+</div>
+<% end %>
+
+<%= render 'filter_form' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th><%= FundIncome.human_attribute_name(:amount) %></th>
+      <th><%= FundIncome.human_attribute_name(:user_id) %></th>
+      <th><%= FundIncome.human_attribute_name(:proof) %></th>
+      <th>
+        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @fund_incomes.each do |fund_income| %>
+    <tr>
+      <td><%= fund_income.amount %></td>
+      <td><%= fund_income.user_id %></td>
+      <td>
+        <%= link_to fund_income.proof_blob.filename, rails_blob_url(fund_income.proof_blob), target: '_blank' if fund_income.proof.attached? %>
+      </td>
+      <td>
+        <%= link_to({ action: 'show', id: fund_income.id }, { aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-eye"></i>
+        <% end %>
+        <%= link_to({ action: 'edit', id: fund_income.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to({ action: 'destroy', id: fund_income.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @fund_incomes %>

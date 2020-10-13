@@ -36,8 +36,11 @@ zh:
         verifiers: 审核人
       fund:
         budget: 预算
-        amount: 金额
+        amount: 已使用
         note: 备注
+        proof: 凭证
+      fund_income:
+        amount: 金额
         proof: 凭证
       fund_use:
         fund_id: 资金
