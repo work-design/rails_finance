@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   scope :admin, module: 'finance/admin', as: :admin do
     resources :financial_taxons
+    resources :funds
     resources :budgets
     resources :expenses do
       member do

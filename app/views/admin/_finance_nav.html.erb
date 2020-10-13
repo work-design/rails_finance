@@ -1,5 +1,6 @@
 <div class="<%= active_helper(modules: 'finance/admin', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu">
   <%= content_tag :div, class: 'menu-list' do %>
+    <%= link_to t('finance.admin.funds.index.title'), admin_funds_path, class: active_helper(controllers: 'funds', active: 'is-active') %>
     <%= link_to t('finance.admin.budgets.index.title'), admin_budgets_path, class: active_helper(controllers: 'budgets', active: 'is-active') %>
     <%= link_to t('finance.admin.expenses.index.title'), admin_expenses_path, class: active_helper(controllers: 'expenses', active: 'is-active') %>
     <%= link_to t('finance.admin.financial_taxons.index.title'), admin_financial_taxons_path, class: active_helper(controllers: 'financial_taxons', active: 'is-active') -%>

@@ -83,6 +83,11 @@ GEM
     default_where (2.2.0)
       activerecord (>= 4.0.0)
     erubi (1.9.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     globalid (0.4.2)
@@ -178,6 +183,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  factory_bot_rails
   puma
   rails
   rails_com!
@@ -185,4 +191,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   2.1.4
+   2.2.0.rc.1
