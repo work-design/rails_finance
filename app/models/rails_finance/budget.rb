@@ -7,7 +7,7 @@ module RailsFinance::Budget
     attribute :note, :string, limit: 4096
 
     belongs_to :organ, optional: true
-    belongs_to :member
+    belongs_to :member, optional: true
     belongs_to :financial, polymorphic: true, optional: true
     belongs_to :financial_taxon
     belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
@@ -116,7 +116,7 @@ module RailsFinance::Budget
   end
 
   def sync_amount
-    self.amount = self.expense_items.sum(&:amount)
+    self.amount = self.expense_items.sum(&:budget_amount)
   end
 
   def transfer(type)

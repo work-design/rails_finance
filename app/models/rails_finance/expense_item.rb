@@ -15,10 +15,7 @@ module RailsFinance::ExpenseItem
     belongs_to :financial_taxon, optional: true
     has_one :expense_member, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id
 
-    after_initialize if: :new_record? do
-      ensure_amount
-    end
-    before_update :ensure_amount
+    before_save :ensure_amount, if: -> { budget_amount_changed? }
     after_update_commit :sync_member_amount, if: -> { saved_change_to_amount? }
   end
 
