@@ -2,7 +2,7 @@ class Finance::Admin::FundsController < Finance::Admin::BaseController
   before_action :set_fund, only: [:show, :edit, :update, :destroy]
 
   def index
-    @funds = Fund.page(params[:page])
+    @funds = Fund.order(id: :asc).page(params[:page])
   end
 
   def new
