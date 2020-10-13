@@ -42,6 +42,7 @@ module RailsFinance::Budget
     )
     after_create :sync_members
     before_save :sync_amount
+    after_save :sum_amount, if: -> { saved_change_to_amount? }
   end
 
   def can_operate?(member)
@@ -125,6 +126,11 @@ module RailsFinance::Budget
     expense.expendable_type = budgeting_type
     expense.expendable_id = budgeting_id
     expense.save!
+  end
+
+  def sum_amount
+    financial.compute_budget_amount
+    financial.save
   end
 
   def sync_members

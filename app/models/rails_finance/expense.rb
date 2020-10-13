@@ -61,6 +61,7 @@ module RailsFinance::Expense
 
     after_create :sync_members
     before_save :sync_amount
+    after_save :sum_amount, if: -> { saved_change_to_amount? }
     after_save :sync_items, if: -> { saved_change_to_budget_id? && budget }
   end
 
@@ -132,6 +133,11 @@ module RailsFinance::Expense
     unless self.amount == self.expense_items.sum(&:amount)
       self.errors.add :amount, 'Amount must equal to cost sum'
     end
+  end
+
+  def sum_amount
+    financial.compute_expense_amount
+    financial.save
   end
 
   def sync_amount
