@@ -12,6 +12,14 @@ module RailsFinanceExt::Financial
     has_many :expenses, as: :financial
   end
 
+  def compute_fund_budget
+    self.fund_budget = fund_uses.sum(:budget_amount)
+  end
+
+  def compute_fund_amount
+    self.fund_amount = fund_uses.sum(:amount)
+  end
+
   def compute_budget_amount
     self.budget_amount = budgets.sum(:amount)
   end

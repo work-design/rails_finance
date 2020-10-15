@@ -27,13 +27,13 @@
   <% end %>
   
   <div class="field has-addons is-flex">
-    <%= link_to add_item_me_expenses_path('item', index: ef.index, type: ef.options[:parent_builder].object.type, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id), data: { title: 'add_item' }, remote: true do %>
+    <%= link_to({ action: 'add_item', index: ef.index, type: ef.options[:parent_builder].object.type, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id }, { data: { title: 'add_item' }, remote: true }) do %>
       <i class="fas fa-plus"></i>
     <% end %>
     <% if ef.object.id %>
       <%= ef.check_box :_destroy, { on: { offset: false }, css: { wrap_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
     <% else %>
-      <%= link_to remove_item_me_expenses_path('item', index: ef.index, type: ef.options[:parent_builder].object.type), remote: true do %>
+      <%= link_to({ action: 'remove_item', index: ef.index, type: ef.options[:parent_builder].object.type }, { remote: true }) do %>
         <i class="fas fa-minus"></i>
       <% end %>
     <% end %>

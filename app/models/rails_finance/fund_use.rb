@@ -13,9 +13,16 @@ module RailsFinance::FundUse
   end
 
   def sum_fund_amount
-    fund.sum_used_amount if saved_change_to_amount?
-    fund.sum_budget_amount if saved_change_to_budget_amount?
+    if saved_change_to_amount?
+      fund.sum_used_amount
+      financial.compute_fund_amount if financial
+    end
+    if saved_change_to_budget_amount?
+      fund.sum_budget_amount
+      financial.compute_fund_budget if financial
+    end
     fund.save
+    financial.save if financial
   end
 
 end
