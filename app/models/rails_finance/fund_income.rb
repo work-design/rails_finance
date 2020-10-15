@@ -17,10 +17,10 @@ module RailsFinance::FundIncome
 
     has_one_attached :proof
 
-    after_save :sum_income_amount, if: -> { saved_change_to_amount? }
+    after_save :sum_fund_amount, if: -> { saved_change_to_amount? }
   end
 
-  def sum_income_amount
+  def sum_fund_amount
     fund.sum_income_amount
     fund.save
   end

@@ -37,7 +37,7 @@ zh:
       fund:
         budget_amount: 预算
         amount: 实际到账
-        expense_amount: 已使用
+        used_amount: 已使用
         note: 备注
         proof: 凭证
       fund_income:

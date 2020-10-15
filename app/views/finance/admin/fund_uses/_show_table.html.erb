@@ -1,0 +1,32 @@
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>
+        <%= link_to t('.edit'), { action: 'edit', id: @fund_use.id }, remote: true, class: 'button is-small is-link' %>
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="has-text-right"><%= FundUse.human_attribute_name(:financial_type) %></td>
+      <td><%= @fund_use.financial_type %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= FundUse.human_attribute_name(:financial_id) %></td>
+      <td><%= @fund_use.financial_id %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= FundUse.human_attribute_name(:budget_amount) %></td>
+      <td><%= @fund_use.budget_amount %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= FundUse.human_attribute_name(:amount) %></td>
+      <td><%= @fund_use.amount %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= FundUse.human_attribute_name(:note) %></td>
+      <td><%= @fund_use.note %></td>
+    </tr>
+  </tbody>
+</table>
