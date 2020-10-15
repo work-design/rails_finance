@@ -4,7 +4,7 @@ class Finance::Admin::FinancialTaxonsController < Finance::Admin::BaseController
 
   def index
     q_params = {}
-    q_params.merge! default_params
+    q_params.merge! default_ancestors_params
     q_params.merge! params.permit(:name)
 
     @financial_taxons = FinancialTaxon.roots.default_where(q_params).page(params[:page])

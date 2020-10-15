@@ -7,6 +7,9 @@
       <i class="fas fa-minus fa-fw"></i>
     <% end %>
     <span><%= financial_taxon.name %></span>
+    <% if financial_taxon.organ != current_organ %>
+      <span aria-label="<%= financial_taxon.organ.name %>"><i class="fas fa-angle-double-up has-text-grey-light"></i></span>
+    <% end %>
   </td>
   <td>
     <% financial_taxon.verifiers.each do |verifier| %>
