@@ -17,6 +17,9 @@ zh:
       fund_incomes:
         index:
           title: 资金来源
+      fund_uses:
+        index:
+          title: 资金使用
       payment_methods:
         index:
           title: 支付方式

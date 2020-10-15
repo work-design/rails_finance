@@ -47,3 +47,5 @@ zh:
         fund_id: 资金
         budget_amount: 预算金额
         amount: 实际支出
+        financial_type: 支出类型
+        financial_id: 支付条目
