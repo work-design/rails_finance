@@ -31,7 +31,7 @@
       <td><%= fund_use.financial_type_i18n %></td>
       <td><%= link_to fund_use.financial.name, { controller: "bench/admin/#{fund_use.financial_type.tableize}", action: 'show', id: fund_use.financial_id } %></td>
       <td><%= fund_use.budget_amount %></td>
-      <td><%= fund_use.amount %></td>
+      <td><%= link_to fund_use.amount, { controller: 'finance/admin/expenses', action: 'index', fund_use_id: fund_use.id } %></td>
       <td><%= fund_use.note %></td>
       <td>
         <%= link_to({ action: 'show', id: fund_use.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>

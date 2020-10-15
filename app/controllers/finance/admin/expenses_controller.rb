@@ -4,7 +4,7 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
   def index
     q_params = {}
     q_params.merge! default_params
-    q_params.merge! params.permit(:state, :id)
+    q_params.merge! params.permit(:state, :id, :fund_use_id)
 
     @expenses = Expense.default_where(q_params).page(params[:page])
   end
