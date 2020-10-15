@@ -4,8 +4,9 @@
   <thead>
     <tr>
       <th><%= Fund.human_attribute_name(:name) %></th>
-      <th><%= Fund.human_attribute_name(:budget) %></th>
+      <th><%= Fund.human_attribute_name(:budget_amount) %></th>
       <th><%= Fund.human_attribute_name(:amount) %></th>
+      <th><%= Fund.human_attribute_name(:expense_amount) %></th>
       <th><%= Fund.human_attribute_name(:note) %></th>
       <th>
         <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
@@ -18,8 +19,9 @@
   <% @funds.each do |fund| %>
     <tr>
       <td><%= fund.name %></td>
-      <td><%= fund.budget %></td>
-      <td><%= fund.amount %></td>
+      <td><%= fund.budget_amount %></td>
+      <td><%= link_to fund.amount, { controller: 'finance/admin/fund_incomes', action: 'index', fund_id: fund.id } %></td>
+      <td><%= fund.expense_amount %></td>
       <td><%= fund.note %></td>
       <td>
         <%= link_to({ controller: 'finance/admin/fund_incomes', action: 'index', fund_id: fund.id }, { aria: { label: t('finance.admin.fund_incomes.index.title') }, class: 'button is-small is-rounded is-light' }) do %>

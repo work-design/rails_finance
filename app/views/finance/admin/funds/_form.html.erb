@@ -1,6 +1,5 @@
 <%= render 'shared/error_messages', target: @fund %>
 <%= f.text_field :name %>
-<%= f.number_field :budget, step: 0.01 %>
-<%= f.number_field :amount, step: 0.01 %>
+<%= f.number_field :budget_amount, step: 0.01 %>
 <%= f.text_area :note %>
 <%= f.submit %>
