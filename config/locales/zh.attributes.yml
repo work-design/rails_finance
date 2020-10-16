@@ -43,6 +43,7 @@ zh:
       fund_income:
         amount: 金额
         proof: 凭证
+        note: 备注
       fund_use:
         fund_id: 资金
         budget_amount: 预算金额
