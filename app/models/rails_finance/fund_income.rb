@@ -2,9 +2,9 @@ module RailsFinance::FundIncome
   extend ActiveSupport::Concern
 
   included do
-    attribute :name, :string
-    attribute :visible, :boolean, default: false
     attribute :amount, :decimal
+    attribute :visible, :boolean, default: false
+    attribute :note, :string
 
     enum state: {
       init: 'init',

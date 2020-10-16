@@ -14,7 +14,7 @@
   <thead>
     <tr>
       <th><%= FundIncome.human_attribute_name(:amount) %></th>
-      <th><%= FundIncome.human_attribute_name(:user_id) %></th>
+      <th><%= FundIncome.human_attribute_name(:note) %></th>
       <th><%= FundIncome.human_attribute_name(:proof) %></th>
       <th>
         <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
@@ -27,7 +27,7 @@
   <% @fund_incomes.each do |fund_income| %>
     <tr>
       <td><%= fund_income.amount %></td>
-      <td><%= fund_income.user_id %></td>
+      <td><%= fund_income.note %></td>
       <td>
         <%= link_to fund_income.proof_blob.filename, rails_blob_url(fund_income.proof_blob), target: '_blank' if fund_income.proof.attached? %>
       </td>

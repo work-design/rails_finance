@@ -48,6 +48,7 @@ class Finance::Admin::FundIncomesController < Finance::Admin::BaseController
   def fund_income_params
     params.fetch(:fund_income, {}).permit(
       :amount,
+      :note,
       :user_id,
       :proof
     )
