@@ -43,6 +43,7 @@ zh:
         note: 备注
         proof: 凭证
       fund_budget:
+        fund_id: 资金
         amount: 预算金额
         note: 备注
         financial_type: 预算类型
@@ -54,5 +55,6 @@ zh:
       fund_expense:
         fund_id: 资金
         amount: 实际支出
+        note: 备注
         financial_type: 支出类型
         financial_id: 支付条目
