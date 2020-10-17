@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   scope :admin, module: 'finance/admin', as: :admin do
     resources :financial_taxons
     resources :funds do
-      resources :fund_uses
       resources :fund_incomes
+      resources :fund_expenses
+      resources :fund_budgets
     end
     resources :budgets
     resources :expenses do

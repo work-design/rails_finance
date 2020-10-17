@@ -3,15 +3,16 @@ module RailsFinance::Fund
 
   included do
     attribute :name, :string
-    attribute :budget_amount, :decimal, default: 0
     attribute :amount, :decimal, default: 0
+    attribute :budget_amount, :decimal, default: 0
     attribute :used_amount, :decimal, default: 0
     attribute :note, :string
 
     has_one_attached :proof
 
     has_many :fund_incomes, dependent: :destroy
-    has_many :fund_uses, dependent: :destroy
+    has_many :fund_budgets, dependent: :destroy
+    has_many :fund_expenses, dependent: :destroy
   end
 
   def sum_income_amount
@@ -23,7 +24,7 @@ module RailsFinance::Fund
   end
 
   def sum_budget_amount
-    self.budget_amount ||= fund_uses.sum(:budget_amount)
+    self.budget_amount ||= fund_budgets.sum(:amount)
   end
 
 end

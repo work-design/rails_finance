@@ -1,0 +1,50 @@
+<% content_for :breadcrumb do %>
+<div class="breadcrumb has-succeeds-separator">
+  <ul>
+    <li><%= link_to t('finance.admin.funds.index.title'), { controller: 'finance/admin/funds', action: 'index' } %></li>
+    <li><%= link_to @fund.name, { controller: 'finance/admin/funds', action: 'show', id: @fund.id } %></li>
+    <li class="is-active"><%= t('.title') %></li>
+  </ul>
+</div>
+<% end %>
+
+<%= render 'filter_form' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th><%= FundExpense.human_attribute_name(:financial_type) %></th>
+      <th><%= FundExpense.human_attribute_name(:financial_id) %></th>
+      <th><%= FundExpense.human_attribute_name(:amount) %></th>
+      <th><%= FundExpense.human_attribute_name(:note) %></th>
+      <th>
+        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @fund_expenses.each do |fund_expense| %>
+    <tr>
+      <td><%= fund_expense.financial_type_i18n %></td>
+      <td><%= link_to fund_expense.financial.name, { controller: "bench/admin/#{fund_expense.financial_type.tableize}", action: 'show', id: fund_expense.financial_id } %></td>
+      <td><%= link_to fund_expense.amount, { controller: 'finance/admin/expenses', action: 'index', fund_expense_id: fund_expense.id } %></td>
+      <td><%= fund_expense.note %></td>
+      <td>
+        <%= link_to({ action: 'show', id: fund_expense.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-eye"></i>
+        <% end %>
+        <%= link_to({ action: 'edit', id: fund_expense.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to({ action: 'destroy', id: fund_expense.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @fund_expenses %>

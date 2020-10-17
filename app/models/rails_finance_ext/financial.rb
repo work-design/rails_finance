@@ -8,12 +8,13 @@ module RailsFinanceExt::Financial
     attribute :expense_amount, :decimal
 
     has_many :fund_uses, as: :financial, dependent: :nullify
+    has_many :fund_budgets, as: :financial, dependent: :nullify
     has_many :budgets, as: :financial
     has_many :expenses, as: :financial
   end
 
   def compute_fund_budget
-    self.fund_budget = fund_uses.sum(:budget_amount)
+    self.fund_budget = fund_budgets.sum(:amount)
   end
 
   def compute_fund_amount
