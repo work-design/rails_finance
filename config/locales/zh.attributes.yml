@@ -37,16 +37,20 @@ zh:
       fund:
         budget_amount: 预算
         amount: 实际到账
-        used_amount: 已使用
+        expense_amount: 已使用
         note: 备注
         proof: 凭证
+      fund_budget:
+        amount: 预算金额
+        note: 备注
+        financial_type: 预算类型
+        financial_id: 预算条目
       fund_income:
         amount: 金额
         proof: 凭证
         note: 备注
-      fund_use:
+      fund_expense:
         fund_id: 资金
-        budget_amount: 预算金额
         amount: 实际支出
         financial_type: 支出类型
         financial_id: 支付条目

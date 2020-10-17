@@ -14,10 +14,13 @@ zh:
       funds:
         index:
           title: 资金
+      fund_budgets:
+        index:
+          title: 资金预算
       fund_incomes:
         index:
           title: 资金来源
-      fund_uses:
+      fund_expenses:
         index:
           title: 资金使用
       payment_methods:
