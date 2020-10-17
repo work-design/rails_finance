@@ -5,7 +5,7 @@ module RailsFinance::Fund
     attribute :name, :string
     attribute :amount, :decimal, default: 0
     attribute :budget_amount, :decimal, default: 0
-    attribute :used_amount, :decimal, default: 0
+    attribute :expense_amount, :decimal, default: 0
     attribute :note, :string
 
     has_one_attached :proof
@@ -20,7 +20,7 @@ module RailsFinance::Fund
   end
 
   def sum_used_amount
-    self.used_amount = fund_uses.sum(:amount)
+    self.expense_amount = fund_expenses.sum(:amount)
   end
 
   def sum_budget_amount

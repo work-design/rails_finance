@@ -6,7 +6,7 @@
       <th><%= Fund.human_attribute_name(:name) %></th>
       <th><%= Fund.human_attribute_name(:budget_amount) %></th>
       <th><%= Fund.human_attribute_name(:amount) %></th>
-      <th><%= Fund.human_attribute_name(:used_amount) %></th>
+      <th><%= Fund.human_attribute_name(:expense_amount) %></th>
       <th><%= Fund.human_attribute_name(:note) %></th>
       <th>
         <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
@@ -19,9 +19,9 @@
   <% @funds.each do |fund| %>
     <tr>
       <td><%= fund.name %></td>
-      <td><%= link_to fund.budget_amount, { controller: 'finance/admin/fund_uses', action: 'index', fund_id: fund.id }, text: true %></td>
+      <td><%= link_to fund.budget_amount, { controller: 'finance/admin/fund_budgets', action: 'index', fund_id: fund.id }, text: true %></td>
       <td><%= link_to fund.amount, { controller: 'finance/admin/fund_incomes', action: 'index', fund_id: fund.id }, text: true %></td>
-      <td><%= link_to fund.used_amount, { controller: 'finance/admin/fund_uses', action: 'index', fund_id: fund.id }, text: true %></td>
+      <td><%= link_to fund.expense_amount, { controller: 'finance/admin/fund_expenses', action: 'index', fund_id: fund.id }, text: true %></td>
       <td><%= fund.note %></td>
       <td>
         <%= link_to({ controller: 'finance/admin/fund_incomes', action: 'index', fund_id: fund.id }, { aria: { label: t('finance.admin.fund_incomes.index.title') }, class: 'button is-small is-rounded is-light' }) do %>

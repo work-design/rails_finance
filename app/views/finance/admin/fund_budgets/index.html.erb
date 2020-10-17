@@ -1,0 +1,40 @@
+<%= render 'filter_form' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th><%= FundBudget.human_attribute_name(:financial_type) %></th>
+      <th><%= FundBudget.human_attribute_name(:financial_id) %></th>
+      <th><%= FundBudget.human_attribute_name(:amount) %></th>
+      <th><%= FundBudget.human_attribute_name(:note) %></th>
+      <th>
+        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @fund_budgets.each do |fund_budget| %>
+    <tr>
+      <td><%= fund_budget.financial_type %></td>
+      <td><%= fund_budget.financial_id %></td>
+      <td><%= fund_budget.amount %></td>
+      <td><%= fund_budget.note %></td>
+      <td>
+        <%= link_to({ action: 'show', id: fund_budget.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-eye"></i>
+        <% end %>
+        <%= link_to({ action: 'edit', id: fund_budget.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to({ action: 'destroy', id: fund_budget.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @fund_budgets %>
