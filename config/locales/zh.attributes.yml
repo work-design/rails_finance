@@ -36,8 +36,10 @@ zh:
         verifiers: 审核人
       fund:
         budget_amount: 预算
+        budget_detail: 预算汇总
         amount: 实际到账
         expense_amount: 已使用
+        expense_detail: 使用汇总
         note: 备注
         proof: 凭证
       fund_budget:

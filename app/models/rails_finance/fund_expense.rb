@@ -12,11 +12,11 @@ module RailsFinance::FundExpense
   end
 
   def sum_fund_amount
-    fund.sum_used_amount
+    fund.sum_expense_amount(financial_type)
     fund.save
 
     if financial
-      financial.sum_used_amount
+      financial.compute_fund_expense
       financial.save
     end
   end
