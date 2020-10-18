@@ -43,7 +43,7 @@ class Finance::Admin::FundsController < Finance::Admin::BaseController
   def fund_params
     params.fetch(:fund, {}).permit(
       :name,
-      :budget,
+      :budget_amount,
       :amount,
       :note
     )
