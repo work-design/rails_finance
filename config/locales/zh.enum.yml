@@ -19,9 +19,11 @@ zh:
           invoice_verifying: 单据审核
           finished: 已完结
           rejected: 拒绝
-      fund_use:
+      fund_budget:
         financial_type:
           Project: 项目
+          ProjectStage: 项目阶段
+          ProjectTaxon: 项目类型
       payment_method:
         type:
           CashMethod: 现金
