@@ -16,10 +16,6 @@ class BudgetController extends Controller {
     if (budget) {
       budget.value = result
     }
-    let amount = document.getElementById(price.id.replace('price', 'amount'))
-    if (amount) {
-      amount.value = result
-    }
   }
 
   updateQuantity(event) {
@@ -31,9 +27,16 @@ class BudgetController extends Controller {
     if (budget) {
       budget.value = result
     }
-    let amount = document.getElementById(quantity.id.replace('quantity', 'amount'))
-    if (amount) {
-      amount.value = result
+  }
+
+  updateBudgetAmount(event) {
+    let budget = event.currentTarget
+    let quantity = document.getElementById(budget.id.replace('budget_amount', 'quantity'))
+    let result = (budget.value / quantity.value).toFixed(2)
+
+    let price = document.getElementById(budget.id.replace('budget_amount', 'price'))
+    if (price) {
+      price.value = result
     }
   }
 

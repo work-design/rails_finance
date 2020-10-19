@@ -22,9 +22,9 @@ zh:
         financial_taxon_id: 分类
         budget_amount: 预算
         amount: 金额
-        price: 价格
-        note: 备注
         quantity: 数量
+        price: 单价
+        note: 内容
       expense_member:
         advance: 借款
         amount: 金额

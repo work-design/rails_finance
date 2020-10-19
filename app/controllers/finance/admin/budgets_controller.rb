@@ -40,6 +40,10 @@ class Finance::Admin::BudgetsController < Finance::Admin::BaseController
   end
 
   def edit
+    if @budget.expense_items.size == 0
+      @budget.expense_items.build
+    end
+    @taxon_options = FinancialTaxon.roots.map { |i| [i.name, i.id] }
   end
 
   def update

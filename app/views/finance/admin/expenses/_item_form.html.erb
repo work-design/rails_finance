@@ -9,13 +9,15 @@
   <%= ef.text_field :note %>
   <%= ef.number_field :quantity, step: 1, data: { action: 'expense#updateQuantity' } %>
   <%= ef.number_field :price, data: { action: 'expense#updatePrice' } %>
-  <%= ef.number_field :amount %>
+  <%= ef.number_field :amount, data: { action: 'expense#updateAmount' } %>
   <div class="field has-addons is-flex">
     <%= link_to({ action: 'add_item', index: ef.index, type: ef.options[:parent_builder].object.type, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id }, { data: { title: 'add_item' }, remote: true }) do %>
       <i class="fas fa-plus"></i>
     <% end %>
     <% if ef.object.id %>
-      <%= ef.check_box :_destroy, { on: { offset: false }, css: { wrap_checkbox: 'ui checkbox' }, checked: true }, 0, 1 %>
+      <%= link_to({ action: 'remove_item', index: ef.index, type: ef.options[:parent_builder].object.type }, { remote: true }) do %>
+        <i class="fas fa-minus"></i>
+      <% end %>
     <% else %>
       <%= link_to({ action: 'remove_item', index: ef.index, type: ef.options[:parent_builder].object.type }, { remote: true }) do %>
         <i class="fas fa-minus"></i>
