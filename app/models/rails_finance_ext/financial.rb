@@ -2,10 +2,10 @@ module RailsFinanceExt::Financial
   extend ActiveSupport::Concern
 
   included do
-    attribute :fund_budget, :decimal
-    attribute :fund_expense, :decimal
-    attribute :budget_amount, :decimal
-    attribute :expense_amount, :decimal
+    attribute :fund_budget, :decimal, default: 0
+    attribute :fund_expense, :decimal, default: 0
+    attribute :budget_amount, :decimal, default: 0
+    attribute :expense_amount, :decimal, default: 0
 
     has_many :fund_budgets, as: :financial, dependent: :nullify
     has_many :fund_expenses, as: :financial, dependent: :nullify

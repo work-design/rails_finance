@@ -21,6 +21,16 @@ class Finance::Admin::ExpensesController < Finance::Admin::BaseController
     end
   end
 
+  def add_item
+    @expense = Expense.new(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
+    if @expense.financial_taxon
+      @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
+    else
+      @taxon_options = []
+    end
+    @expense.expense_items.build
+  end
+
   def show
     @expense_members = @expense.expense_members
     @expense_items = @expense.expense_items.where(member_id: nil)
