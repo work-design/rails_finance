@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       resources :fund_expenses
       resources :fund_budgets
     end
-    resources :budgets
+    resources :budgets do
+      member do
+        patch :transfer
+      end
+    end
     resources :expenses do
       member do
         patch :next

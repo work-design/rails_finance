@@ -41,7 +41,7 @@
     <tr>
       <td class="has-text-right"><%= Budget.human_attribute_name(:checks) %></td>
       <td>
-        <table class="ui very basic table">
+        <table class="table is-fullwidth is-borderless">
           <% @budget.all_verifications.each do |verification| %>
             <tr>
               <td><%= Budget.enum_i18n(:state, verification.state) %></td>
