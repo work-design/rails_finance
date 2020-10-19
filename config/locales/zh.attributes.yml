@@ -4,7 +4,7 @@ zh:
       budget:
         amount: 合计
         expense_items: 条目
-        financial_taxon_id: 支出类别
+        financial_taxon_id: 类别
         invoices_count: 凭证数
         subject: 预算内容
         subject-like: 预算内容
@@ -13,7 +13,7 @@ zh:
         amount: 合计
         expense_members: 责任人
         expense_items: 条目
-        financial_taxon_id: 支出类别
+        financial_taxon_id: 类别
         invoices_count: 凭证数
         subject: 支出内容
         subject-like: 支出内容

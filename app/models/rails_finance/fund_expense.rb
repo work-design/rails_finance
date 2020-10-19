@@ -6,6 +6,7 @@ module RailsFinance::FundExpense
     attribute :note, :string
 
     belongs_to :fund
+    belongs_to :fund_budget, optional: true
     belongs_to :financial, polymorphic: true
 
     after_save :sum_fund_amount, if: -> { saved_change_to_amount? }
