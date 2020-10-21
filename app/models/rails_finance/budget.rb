@@ -40,7 +40,7 @@ module RailsFinance::Budget
       only: [:subject, :amount, :type],
       methods: [:creator_name]
     )
-    after_create :sync_members
+
     before_save :sync_amount
     after_save :sum_amount, if: -> { saved_change_to_amount? }
   end
@@ -131,13 +131,6 @@ module RailsFinance::Budget
   def sum_amount
     financial.compute_budget_amount
     financial.save
-  end
-
-  def sync_members
-    self.expense_items.pluck(:member_id).compact.each do |member_id|
-      amount = self.expense_items.where(member_id: member_id).sum(:amount)
-      self.expense_members.create(member_id: member_id, amount: amount)
-    end
   end
 
 end
