@@ -1,56 +1,7 @@
 <%= render 'nav_expense' %>
-<%= render 'filter_form' %>
-<%= render 'filter_table' %>
 
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= Expense.human_attribute_name(:type) %></th>
-      <th><%= Expense.human_attribute_name(:subject) %></th>
-      <th><%= Expense.human_attribute_name(:amount) %></th>
-      <th><%= Expense.human_attribute_name(:proof) %></th>
-      <th><%= Expense.human_attribute_name(:state) %></th>
-      <th>
-        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
-          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @expenses.each do |expense| %>
-    <tr>
-      <td><%= expense.type_i18n %></td>
-      <td><%= link_to expense.subject, me_expense_path(expense), remote: true %></td>
-      <td><%= expense.amount %></td>
-      <td>
-        <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
-      </td>
-      <td>
-        <span class="tag"><%= expense.state_i18n %></span>
-        <% expense.all_verifications.each do |verification| %>
-          <p>
-            <%= verification.job_title&.name %>
-            <%= verification.member&.name %>
-            <span class="tag"><%= verification.confirmed_i18n %></span>
-          </p>
-        <% end %>
-      </td>
-      <td class="ui labels">
-        <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), remote: true, class: 'button is-small is-rounded is-light' %>
-        <% if ['init', 'rejected'].include? expense.state %>
-          <%= link_to edit_me_expense_path(expense), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-            <i class="fas fa-pencil-alt"></i>
-          <% end %>
-          <%= link_to me_expense_path(expense), method: :delete, remote: true, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-            <i class="fas fa-trash"></i>
-          <% end %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_table', locals: { cache_key: Expense.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @expenses, as: :expense %>
+<% end %>
 
 <%= paginate @expenses %>

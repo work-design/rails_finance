@@ -1,0 +1,18 @@
+<tr>
+  <td><%= link_to expense_member.expense.subject, me_expense_member_path(expense_member.id) %></td>
+  <td><%= expense_member.advance %></td>
+  <td><%= expense_member.amount %></td>
+  <td><%= expense_member.payment_method&.account_info %></td>
+  <td><time><%= expense_member.created_at.to_s(:rfc822) %></time></td>
+  <td class="tags">
+    <span class="tag"><%= expense_member.state_i18n %></span>
+  </td>
+  <td>
+    <%= link_to me_expense_member_path(expense_member), class: 'button' do %>
+      <i class="fas fa-eye"></i>
+    <% end %>
+    <%= link_to edit_me_expense_member_path(expense_member), class: 'button' do %>
+      <i class="fas fa-pencil"></i>
+    <% end %>
+  </td>
+</tr>

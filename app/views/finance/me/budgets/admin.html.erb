@@ -1,6 +1,7 @@
 <%= render 'nav_budget' %>
 
-<%= render 'filter_form' %>
-<%= render 'filter_table' %>
+<%= render layout: 'index_table', locals: { cache_key: Budget.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @budgets, as: :budget %>
+<% end %>
 
-<%= render 'index_table' %>
+<%= paginate @budgets %>

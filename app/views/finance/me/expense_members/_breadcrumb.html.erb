@@ -1,0 +1,6 @@
+<div class="tabs">
+  <ul>
+    <li class="<%= active_helper(controllers: 'expense_members', active: 'is-active') %>"><%= link_to t('finance.me.expense_members.index.title'), me_expense_members_path %></li>
+    <li><%# link_to 'My Payment Methods', me_payment_methods_path, class: active_helper(controllers: 'payment_methods') %></li>
+  </ul>
+</div>
