@@ -22,7 +22,7 @@ module RailsFinance::ExpenseItem
   end
 
   def sync_member_amount
-    self.expense.update(amount: self.expense.expense_items.sum(:amount))
+    self.expense.update(amount: self.expense.expense_items.sum(:amount)) if expense
   end
 
 end
