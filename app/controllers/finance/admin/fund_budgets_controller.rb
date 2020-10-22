@@ -3,7 +3,10 @@ class Finance::Admin::FundBudgetsController < Finance::Admin::BaseController
   before_action :set_fund_budget, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fund_budgets = @fund.fund_budgets.page(params[:page])
+    q_params = {}
+    q_params.merge! params.permit(:id, :financial_type)
+
+    @fund_budgets = @fund.fund_budgets.default_where(q_params).page(params[:page])
   end
 
   def new
