@@ -1,3 +1,4 @@
 <%= form_with model: @fund_income, url: { action: 'create', fund_id: @fund.id } do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
+  <%= f.submit %>
 <% end %>

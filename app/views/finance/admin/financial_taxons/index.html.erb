@@ -3,15 +3,7 @@
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><%= FinancialTaxon.human_attribute_name(:name) %></th>
-      <th><%= FinancialTaxon.human_attribute_name(:verifiers) %></th>
-      <th><%= FinancialTaxon.human_attribute_name(:take_stock) %></th>
-      <th><%= FinancialTaxon.human_attribute_name(:individual) %></th>
-      <th>
-        <%= link_to new_admin_financial_taxon_path, remote: true, class: 'button is-small is-link' do %>
-          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
-        <% end %>
-      </th>
+    
     </tr>
   </thead>
   <tbody data-controller="tree">
