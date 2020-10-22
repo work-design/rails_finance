@@ -1,28 +1,16 @@
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>
-        <%= link_to t('.edit'), { action: 'edit', id: @fund.id }, remote: true, class: 'button is-small is-link' %>
-      </th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="has-text-right"><%= Fund.human_attribute_name(:name) %></td>
-      <td><%= @fund.name %></td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Fund.human_attribute_name(:budget_amount) %></td>
-      <td><%= @fund.budget_amount %></td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Fund.human_attribute_name(:amount) %></td>
-      <td><%= @fund.amount %></td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Fund.human_attribute_name(:note) %></td>
-      <td><%= @fund.note %></td>
-    </tr>
-  </tbody>
-</table>
+<tr>
+  <td class="has-text-right"><%= Fund.human_attribute_name(:name) %></td>
+  <td><%= @fund.name %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Fund.human_attribute_name(:budget_amount) %></td>
+  <td><%= @fund.budget_amount %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Fund.human_attribute_name(:amount) %></td>
+  <td><%= @fund.amount %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Fund.human_attribute_name(:note) %></td>
+  <td><%= @fund.note %></td>
+</tr>

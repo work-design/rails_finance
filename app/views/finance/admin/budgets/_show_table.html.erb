@@ -1,76 +1,62 @@
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th></th>
-      <th>
-        <%= link_to t('.edit'), { action: 'edit', id: @budget.id }, remote: true, class: 'button' %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:subject) %></td>
-      <td>
-        <%= @budget.subject %>
-      </td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:state) %></td>
-      <td>
-        <span class="ui label"><%= @budget.state_i18n %></span>
-      </td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:expense_items) %></td>
-      <td class="positive">
-        <%= render partial: 'items', locals: { expense_items: @budget.expense_items } %>
-      </td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:amount) %></td>
-      <td>
-        <%= @budget.amount %>
-      </td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:note) %></td>
-      <td>
-        <%= @budget.note %>
-      </td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:checks) %></td>
-      <td>
-        <table class="table is-fullwidth is-borderless">
-          <% @budget.all_verifications.each do |verification| %>
-            <tr>
-              <td><%= Budget.enum_i18n(:state, verification.state) %></td>
-              <td><%= verification.note %></td>
-              <td><%= verification.member&.name %></td>
-            </tr>
-          <% end %>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td class="has-text-right"><%= Budget.human_attribute_name(:items) %></td>
-      <td>
-        <%= link_to 'items', direct_data_list_table_lists_path('BudgetItemExport', expense_id: @budget.id, format: 'xlsx') %>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>
-      </td>
-      <td>
-        <% if @budget.init? %>
-          <%= link_to t('finance.me.budgets.submit.title'), { action: 'submit', id: @budget.id }, remote: true, method: :patch, data: { confirm: t('.confirm') }, class: 'button is-small' %>
-        <% end %>
-        <% Expense.types.each do |_, type| %>
-          <%= link_to "Transfer to #{Budget.enum_i18n(:type, type.to_s)}", { action: 'transfer', id: @budget.id, type: type }, remote: true, method: :patch, class: 'button is-small' %>
-        <% end %>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:subject) %></td>
+  <td>
+    <%= @budget.subject %>
+  </td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:state) %></td>
+  <td>
+    <span class="ui label"><%= @budget.state_i18n %></span>
+  </td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:expense_items) %></td>
+  <td class="positive">
+    <%= render partial: 'items', locals: { expense_items: @budget.expense_items } %>
+  </td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:amount) %></td>
+  <td>
+    <%= @budget.amount %>
+  </td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:note) %></td>
+  <td>
+    <%= @budget.note %>
+  </td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:checks) %></td>
+  <td>
+    <table class="table is-fullwidth is-borderless">
+      <% @budget.all_verifications.each do |verification| %>
+        <tr>
+          <td><%= Budget.enum_i18n(:state, verification.state) %></td>
+          <td><%= verification.note %></td>
+          <td><%= verification.member&.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Budget.human_attribute_name(:items) %></td>
+  <td>
+    <%= link_to 'items', direct_data_list_table_lists_path('BudgetItemExport', expense_id: @budget.id, format: 'xlsx') %>
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>
+    <% if @budget.init? %>
+      <%= link_to t('finance.me.budgets.submit.title'), { action: 'submit', id: @budget.id }, remote: true, method: :patch, data: { confirm: t('.confirm') }, class: 'button is-small' %>
+    <% end %>
+    <% Expense.types.each do |_, type| %>
+      <%= link_to "Transfer to #{Budget.enum_i18n(:type, type.to_s)}", { action: 'transfer', id: @budget.id, type: type }, remote: true, method: :patch, class: 'button is-small' %>
+    <% end %>
+  </td>
+</tr>
