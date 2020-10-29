@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :admin, module: 'finance/admin', as: :admin do
+  scope :admin, module: 'finance/admin', as: :admin, defaults: { namespace: 'admin', business: 'finance' } do
     resources :financial_taxons
     resources :funds do
       resources :fund_incomes
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :me, module: 'finance/me', as: :me do
+  scope :me, module: 'finance/me', as: :me, defaults: { namespace: 'me', business: 'finance' } do
     resources :budgets do
       collection do
         match :financial_taxons, via: [:get, :post]
