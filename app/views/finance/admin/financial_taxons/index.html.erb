@@ -1,17 +1,5 @@
-<%= render 'filter_form' %>
-
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-    
-    </tr>
-  </thead>
-  <tbody data-controller="tree">
-  <% @financial_taxons.each do |financial_taxon| %>
-    <%= render partial: 'financial_taxon', locals: { financial_taxon: financial_taxon } %>
-    <%= draw_tree(partial: 'financial_taxon', object: financial_taxon) %>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_tree_table', locals: { cache_key: FinancialTaxon.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @financial_taxons, as: :financial_taxon %>
+<% end %>
 
 <%= paginate @financial_taxons %>
