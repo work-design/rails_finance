@@ -1,4 +1,4 @@
-<tr>
+<tr data-controller="show" data-action="mouseenter->show#show mouseleave->show#hide">
   <td><%= fund.name %></td>
   <td><%= link_to fund.budget_amount, { controller: 'fund_budgets', action: 'index', fund_id: fund.id }, text: true %></td>
   <td>
@@ -14,14 +14,16 @@
   <td><%= simple_format fund.expense_detail %></td>
   <td><%= fund.note %></td>
   <td>
-    <%= link_to({ action: 'show', id: fund.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-info"></i>
-    <% end %>
-    <%= link_to({ action: 'edit', id: fund.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to({ action: 'destroy', id: fund.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
+    <span data-show-target="item" style="visibility: hidden">
+      <%= link_to({ action: 'show', id: fund.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+        <i class="fas fa-info"></i>
+      <% end %>
+      <%= link_to({ action: 'edit', id: fund.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+        <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      <%= link_to({ action: 'destroy', id: fund.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </span>
   </td>
 </tr>
