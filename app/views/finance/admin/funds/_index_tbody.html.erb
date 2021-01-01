@@ -1,29 +1,14 @@
-<tr data-controller="show" data-action="mouseenter->show#show mouseleave->show#hide">
-  <td><%= fund.name %></td>
-  <td><%= link_to fund.budget_amount, { controller: 'fund_budgets', action: 'index', fund_id: fund.id }, text: true %></td>
-  <td>
-    <% fund.budget_detail.each do |financial_type, amount| %>
-      <p>
-        <span><%= FundBudget.enum_i18n(:financial_type, financial_type) %>:</span>
-        <%= link_to amount, { controller: 'fund_budgets', action: 'index', fund_id: fund.id, financial_type: financial_type }, text: true %>
-      </p>
-    <% end %>
-  </td>
-  <td><%= link_to fund.amount, { controller: 'fund_incomes', action: 'index', fund_id: fund.id }, text: true %></td>
-  <td><%= link_to fund.expense_amount, { controller: 'fund_expenses', action: 'index', fund_id: fund.id }, text: true %></td>
-  <td><%= simple_format fund.expense_detail %></td>
-  <td><%= fund.note %></td>
-  <td>
-    <span data-show-target="item" style="visibility: hidden" class="buttons are-small">
-      <%= link_to({ action: 'show', id: fund.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-rounded is-light' }) do %>
-        <i class="fas fa-info"></i>
-      <% end %>
-      <%= link_to({ action: 'edit', id: fund.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-rounded is-light' }) do %>
-        <i class="fas fa-pencil-alt"></i>
-      <% end %>
-      <%= link_to({ action: 'destroy', id: fund.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-rounded is-light' }) do %>
-        <i class="fas fa-trash-alt"></i>
-      <% end %>
-    </span>
-  </td>
-</tr>
+<td><%= model.name %></td>
+<td><%= link_to model.budget_amount, { controller: 'fund_budgets', action: 'index', fund_id: model.id }, text: true %></td>
+<td>
+  <% model.budget_detail.each do |financial_type, amount| %>
+    <p>
+      <span><%= FundBudget.enum_i18n(:financial_type, financial_type) %>:</span>
+      <%= link_to amount, { controller: 'fund_budgets', action: 'index', fund_id: model.id, financial_type: financial_type }, text: true %>
+    </p>
+  <% end %>
+</td>
+<td><%= link_to model.amount, { controller: 'fund_incomes', action: 'index', fund_id: model.id }, text: true %></td>
+<td><%= link_to model.expense_amount, { controller: 'fund_expenses', action: 'index', fund_id: model.id }, text: true %></td>
+<td><%= simple_format model.expense_detail %></td>
+<td><%= model.note %></td>

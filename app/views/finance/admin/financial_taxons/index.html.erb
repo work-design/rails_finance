@@ -1,5 +1,6 @@
 <%= render layout: 'index_tree_table', locals: { cache_key: FinancialTaxon.column_names.hash } do %>
-  <%= render partial: 'index_tbody', collection: @financial_taxons, as: :financial_taxon %>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @financial_taxons, as: :model %>
+  <%= draw_tree(partial: 'financial_taxon', layout: 'index_tr', object: financial_taxon, locals: { model: financial_taxon }) %>
 <% end %>
 
 <%= paginate @financial_taxons %>

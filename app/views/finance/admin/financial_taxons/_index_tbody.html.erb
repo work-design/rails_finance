@@ -1,2 +1,36 @@
-<%= render partial: 'financial_taxon', locals: { financial_taxon: financial_taxon } %>
-<%= draw_tree(partial: 'financial_taxon', object: financial_taxon) %>
+<td>
+  <span style="width: <%= model.depth * 1.43 %>em; display: inline-block"></span>
+  <% if !model.leaf? %>
+    <i class="fas fa-caret-down fa-fw" data-action="click->tree#collapse" style="cursor: pointer"></i>
+  <% else %>
+    <i class="fas fa-minus fa-fw"></i>
+  <% end %>
+  <span><%= model.name %></span>
+  <% if model.organ != current_organ %>
+    <span aria-label="<%= model.organ.name %>"><i class="fas fa-angle-double-up has-text-grey-light"></i></span>
+  <% end %>
+</td>
+<td>
+  <% model.verifiers.each do |verifier| %>
+    <p><%= verifier.job_title.name %><%= verifier.member&.name %></p>
+  <% end %>
+  <p>
+    <%= link_to new_admin_verifier_path('FinancialTaxon', model.id), class: 'button is-rounded is-small' do %>
+      <i class="fas fa-user-check"></i>
+    <% end %>
+  </p>
+</td>
+<td>
+  <%= form_with theme: nil, model: model, url: { action: 'update', id: model.id }, data: { controller: 'input' } do |f| %>
+    <%= f.check_box :take_stock, data: { input_target: 'checkbox' }, id: nil, class: 'switch is-rounded' %>
+    <label data-action="click->input#check"></label>
+    <%= f.submit nil, data: { input_target: 'submit' }, style: 'display: none' %>
+  <% end %>
+</td>
+<td>
+  <%= form_with theme: nil, model: model, url: { action: 'update', id: model.id }, data: { controller: 'input' } do |f| %>
+    <%= f.check_box :individual, data: { input_target: 'checkbox' }, id: nil, class: 'switch is-rounded' %>
+    <label data-action="click->input#check"></label>
+    <%= f.submit nil, data: { input_target: 'submit' }, style: 'display: none' %>
+  <% end %>
+</td>
