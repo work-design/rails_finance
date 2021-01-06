@@ -10,7 +10,7 @@
   <%= ef.number_field :price, step: 0.01, data: { action: 'budget#updatePrice' } %>
   <%= ef.number_field :budget_amount, step: 0.01, data: { action: 'budget#updateBudgetAmount' } %>
   <div class="field has-addons is-flex">
-    <%= link_to({ action: 'add_item', index: ef.index, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id }, { data: { title: 'add_item' }, remote: true }) do %>
+    <%= link_to({ action: 'add_item', index: ef.index, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id }, { data: { title: 'add_item' } }) do %>
       <i class="fas fa-plus"></i>
     <% end %>
     <% if ef.object.id %>

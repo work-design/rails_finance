@@ -1,6 +1,6 @@
 <tr>
   <td><%= expense.type_i18n %></td>
-  <td><%= link_to expense.subject, me_expense_path(expense), remote: true %></td>
+  <td><%= link_to expense.subject, me_expense_path(expense) %></td>
   <td><%= expense.amount %></td>
   <td>
     <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
