@@ -4,13 +4,13 @@
   <td><%= link_to fund_expense.amount, { controller: 'expenses', action: 'index', fund_expense_id: fund_expense.id } %></td>
   <td><%= fund_expense.note %></td>
   <td>
-    <%= link_to({ action: 'show', id: fund_expense.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+    <%= link_to({ action: 'show', id: fund_expense.id }, { aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' }) do %>
       <i class="fas fa-info"></i>
     <% end %>
-    <%= link_to({ action: 'edit', id: fund_expense.id }, { aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+    <%= link_to({ action: 'edit', id: fund_expense.id }, { aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' }) do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to({ action: 'destroy', id: fund_expense.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+    <%= link_to({ action: 'destroy', id: fund_expense.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' }) do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>

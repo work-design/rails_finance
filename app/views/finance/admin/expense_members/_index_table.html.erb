@@ -56,18 +56,18 @@
         <span class="ui label"><%= expense_member.state_i18n %></span>
         <% if expense_member.can_operate?(current_member) %>
           <div class="ui mini buttons">
-            <%= link_to 'Approve', new_check_path('ExpenseMember', expense_member.id, state: expense_member.next_state(:state)), remote: true, class: 'ui mini positive button' %>
+            <%= link_to 'Approve', new_check_path('ExpenseMember', expense_member.id, state: expense_member.next_state(:state)), class: 'ui mini positive button' %>
             <div class="or"></div>
-            <%= link_to ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), remote: true, class: 'ui mini negative button' %>
+            <%= link_to ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), class: 'ui mini negative button' %>
           </div>
         <% end %>
       </td>
       <td>
-        <%= link_to 'items', items_my_expense_member_path(expense_member), remote: true, class: 'button is-small is-rounded is-light' %>
-        <%= link_to edit_finance_expense_member_path(expense_member), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to 'items', items_my_expense_member_path(expense_member), class: 'button is-small is-rounded is-light' %>
+        <%= link_to edit_finance_expense_member_path(expense_member), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to finance_expense_member_path(expense_member), method: :delete, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to finance_expense_member_path(expense_member), method: :delete, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-trash"></i>
         <% end %>
       </td>

@@ -100,14 +100,14 @@
         <span class="ui label"><%= expense_member.state_i18n %></span>
         <% if expense_member.can_operate?(current_member) %>
           <div class="ui mini buttons">
-            <%= link_to 'Approve', new_check_path('ExpenseMember', expense_member.id, state: expense_member.next_state(:state)), remote: true, class: 'ui mini positive button' %>
+            <%= link_to 'Approve', new_check_path('ExpenseMember', expense_member.id, state: expense_member.next_state(:state)), class: 'ui mini positive button' %>
             <div class="or"></div>
-            <%= link_to ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), remote: true, class: 'ui mini negative button' %>
+            <%= link_to ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), class: 'ui mini negative button' %>
           </div>
         <% end %>
       </td>
       <td>
-        <%= link_to 'items', items_my_expense_member_path(expense_member), remote: true, class: 'ui blue label' %>
+        <%= link_to 'items', items_my_expense_member_path(expense_member), class: 'ui blue label' %>
         <%= link_to edit_admin_expense_member_path(expense_member), class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
