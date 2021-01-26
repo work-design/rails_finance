@@ -1,7 +1,7 @@
 module Finance
   class Expense < ApplicationRecord
     include Model::Expense
-    include Audited::Ext::Audited
-    include Audited::Ext::Verified
+    include Auditor::Ext::Audited
+    include Auditor::Ext::Verified
   end
 end

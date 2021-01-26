@@ -1,6 +1,8 @@
-class Admin::HomeController < Admin::BaseController
+module Finance
+  class Admin::HomeController < Admin::BaseController
 
-  def index
+    def index
+    end
+
   end
-
 end
