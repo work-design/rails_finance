@@ -1,57 +1,59 @@
-class Finance::Admin::ExpenseMembersController < Finance::Admin::BaseController
-  before_action :set_expense, only: [:index]
-  before_action :set_expense_member, only: [:show, :edit, :update, :to_advance_pay, :to_pay, :destroy]
+module Finance
+  class Admin::ExpenseMembersController < Admin::BaseController
+    before_action :set_expense, only: [:index]
+    before_action :set_expense_member, only: [:show, :edit, :update, :to_advance_pay, :to_pay, :destroy]
 
-  def index
-    @expense_members = @expense.expense_members.page(params[:page])
-  end
-
-  def show
-  end
-
-  def edit
-  end
-
-  def update
-    @expense_member.assign_attribute(expense_member_params)
-
-    unless @expense_member.save
-      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
+    def index
+      @expense_members = @expense.expense_members.page(params[:page])
     end
-  end
 
-  def to_advance_pay
-    unless @expense_member.to_advance_payout
-      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
+    def show
     end
-  end
 
-  def to_pay
-    unless @expense_member.to_payout
-      render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
+    def edit
     end
-  end
 
-  def destroy
-    @expense_member.destroy
-  end
+    def update
+      @expense_member.assign_attribute(expense_member_params)
 
-  private
-  def set_expense
-    @expense = Expense.find params[:expense_id]
-  end
+      unless @expense_member.save
+        render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
+      end
+    end
 
-  def set_expense_member
-    @expense_member = ExpenseMember.find(params[:id])
-    @expense = @expense_member.expense
-  end
+    def to_advance_pay
+      unless @expense_member.to_advance_payout
+        render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
+      end
+    end
 
-  def expense_member_params
-    params.fetch(:expense_member, {}).permit(
-      :state,
-      :payment_method_id,
-      :advance
-    )
-  end
+    def to_pay
+      unless @expense_member.to_payout
+        render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
+      end
+    end
 
+    def destroy
+      @expense_member.destroy
+    end
+
+    private
+    def set_expense
+      @expense = Expense.find params[:expense_id]
+    end
+
+    def set_expense_member
+      @expense_member = ExpenseMember.find(params[:id])
+      @expense = @expense_member.expense
+    end
+
+    def expense_member_params
+      params.fetch(:expense_member, {}).permit(
+        :state,
+        :payment_method_id,
+        :advance
+      )
+    end
+
+  end
 end

@@ -11,4 +11,4 @@ module FinanceController::Me
     end
   end
 
-end unless defined? FinanceController::Me
+end

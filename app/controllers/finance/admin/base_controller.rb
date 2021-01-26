@@ -1,3 +1,4 @@
-class Finance::Admin::BaseController < AdminController
-
-end unless defined? Finance::Admin::BaseController
+module Finance
+  class Admin::BaseController < AdminController
+  end
+end

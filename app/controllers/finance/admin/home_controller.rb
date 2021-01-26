@@ -1,4 +1,4 @@
-class Finance::Admin::HomeController < Finance::Admin::BaseController
+class Admin::HomeController < Admin::BaseController
 
   def index
   end

@@ -1,3 +1,5 @@
-class PayableExpense < Expense
-  include RailsFinance::Expense::PayableExpense
-end unless defined? PayableExpense
+module Finance
+  class PayableExpense < Expense
+    include Model::Expense::PayableExpense
+  end
+end
