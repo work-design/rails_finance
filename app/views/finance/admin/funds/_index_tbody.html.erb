@@ -3,7 +3,7 @@
 <td>
   <% model.budget_detail.each do |financial_type, amount| %>
     <p>
-      <span><%= FundBudget.enum_i18n(:financial_type, financial_type) %>:</span>
+      <span><%= Finance::FundBudget.enum_i18n(:financial_type, financial_type) %>:</span>
       <%= link_to amount, { controller: 'fund_budgets', action: 'index', fund_id: model.id, financial_type: financial_type }, text: true %>
     </p>
   <% end %>

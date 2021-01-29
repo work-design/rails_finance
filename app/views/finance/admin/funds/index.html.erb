@@ -1,4 +1,4 @@
-<%= render layout: 'index_table', locals: { cache_key: Fund.column_names.hash } do %>
+<%= render layout: 'index_table', locals: { cache_key: Finance::Fund.column_names.hash } do %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @funds, as: :model %>
 <% end %>
 

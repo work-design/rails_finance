@@ -1,29 +1,27 @@
-<tr>
-  <td><%= expense.type_i18n %></td>
-  <td><%= link_to expense.subject, me_expense_path(expense) %></td>
-  <td><%= expense.amount %></td>
-  <td>
-    <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
-  </td>
-  <td>
-    <span class="tag"><%= expense.state_i18n %></span>
-    <% expense.all_verifications.each do |verification| %>
-      <p>
-        <%= verification.job_title&.name %>
-        <%= verification.member&.name %>
-        <span class="tag"><%= verification.confirmed_i18n %></span>
-      </p>
+<td><%= expense.type_i18n %></td>
+<td><%= link_to expense.subject, me_expense_path(expense) %></td>
+<td><%= expense.amount %></td>
+<td>
+  <%= link_to expense.proof.filename, rails_blob_path(expense.proof, disposition: 'attachment') if expense.proof.attached? %>
+</td>
+<td>
+  <span class="tag"><%= expense.state_i18n %></span>
+  <% expense.all_verifications.each do |verification| %>
+    <p>
+      <%= verification.job_title&.name %>
+      <%= verification.member&.name %>
+      <span class="tag"><%= verification.confirmed_i18n %></span>
+    </p>
+  <% end %>
+</td>
+<td class="ui labels">
+  <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), class: 'button is-small is-rounded is-light' %>
+  <% if ['init', 'rejected'].include? expense.state %>
+    <%= link_to edit_me_expense_path(expense), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-pencil-alt"></i>
     <% end %>
-  </td>
-  <td class="ui labels">
-    <%= link_to 'History', audits_path(expense.class.base_class.name, expense.id), class: 'button is-small is-rounded is-light' %>
-    <% if ['init', 'rejected'].include? expense.state %>
-      <%= link_to edit_me_expense_path(expense), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
-        <i class="fas fa-pencil-alt"></i>
-      <% end %>
-      <%= link_to me_expense_path(expense), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-        <i class="fas fa-trash"></i>
-      <% end %>
+    <%= link_to me_expense_path(expense), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-trash"></i>
     <% end %>
-  </td>
-</tr>
+  <% end %>
+</td>

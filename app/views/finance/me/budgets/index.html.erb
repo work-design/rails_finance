@@ -1,6 +1,6 @@
 <%= render 'nav_budget' %>
 
-<%= render layout: 'index_table', locals: { cache_key: Budget.column_names.hash } do %>
+<%= render layout: 'index_table', locals: { cache_key: Finance::Budget.column_names.hash } do %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @budgets, as: :model %>
 <% end %>
 
