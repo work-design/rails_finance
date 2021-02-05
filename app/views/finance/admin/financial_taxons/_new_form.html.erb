@@ -1,0 +1,4 @@
+<%= form_with model: @financial_taxon, url: { action: 'new' } do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+  <%= f.submit %>
+<% end %>
