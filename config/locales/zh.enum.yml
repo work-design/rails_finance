@@ -1,16 +1,16 @@
 zh:
   activerecord:
     enum:
-      budget:
+      finance/budget:
         state:
           init: 申请
           verifying: 审核中
           finished: 已完结
           rejected: 拒绝
-      expense:
+      finance/expense:
         type:
-          PrepayExpense: 借支/报销
-          PayableExpense: 对公支付
+          Finance::PrepayExpense: 借支/报销
+          Finance::PayableExpense: 对公支付
         state:
           init: 申请
           verifying: 审核中
@@ -19,16 +19,16 @@ zh:
           invoice_verifying: 单据审核
           finished: 已完结
           rejected: 拒绝
-      fund_budget:
+      finance/fund_budget:
         financial_type:
           Project: 项目
           ProjectStage: 项目阶段
           ProjectTaxon: 项目类型
-      payment_method:
+      finance/payment_method:
         type:
-          CashMethod: 现金
-          BankMethod: 银行账号
-      purchase:
+          Finance::CashMethod: 现金
+          Finance::BankMethod: 银行账号
+      finance/purchase:
         type:
           BulkPurchase: 采购
           PayoutPurchase: 对公支付

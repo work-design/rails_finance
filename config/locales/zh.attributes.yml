@@ -1,7 +1,7 @@
 zh:
   activerecord:
     attributes:
-      budget:
+      finance/budget:
         amount: 合计
         expense_items: 条目
         financial_taxon_id: 类别
@@ -9,7 +9,7 @@ zh:
         subject: 预算内容
         subject-like: 预算内容
         state: 状态
-      expense:
+      finance/expense:
         amount: 合计
         expense_members: 责任人
         expense_items: 条目
@@ -18,23 +18,23 @@ zh:
         subject: 支出内容
         subject-like: 支出内容
         state: 状态
-      expense_item:
+      finance/expense_item:
         financial_taxon_id: 分类
         budget_amount: 预算
         amount: 金额
         quantity: 数量
         price: 单价
         note: 内容
-      expense_member:
+      finance/expense_member:
         advance: 借款
         amount: 金额
         state: 状态
         payment_method_id: 支付方式
-      financial_taxon:
+      finance/financial_taxon:
         individual: 个人
         take_stock: 可盘点
         verifiers: 审核人
-      fund:
+      finance/fund:
         budget_amount: 预算
         budget_detail: 预算汇总
         amount: 实际到账
@@ -42,17 +42,17 @@ zh:
         expense_detail: 使用汇总
         note: 备注
         proof: 凭证
-      fund_budget:
+      finance/fund_budget:
         fund_id: 资金
         amount: 预算金额
         note: 备注
         financial_type: 预算类型
         financial_id: 预算条目
-      fund_income:
+      finance/fund_income:
         amount: 金额
         proof: 凭证
         note: 备注
-      fund_expense:
+      finance/fund_expense:
         fund_id: 资金
         amount: 实际支出
         note: 备注
