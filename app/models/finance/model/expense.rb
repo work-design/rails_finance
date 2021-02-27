@@ -44,11 +44,6 @@ module Finance
         rejected: 'rejected'
       }, _default: 'init'
 
-      enum type: {
-        PayableExpense: 'PayableExpense',
-        PrepayExpense: 'PrepayExpense'
-      }
-
       acts_as_notify(
         :default,
         only: [:subject, :amount, :type],
