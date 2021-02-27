@@ -1,4 +1,3 @@
-<% content_for :breadcrumb do %>
 <div class="tabs">
   <ul>
     <li class="<%= active_helper('finance/me/expenses': ['index'], active: 'is-active') %>"><%= link_to t('finance.me.expenses.index.title'), me_expenses_path %></li>
@@ -6,4 +5,3 @@
     <li class="<%= active_helper('finance/me/expense_members': ['admin'], active: 'is-active') %>"><%= link_to t('finance.me.expense_members.admin.title'), admin_me_expense_members_path %></li>
   </ul>
 </div>
-<% end %>
