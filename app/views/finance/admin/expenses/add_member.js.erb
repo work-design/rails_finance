@@ -1,2 +1,0 @@
-<% form_object = form_object(@expense) %>
-document.getElementById('expense_expense_members_<%= params[:index] %>').insertAdjacentHTML('afterend', '<%= j(render partial: 'member_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>')

@@ -25,7 +25,7 @@ module Finance
 
     def new
       @expense = current_member.created_expenses.build(type: params[:type])
-      @expense.expense_items.build(member_id: current_member.id)
+      @expense.expense_items.build
       @taxon_options = []
     end
 
