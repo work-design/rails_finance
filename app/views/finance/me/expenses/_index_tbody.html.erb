@@ -14,14 +14,3 @@
     </p>
   <% end %>
 </td>
-<td class="ui labels">
-  <%= link_to 'History', audits_path(model.class.base_class.name, model.id), class: 'button is-small is-rounded is-light' %>
-  <% if ['init', 'rejected'].include? model.state %>
-    <%= link_to edit_me_expense_path(model), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to me_expense_path(model), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-trash"></i>
-    <% end %>
-  <% end %>
-</td>

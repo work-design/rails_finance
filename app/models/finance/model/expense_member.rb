@@ -8,8 +8,9 @@ module Finance
       attribute :state, :string
       attribute :note, :string
 
+      belongs_to :member, class_name: 'Org::Member'
+
       belongs_to :expense
-      belongs_to :member
       belongs_to :payment_method, optional: true
 
       has_many :expense_items, ->(o){ where(member_id: o.member_id) }, foreign_key: :expense_id, primary_key: :expense_id

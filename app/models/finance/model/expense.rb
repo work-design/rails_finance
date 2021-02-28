@@ -11,7 +11,7 @@ module Finance
       attribute :invoices_count, :integer
 
       belongs_to :organ, optional: true
-      belongs_to :creator, class_name: 'Member'
+      belongs_to :creator, class_name: 'Org::Member'
       belongs_to :budget, optional: true
       belongs_to :fund, optional: true
       belongs_to :financial_taxon
@@ -20,7 +20,7 @@ module Finance
       belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
       belongs_to :payment_method, optional: true
 
-      has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
+      has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, class_name: 'Auditor::Verifier', primary_key: :financial_taxon_id, foreign_key: :verifiable_id
       has_many :expense_members, dependent: :destroy
       has_many :members, through: :expense_members
       has_many :expense_items, dependent: :destroy
@@ -55,7 +55,6 @@ module Finance
         methods: [:creator_name]
       )
 
-      after_create :sync_members
       before_save :sync_amount
       after_save :sum_amount, if: -> { saved_change_to_amount? }
       after_save :sync_items, if: -> { saved_change_to_budget_id? && budget }
@@ -132,6 +131,7 @@ module Finance
     end
 
     def sum_amount
+      return unless financial
       financial.compute_expense_amount
       financial.save
     end
