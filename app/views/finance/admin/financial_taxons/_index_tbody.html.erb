@@ -15,7 +15,7 @@
     <p><%= verifier.job_title.name %><%= verifier.member&.name %></p>
   <% end %>
   <p>
-    <%= link_to new_admin_verifier_path('FinancialTaxon', model.id), class: 'button is-rounded is-small' do %>
+    <%= link_to({ controller: 'auditor/admin/verifiers', action: 'new', verifiable_type: 'Finance::FinancialTaxon', verifiable_id: model.id }, data: { turbo_frame: 'modal' }, class: 'button is-rounded is-small') do %>
       <i class="fas fa-user-check"></i>
     <% end %>
   </p>
