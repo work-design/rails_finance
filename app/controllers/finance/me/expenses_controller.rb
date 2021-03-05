@@ -48,19 +48,6 @@ module Finance
       @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
     end
 
-    def add_item
-      @expense = current_member.created_expenses.build(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
-      if @expense.financial_taxon
-        @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
-      else
-        @taxon_options = []
-      end
-      @expense.expense_items.build
-    end
-
-    def remove_item
-    end
-
     def add_member
       @expense = current_member.created_expenses.build(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
       @expense.expense_members.build
@@ -93,8 +80,8 @@ module Finance
     end
 
     def confirm
-      @payment_methods = PaymentMethod.where(myself: false)
-      if @expense.type == 'PrepayExpense'
+      @payment_methods = Trade::PaymentMethod.where(myself: false)
+      if @expense.type == 'Finance::PrepayExpense'
         @expense.expense_members.build(member_id: current_member.id, amount: @expense.amount)
       end
     end
