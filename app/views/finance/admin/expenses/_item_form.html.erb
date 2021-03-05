@@ -5,14 +5,14 @@
     <label class="field-label is-normal"></label>
   <% end %>
   <div class="field-body">
-  <%# ef.select :financial_taxon_id, options_for_select(@taxon_options, ef.object.financial_taxon_id), { include_blank: 'Select Taxon', css: { wrapper_input: 'three wide field' }}, {data: {title: 'expense_item_financial_taxon'}} %>
-  <%= ef.text_field :note %>
-  <%= ef.number_field :quantity, step: 1, data: { action: 'expense#updateQuantity' } %>
-  <%= ef.number_field :price, data: { action: 'expense#updatePrice' } %>
-  <%= ef.number_field :amount, data: { action: 'expense#updateAmount' } %>
-  <div class="field has-addons is-flex">
-    <i class="fas fa-plus" style="cursor: pointer" data-action="click->field#add"></i>
-    <i class="fas fa-minus" style="cursor: pointer" data-action="click->field#remove"></i>
-  </div>
+    <%# ef.select :financial_taxon_id, options_for_select(@taxon_options, ef.object.financial_taxon_id), { include_blank: 'Select Taxon', css: { wrapper_input: 'three wide field' }}, {data: {title: 'expense_item_financial_taxon'}} %>
+    <%= ef.text_field :note %>
+    <%= ef.number_field :quantity, step: 1, data: { action: 'expense#updateQuantity' } %>
+    <%= ef.number_field :price, data: { action: 'expense#updatePrice' } %>
+    <%= ef.number_field :amount, data: { action: 'expense#updateAmount' } %>
+    <div class="field has-addons is-flex">
+      <i class="fas fa-plus" style="cursor: pointer" data-action="click->field#add"></i>
+      <i class="fas fa-minus" style="cursor: pointer" data-action="click->field#remove"></i>
+    </div>
   </div>
 </div>

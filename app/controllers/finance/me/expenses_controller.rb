@@ -26,6 +26,7 @@ module Finance
     def new
       @expense = current_member.created_expenses.build(type: params[:type])
       @expense.expense_items.build
+      @expense.expense_members.build(member_id: current_member.id)
       @taxon_options = []
     end
 
@@ -46,14 +47,6 @@ module Finance
       end
       @expense = current_member.created_expenses.build(q)
       @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
-    end
-
-    def add_member
-      @expense = current_member.created_expenses.build(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
-      @expense.expense_members.build
-    end
-
-    def remove_member
     end
 
     def show
