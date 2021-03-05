@@ -146,7 +146,7 @@ module Finance
 
     def sync_members
       self.expense_items.pluck(:member_id).compact.each do |member_id|
-        amount = self.expense_items.where(member_id: member_id).sum(:amount)
+        amount = self.expense_items.sum(:amount)
         self.expense_members.create(member_id: member_id, amount: amount)
       end
     end

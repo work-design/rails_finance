@@ -3,8 +3,8 @@ module Finance
     extend ActiveSupport::Concern
 
     included do
-      attribute :amount, :decimal, precision: 10, scale: 2
-      attribute :advance, :decimal, precision: 10, scale: 2
+      attribute :amount, :decimal
+      attribute :advance, :decimal
       attribute :state, :string
       attribute :note, :string
 
