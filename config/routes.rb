@@ -42,8 +42,6 @@ Rails.application.routes.draw do
     resources :expenses do
       collection do
         get :financial_taxons
-        get :add_item
-        get :remove_item
         get :add_member
         get :remove_member
         get :admin

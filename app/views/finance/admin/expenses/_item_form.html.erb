@@ -1,4 +1,4 @@
-<div class="field is-horizontal" id="expense_expense_items_<%= ef.index %>" data-controller="expense">
+<div class="field is-horizontal" data-controller="expense field" data-field-index-value="<%= ef.index %>">
   <% if ef.index == 0 %>
     <%= ef.options[:parent_builder].label :expense_items %>
   <% else %>
@@ -11,18 +11,8 @@
   <%= ef.number_field :price, data: { action: 'expense#updatePrice' } %>
   <%= ef.number_field :amount, data: { action: 'expense#updateAmount' } %>
   <div class="field has-addons is-flex">
-    <%= link_to({ action: 'add_item', index: ef.index, type: ef.options[:parent_builder].object.type, financial_taxon_id: ef.options[:parent_builder].object.financial_taxon_id }, { data: { title: 'add_item' } }) do %>
-      <i class="fas fa-plus"></i>
-    <% end %>
-    <% if ef.object.id %>
-      <%= link_to({ action: 'remove_item', index: ef.index, type: ef.options[:parent_builder].object.type }, { remote: true }) do %>
-        <i class="fas fa-minus"></i>
-      <% end %>
-    <% else %>
-      <%= link_to({ action: 'remove_item', index: ef.index, type: ef.options[:parent_builder].object.type }, { remote: true }) do %>
-        <i class="fas fa-minus"></i>
-      <% end %>
-    <% end %>
+    <i class="fas fa-plus" style="cursor: pointer" data-action="click->field#add"></i>
+    <i class="fas fa-minus" style="cursor: pointer" data-action="click->field#remove"></i>
   </div>
   </div>
 </div>
