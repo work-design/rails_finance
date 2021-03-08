@@ -31,7 +31,7 @@ zh:
         index:
           title: 支付
     me:
-      title: 支出
+      title: 财务
       budgets:
         index:
           title: 预算（采购）
