@@ -7,3 +7,4 @@ gem 'puma'
 
 gem 'factory_bot_rails', require: false
 gem 'rails_com', github: 'work-design/rails_com'
+gem 'turbo-rails'

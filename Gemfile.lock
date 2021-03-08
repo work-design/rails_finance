@@ -188,6 +188,8 @@ GEM
     sqlite3 (1.4.2)
     thor (1.1.0)
     timers (4.3.3)
+    turbo-rails (0.5.9)
+      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.3)
@@ -207,6 +209,7 @@ DEPENDENCIES
   rails_com!
   rails_finance!
   sqlite3
+  turbo-rails
 
 BUNDLED WITH
    2.2.3
