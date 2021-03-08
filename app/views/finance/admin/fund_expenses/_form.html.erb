@@ -1,4 +1,4 @@
-<%= render 'shared/error_messages', target: @fund_expense %>
+<%= render 'shared/error_messages', target: f.object %>
 <%= f.text_field :financial_type %>
 <%= f.text_field :financial_id %>
 <%= f.number_field :amount, step: 0.01 %>

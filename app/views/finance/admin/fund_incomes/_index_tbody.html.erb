@@ -1,18 +1,5 @@
-<tr>
-  <td><%= fund_income.amount %></td>
-  <td><%= fund_income.note %></td>
-  <td>
-    <%= link_to fund_income.proof_blob.filename, rails_blob_url(fund_income.proof_blob), target: '_blank' if fund_income.proof.attached? %>
-  </td>
-  <td>
-    <%= link_to({ action: 'show', id: fund_income.id }, { aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-info"></i>
-    <% end %>
-    <%= link_to({ action: 'edit', id: fund_income.id }, { aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to({ action: 'destroy', id: fund_income.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.amount %></td>
+<td><%= model.note %></td>
+<td>
+  <%= link_to model.proof_blob.filename, rails_blob_url(model.proof_blob), target: '_blank' if model.proof.attached? %>
+</td>
