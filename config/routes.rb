@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       resources :fund_expenses
       resources :fund_budgets
     end
-    resources :stocks
-    resources :assessments
+    resources :assessments do
+      resources :stocks
+    end
     resources :budgets do
       member do
         patch :transfer

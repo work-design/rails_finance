@@ -3,6 +3,12 @@ zh:
     title: 财务
     admin:
       title: 财务管理
+      assessments:
+        index:
+          title: 估值
+      stocks:
+        index:
+          title: 股权托管
       financial_taxons:
         index:
           title: 类别
