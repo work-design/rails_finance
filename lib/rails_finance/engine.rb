@@ -11,6 +11,7 @@ module RailsFinance
         assets: false,
         stylesheets: false,
         helper: false,
+        resource_route: false,
         jbuilder: true
       }
       g.test_unit = {
