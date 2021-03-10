@@ -58,3 +58,6 @@ zh:
         note: 备注
         financial_type: 支出类型
         financial_id: 支付条目
+      finance/stock:
+        ratio: 比例
+        amount: 数额

@@ -32,3 +32,4 @@ zh:
         type:
           BulkPurchase: 采购
           PayoutPurchase: 对公支付
+      finance/stock:

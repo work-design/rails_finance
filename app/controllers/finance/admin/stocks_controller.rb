@@ -1,5 +1,6 @@
 module Finance
   class Admin::StocksController < Admin::BaseController
+    before_action :set_assessment
     before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
     def index

@@ -8,6 +8,8 @@ module Finance
       attribute :amount, :decimal, default: 0
 
       belongs_to :organ, class_name: 'Org::Organ'
+
+      has_many :stocks
     end
 
   end
