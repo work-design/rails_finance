@@ -1,3 +1,0 @@
-<% form_object = form_object(@budget) %>
-
-document.getElementById('budget_expense_items_wrapper_<%= params[:index] %>').insertAdjacentHTML('afterend', '<%= j(render partial: 'item_field', locals: { f: form_object, index: UidHelper.sec_uuid }) %>')
