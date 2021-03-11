@@ -11,11 +11,13 @@ module Finance
       attribute :expense_detail, :json, default: {}
       attribute :note, :string
 
-      has_one_attached :proof
+      belongs_to :organ, class_name: 'Org::Organ'
 
       has_many :fund_incomes, dependent: :destroy
       has_many :fund_budgets, dependent: :destroy
       has_many :fund_expenses, dependent: :destroy
+
+      has_one_attached :proof
     end
 
     def sum_budget_amount(financial_type)

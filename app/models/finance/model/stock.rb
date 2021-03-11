@@ -13,14 +13,20 @@ module Finance
       attribute :note, :string
 
       belongs_to :member, class_name: 'Org::Member'  # 托管股东
+      belongs_to :organ, class_name: 'Org::Organ'
 
       belongs_to :assessment
 
       before_validation :compute_assess_amount, if: -> { ratio_changed? }
+      before_validation :sync_organ, if: -> { assessment_id_changed? }
     end
 
     def compute_assess_amount
       self.assess_amount = assessment.amount * ratio
+    end
+
+    def sync_organ
+      self.organ = assessment.organ
     end
 
   end

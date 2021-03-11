@@ -3,7 +3,10 @@ module Finance
     before_action :set_fund, only: [:show, :edit, :update, :destroy]
 
     def index
-      @funds = Fund.order(id: :asc).page(params[:page])
+      q_params = {}
+      q_params.merge! default_params
+
+      @funds = Fund.default_where(q_params).order(id: :asc).page(params[:page])
     end
 
     def new
@@ -42,12 +45,13 @@ module Finance
     end
 
     def fund_params
-      params.fetch(:fund, {}).permit(
+      p = params.fetch(:fund, {}).permit(
         :name,
         :budget_amount,
         :amount,
         :note
       )
+      p.merge! default_form_params
     end
 
   end
