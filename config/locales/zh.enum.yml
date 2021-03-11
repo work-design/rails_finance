@@ -23,7 +23,7 @@ zh:
         financial_type:
           Bench::Project: 项目
           Bench::ProjectStage: 项目阶段
-          Bench::ProjectTaxon: 项目类型
+          Bench::Taxon: 项目类型
       finance/payment_method:
         type:
           Finance::CashMethod: 现金

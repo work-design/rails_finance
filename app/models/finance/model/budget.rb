@@ -5,7 +5,7 @@ module Finance
     included do
       attribute :subject, :string
       attribute :amount, :decimal
-      attribute :note, :string, limit: 4096
+      attribute :note, :string
 
       belongs_to :organ, optional: true
       belongs_to :member, optional: true
