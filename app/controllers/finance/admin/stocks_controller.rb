@@ -4,15 +4,16 @@ module Finance
     before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
     def index
-      @stocks = @assessment.stocks.page(params[:page])
+      @stocks = @assessment.stocks.order(id: :asc).page(params[:page])
     end
 
     def new
-      @stock = @assessment.stocks.build
+      @stock = @assessment.stocks.build(member: current_member)
     end
 
     def create
       @stock = @assessment.stocks.build(stock_params)
+      @stock.member = current_member
 
       unless @stock.save
         render :new, locals: { model: @stock }, status: :unprocessable_entity
