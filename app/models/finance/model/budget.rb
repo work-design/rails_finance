@@ -3,6 +3,7 @@ module Finance
     extend ActiveSupport::Concern
 
     included do
+      attribute :type, :string, default: 'Finance::FundBudget'
       attribute :subject, :string
       attribute :amount, :decimal
       attribute :note, :string
