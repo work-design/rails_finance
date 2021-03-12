@@ -14,8 +14,8 @@ module Finance
       belongs_to :fund, optional: true
       belongs_to :stock, optional: true
 
-      belongs_to :financial_taxon
-      belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
+      belongs_to :financial_taxon, optional: true
+      belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id, optional: true
 
       has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
       has_many :expense_items, dependent: :destroy
@@ -48,7 +48,7 @@ module Finance
 
       before_save :sync_amount
       after_save :sum_amount, if: -> { saved_change_to_amount? }
-      after_save :sum_fund_amount, if: -> { budget && saved_change_to_amount? }
+      after_save :sum_fund_amount, if: -> { fund && saved_change_to_amount? }
       after_save :sum_stock_amount, if: -> { stock && saved_change_to_amount? }
     end
 
