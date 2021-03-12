@@ -2,6 +2,7 @@ module Finance
   class Admin::BudgetsController < Admin::BaseController
     before_action :set_fund
     before_action :set_budget, only: [:show, :edit, :update, :trigger, :destroy]
+    before_action :prepare_form
 
     def index
       q_params = {}
@@ -21,19 +22,6 @@ module Finance
       unless @budget.save
         render :new, locals: { model: @budget }, status: :unprocessable_entity
       end
-    end
-
-    def add_item
-      @budget = current_member.budgets.build(financial_taxon_id: params[:financial_taxon_id])
-      if @budget.financial_taxon
-        @taxon_options = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
-      else
-        @taxon_options = []
-      end
-      @budget.expense_items.build
-    end
-
-    def remove_item
     end
 
     def show
@@ -75,6 +63,13 @@ module Finance
 
     def set_budget
       @budget = Budget.find params[:id]
+    end
+
+    def prepare_form
+      q_params = {}
+      q_params.merge! default_params
+
+      @financial_taxons = FinancialTaxon.default_where(q_params)
     end
 
     def budget_params

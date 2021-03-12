@@ -14,7 +14,7 @@ zh:
           title: 类别
       budgets:
         index:
-          title: 预算（采购）
+          title: 预算
       expenses:
         index:
           title: 支出
@@ -40,7 +40,7 @@ zh:
       title: 财务
       budgets:
         index:
-          title: 预算（采购）
+          title: 预算
         admin:
           title: 待审核
         submit:

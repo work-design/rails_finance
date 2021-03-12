@@ -45,19 +45,6 @@ module Finance
       @financial_taxons = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
     end
 
-    def add_item
-      @budget = current_member.budgets.build(financial_taxon_id: params[:financial_taxon_id])
-      if @budget.financial_taxon
-        @taxon_options = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
-      else
-        @taxon_options = []
-      end
-      @budget.expense_items.build
-    end
-
-    def remove_item
-    end
-
     def show
     end
 

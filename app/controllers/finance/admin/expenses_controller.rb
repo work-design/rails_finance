@@ -1,11 +1,12 @@
 module Finance
   class Admin::ExpensesController < Admin::BaseController
+    before_action :set_fund
     before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy]
 
     def index
       q_params = {}
       q_params.merge! default_params
-      q_params.merge! params.permit(:state, :id, :fund_use_id)
+      q_params.merge! params.permit(:state, :id, :fund_id, :stock_id)
 
       @expenses = Expense.default_where(q_params).page(params[:page])
     end
@@ -20,16 +21,6 @@ module Finance
       unless @expense.save
         render :new, locals: { model: @expense }, status: :unprocessable_entity
       end
-    end
-
-    def add_item
-      @expense = Expense.new(type: params[:type], financial_taxon_id: params[:financial_taxon_id])
-      if @expense.financial_taxon
-        @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
-      else
-        @taxon_options = []
-      end
-      @expense.expense_items.build
     end
 
     def show
@@ -61,6 +52,10 @@ module Finance
     end
 
     private
+    def set_fund
+      @fund = Fund.find params[:fund_id] if params[:fund_id]
+    end
+
     def set_expense
       @expense = Expense.find(params[:id])
     end
