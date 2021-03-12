@@ -15,7 +15,13 @@ module Finance
       belongs_to :financial_taxon, optional: true
 
       before_save :ensure_amount, if: -> { budget_amount_changed? }
+      after_save :sync_budget_amount, if: -> { saved_change_to_budget_amount? }
       after_update_commit :sync_member_amount, if: -> { saved_change_to_amount? }
+    end
+
+    def sync_budget_amount
+      budget.amount = budget.expense_items.sum(&:budget_amount)
+      budget.save
     end
 
     def ensure_amount

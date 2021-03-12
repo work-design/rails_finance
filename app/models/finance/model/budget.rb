@@ -46,7 +46,6 @@ module Finance
         methods: [:creator_name]
       )
 
-      before_save :sync_amount
       after_save :sum_amount, if: -> { saved_change_to_amount? }
       after_save :sum_fund_amount, if: -> { fund && saved_change_to_amount? }
       after_save :sum_stock_amount, if: -> { stock && saved_change_to_amount? }
@@ -120,10 +119,6 @@ module Finance
       unless self.amount == self.expense_items.sum(&:amount)
         self.errors.add :amount, 'Amount must equal to cost sum'
       end
-    end
-
-    def sync_amount
-      self.amount = self.expense_items.sum(&:budget_amount)
     end
 
     def transfer(type)
