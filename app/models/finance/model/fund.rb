@@ -14,8 +14,8 @@ module Finance
       belongs_to :organ, class_name: 'Org::Organ'
 
       has_many :fund_incomes, dependent: :destroy
-      has_many :fund_budgets, dependent: :destroy
-      has_many :fund_expenses, dependent: :destroy
+      has_many :budgets, dependent: :destroy
+      has_many :expenses, dependent: :destroy
 
       has_one_attached :proof
     end

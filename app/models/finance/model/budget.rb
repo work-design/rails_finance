@@ -7,9 +7,12 @@ module Finance
       attribute :amount, :decimal
       attribute :note, :string
 
-      belongs_to :organ, optional: true
-      belongs_to :member, optional: true
+      belongs_to :organ, class_name: 'Org::Organ', optional: true
+      belongs_to :member, class_name: 'Org::Member', optional: true
       belongs_to :financial, polymorphic: true, optional: true
+      belongs_to :fund, optional: true
+      belongs_to :stock, optional: true
+
       belongs_to :financial_taxon
       belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
 
@@ -44,6 +47,8 @@ module Finance
 
       before_save :sync_amount
       after_save :sum_amount, if: -> { saved_change_to_amount? }
+      after_save :sum_fund_amount, if: -> { budget && saved_change_to_amount? }
+      after_save :sum_stock_amount, if: -> { stock && saved_change_to_amount? }
     end
 
     def can_operate?(member)
@@ -132,6 +137,19 @@ module Finance
     def sum_amount
       financial.compute_budget_amount
       financial.save
+    end
+
+    def sum_fund_amount
+      fund.sum_budget_amount(financial_type)
+      fund.save
+      if financial
+        financial.compute_fund_budget
+        financial.save
+      end
+    end
+
+    def sum_stock_amount
+
     end
 
   end

@@ -1,0 +1,9 @@
+<div class="breadcrumb has-succeeds-separator">
+  <ul>
+    <% if params[:fund_id] %>
+      <li><%= link_to t('finance.admin.funds.index.title'), { controller: 'funds' } %></li>
+      <li><%= link_to @fund.name, { controller: 'funds', action: 'show', id: @fund.id } %></li>
+    <% end %>
+    <li class="is-active"><%= t('.title') %></li>
+  </ul>
+</div>

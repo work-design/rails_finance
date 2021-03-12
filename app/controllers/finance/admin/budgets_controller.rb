@@ -1,11 +1,12 @@
 module Finance
   class Admin::BudgetsController < Admin::BaseController
+    before_action :set_fund
     before_action :set_budget, only: [:show, :edit, :update, :trigger, :destroy]
 
     def index
       q_params = {}
       q_params.merge! default_params
-      q_params.merge! params.permit(:state, :id)
+      q_params.merge! params.permit(:budget_id, :stock_id, :state, :id, :financial_type)
 
       @budgets = Budget.default_where(q_params).page(params[:page])
     end
@@ -68,6 +69,10 @@ module Finance
     end
 
     private
+    def set_fund
+      @fund = Fund.find params[:fund_id] if params[:fund_id]
+    end
+
     def set_budget
       @budget = Budget.find params[:id]
     end

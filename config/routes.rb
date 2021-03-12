@@ -4,8 +4,6 @@ Rails.application.routes.draw do
     resources :financial_taxons
     resources :funds do
       resources :fund_incomes
-      resources :fund_expenses
-      resources :fund_budgets
     end
     resources :assessments do
       resources :stocks
@@ -33,8 +31,6 @@ Rails.application.routes.draw do
     resources :budgets do
       collection do
         match :financial_taxons, via: [:get, :post]
-        get :add_item
-        get :remove_item
         get :admin
       end
       member do

@@ -1,5 +1,0 @@
-<%= render layout: 'index_table', locals: { cache_key: FundBudget.column_names.hash } do %>
-  <%= render partial: 'index_tbody', collection: @fund_budgets, as: :fund_budget %>
-<% end %>
-
-<%= paginate @fund_budgets %>

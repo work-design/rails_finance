@@ -1,4 +1,0 @@
-<td><%= model.financial_type_i18n %></td>
-<td><%= link_to model.financial.name, { controller: "bench/admin/#{model.financial_type.tableize}", action: 'show', id: model.financial_id } %></td>
-<td><%= link_to model.amount, { controller: 'expenses', action: 'index', fund_expense_id: model.id } %></td>
-<td><%= model.note %></td>

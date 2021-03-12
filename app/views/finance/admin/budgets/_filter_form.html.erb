@@ -4,6 +4,7 @@
     <%= f.number_field :amount %>
     <div class="field is-narrow">
       <%= f.submit %>
+      <%= link_to t('.clear'), filter_params(except: [:amount, 'subject-like', :fund_id]), class: 'button is-light' %>
     </div>
   </div>
 <% end %>

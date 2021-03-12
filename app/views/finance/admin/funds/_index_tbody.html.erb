@@ -1,14 +1,14 @@
 <td><%= model.name %></td>
-<td><%= link_to model.budget_amount, { controller: 'fund_budgets', action: 'index', fund_id: model.id }, text: true %></td>
+<td><%= link_to model.budget_amount, { controller: 'budgets', fund_id: model.id }, text: true %></td>
 <td>
   <% model.budget_detail.each do |financial_type, amount| %>
     <p>
       <span><%= Finance::FundBudget.enum_i18n(:financial_type, financial_type) %>:</span>
-      <%= link_to amount, { controller: 'fund_budgets', action: 'index', fund_id: model.id, financial_type: financial_type }, text: true %>
+      <%= link_to amount, { controller: 'budgets', fund_id: model.id, financial_type: financial_type }, text: true %>
     </p>
   <% end %>
 </td>
-<td><%= link_to model.amount, { controller: 'fund_incomes', action: 'index', fund_id: model.id }, text: true %></td>
-<td><%= link_to model.expense_amount, { controller: 'fund_expenses', action: 'index', fund_id: model.id }, text: true %></td>
+<td><%= link_to model.amount, { controller: 'fund_incomes', fund_id: model.id }, text: true %></td>
+<td><%= link_to model.expense_amount, { controller: 'expenses', fund_id: model.id }, text: true %></td>
 <td><%= simple_format model.expense_detail %></td>
 <td><%= model.note %></td>

@@ -10,12 +10,14 @@ module Finance
       attribute :note, :string, limit: 4096
       attribute :invoices_count, :integer
 
-      belongs_to :organ, optional: true
+      belongs_to :organ, class_name: 'Org::Organ', optional: true
       belongs_to :creator, class_name: 'Org::Member'
+
+      belongs_to :financial, polymorphic: true, optional: true
       belongs_to :budget, optional: true
       belongs_to :fund, optional: true
+      belongs_to :stock, optional: true
       belongs_to :financial_taxon
-      belongs_to :financial, polymorphic: true, optional: true
       belongs_to :payout, optional: true
       belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
       belongs_to :payment_method, optional: true
@@ -57,6 +59,7 @@ module Finance
 
       before_save :sync_amount
       after_save :sum_amount, if: -> { saved_change_to_amount? }
+      after_save :sum_fund_amount, if: -> { fund && saved_change_to_amount? }
       after_save :sync_items, if: -> { saved_change_to_budget_id? && budget }
     end
 
@@ -134,6 +137,16 @@ module Finance
       return unless financial
       financial.compute_expense_amount
       financial.save
+    end
+
+    def sum_fund_amount
+      fund.sum_expense_amount(financial_type)
+      fund.save
+
+      if financial
+        financial.compute_fund_expense
+        financial.save
+      end
     end
 
     def sync_amount
