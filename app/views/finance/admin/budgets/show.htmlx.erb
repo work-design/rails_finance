@@ -1,0 +1,35 @@
+<%= render 'nav_expense' %>
+<turbo-frame id="modal">
+<table class="ui attached basic large table">
+  <tbody>
+    <tr>
+      <td class="six wide has-text-right"><%= Finance::Expense.human_attribute_name(:subject) %></td>
+      <td><%= @budget.subject %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Finance::Expense.human_attribute_name(:checks) %></td>
+      <td>
+        <table class="ui very basic table">
+          <% @budget.verifications.each do |check| %>
+            <tr>
+              <td><%= Finance::Expense.enum_i18n(:state, check.state) %></td>
+              <td><%= check.comment %></td>
+              <td><%= check.member.name %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Finance::Expense.human_attribute_name(:amount) %></td>
+      <td><%= @budget.amount %></td>
+    </tr>
+    <tr>
+      <td class="has-text-right"><%= Finance::Expense.human_attribute_name(:expense_items) %></td>
+      <td>
+        <%= render partial: 'finance/admin/expenses/items', locals: { expense_items: @budget.expense_items } %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</turbo-frame>

@@ -1,8 +1,8 @@
 <table class="table is-fullwidth is-borderless">
   <tr>
-    <th><%= ExpenseItem.human_attribute_name(:note) %></th>
-    <th><%= ExpenseItem.human_attribute_name(:budget_amount) %></th>
-    <th><%= ExpenseItem.human_attribute_name(:amount) %></th>
+    <th><%= Finance::ExpenseItem.human_attribute_name(:note) %></th>
+    <th><%= Finance::ExpenseItem.human_attribute_name(:budget_amount) %></th>
+    <th><%= Finance::ExpenseItem.human_attribute_name(:amount) %></th>
     <th></th>
   </tr>
   <% expense_items.each do |item| %>

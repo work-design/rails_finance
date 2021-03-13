@@ -17,7 +17,7 @@ module Finance
       belongs_to :financial_taxon, optional: true
       belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id, optional: true
 
-      has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, primary_key: :financial_taxon_id, foreign_key: :verifiable_id
+      has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, class_name: 'Auditor::Verifier', primary_key: :financial_taxon_id, foreign_key: :verifiable_id
       has_many :expense_items, dependent: :destroy
       has_many :expenses, dependent: :destroy
       accepts_nested_attributes_for :expense_items, allow_destroy: true, reject_if: :all_blank

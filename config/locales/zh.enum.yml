@@ -7,6 +7,9 @@ zh:
           verifying: 审核中
           finished: 已完结
           rejected: 拒绝
+        type:
+          Finance::FundBudget: 资金预算
+          Finance::StockBudget: 股权预算
       finance/expense:
         type:
           Finance::PrepayExpense: 借支/报销
