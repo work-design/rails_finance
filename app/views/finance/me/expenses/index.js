@@ -4,7 +4,7 @@ class ExpenseController extends Controller {
   static targets = ['quantity', 'budget_amount', 'price']
 
   connect() {
-    console.debug('Expense Controller Works')
+    console.debug(this.identifier, 'connected!')
   }
 
   updatePrice(event) {

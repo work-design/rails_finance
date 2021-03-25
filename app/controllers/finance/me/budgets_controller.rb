@@ -25,7 +25,8 @@ module Finance
 
     def new
       @budget = current_member.budgets.build
-      @budget.expense_items.build(member_id: current_member.id)
+      @budget.expense_items.build
+
       @taxon_options = []
     end
 
