@@ -1,4 +1,4 @@
-<%= render 'shared/error_messages', target: f.object %>
+<%= render 'error_messages', target: f.object %>
 <%= f.text_field :name %>
 <%= render partial: 'com/nodes/siblings_select', locals: { f: f, node: @financial_taxon_root } %>
 <%= f.check_box :take_stock %>

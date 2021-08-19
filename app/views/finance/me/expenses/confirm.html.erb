@@ -10,7 +10,7 @@
 
 <div class="ui attached segment">
   <%= form_with model: @expense, scope: 'expense', url: my_expense_path(@expense) do |f| %>
-    <%= render 'shared/error_messages', target: @expense %>
+    <%= render 'error_messages', target: @expense %>
     <% if @expense.type == 'PrepayExpense' %>
       <%= f.fields :expense_members, on: { wrap_all: false, label: false, placeholder: true }, css: { wrapper_input: 'two wide field' } do |ef| %>
         <%= render partial: 'member_form', locals: { ef: ef } %>
