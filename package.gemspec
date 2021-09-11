@@ -1,9 +1,6 @@
-$:.push File.expand_path('lib', __dir__)
-require 'rails_finance/version'
-
 Gem::Specification.new do |s|
   s.name = 'rails_finance'
-  s.version = RailsFinance::VERSION
+  s.version = '0.0.1'
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
   s.homepage = 'https://github.com/work-design/rails_finance'
@@ -19,6 +16,5 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency 'rails_com', '~> 1.2'
-  s.add_dependency 'rails_audit'
   s.add_dependency 'prawn'
 end

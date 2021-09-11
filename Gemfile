@@ -2,9 +2,16 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
-gem 'rails'
 gem 'puma'
+gem 'pg'
 
-gem 'factory_bot_rails', require: false
+gem 'viter', github: 'qinmingyuan/viter'
+gem 'rails_extend', github: 'work-design/rails_extend'
 gem 'rails_com', github: 'work-design/rails_com'
-gem 'turbo-rails'
+gem 'rails_design', github: 'work-design/rails_design'
+
+gem 'amazing_print'
+group :development, :test do
+  gem 'debug'
+  gem 'sdoc'
+end

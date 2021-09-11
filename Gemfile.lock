@@ -1,6 +1,13 @@
 GIT
+  remote: https://github.com/qinmingyuan/viter.git
+  revision: a6c36456e695b32d427179c1bfc1c0df2c66792c
+  specs:
+    viter (0.1)
+      rails
+
+GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: e546fa47c11184898c25814f1a106cd1d776edba
+  revision: 62d866862c729077c67329a0faf255ebaa49eba2
   specs:
     rails_com (1.2.9)
       acme-client
@@ -14,12 +21,25 @@ GIT
       rails_extend
       turbo-rails
 
+GIT
+  remote: https://github.com/work-design/rails_design.git
+  revision: 074ee48cd8cd754977c8946f73479fe4a7e9b3f5
+  specs:
+    rails_design (0.0.1)
+      rails
+
+GIT
+  remote: https://github.com/work-design/rails_extend.git
+  revision: 9f79c3ba99e3d590841736b4a7855f54035a43cc
+  specs:
+    rails_extend (1.0.0)
+      rails (>= 6.0)
+
 PATH
   remote: .
   specs:
-    rails_finance (0.1.0)
+    rails_finance (0.0.1)
       prawn
-      rails_audit
       rails_com (~> 1.2)
 
 GEM
@@ -88,20 +108,19 @@ GEM
       zeitwerk (~> 2.3)
     acts_as_list (1.0.4)
       activerecord (>= 4.2)
+    amazing_print (1.3.0)
     builder (3.2.4)
     closure_tree (7.3.0)
       activerecord (>= 4.2.10)
       with_advisory_lock (>= 4.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    debug (1.0.0)
+      irb
+      reline (>= 0.2.7)
     default_where (2.3.0)
       activerecord (>= 4.0, <= 7.0)
     erubi (1.10.0)
-    factory_bot (6.2.0)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.2.0)
-      factory_bot (~> 6.2.0)
-      railties (>= 5.0.0)
     faraday (1.7.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -130,6 +149,9 @@ GEM
       timers
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    io-console (0.5.9)
+    irb (1.3.7)
+      reline (>= 0.2.7)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -158,6 +180,7 @@ GEM
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pdf-core (0.9.0)
+    pg (1.2.3)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -187,10 +210,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails_audit (0.0.1)
-      rails (>= 5.0)
-    rails_extend (1.0.0)
-      rails (>= 6.1)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -198,7 +217,12 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rake (13.0.6)
+    rdoc (6.3.2)
+    reline (0.2.7)
+      io-console (~> 0.5)
     ruby2_keywords (0.0.5)
+    sdoc (2.2.0)
+      rdoc (>= 5.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -224,12 +248,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  factory_bot_rails
+  amazing_print
+  debug
+  pg
   puma
-  rails
   rails_com!
+  rails_design!
+  rails_extend!
   rails_finance!
-  turbo-rails
+  sdoc
+  viter!
 
 BUNDLED WITH
    2.2.22
