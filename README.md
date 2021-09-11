@@ -1,28 +1,20 @@
 # RailsFinance
-Short description and motivation.
+
+[![测试](https://github.com/work-design/rails_doc/actions/workflows/test.yml/badge.svg)](https://github.com/work-design/rails_doc/actions/workflows/test.yml)
+[![Docker构建](https://github.com/work-design/rails_doc/actions/workflows/cd.yml/badge.svg)](https://github.com/work-design/rails_doc/actions/workflows/cd.yml)
+[![Gem](https://github.com/work-design/rails_doc/actions/workflows/gempush.yml/badge.svg)](https://github.com/work-design/rails_doc/actions/workflows/gempush.yml)
+
+财务管理
 
 ## Usage
 How to use my plugin.
 
 ## Installation
-Add this line to your application's Gemfile:
 
-```ruby
-gem 'rails_doc'
-```
 
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install rails_doc
-```
 
 ## Contributing
 Contribution directions go here.
 
-## License
-采用[MIT License](https://opensource.org/licenses/MIT).
+## 协议
+遵循 [MIT](https://opensource.org/licenses/MIT) 开源协议
