@@ -1,8 +1,8 @@
 # RailsFinance
 
-[![测试](https://github.com/work-design/rails_doc/actions/workflows/test.yml/badge.svg)](https://github.com/work-design/rails_doc/actions/workflows/test.yml)
-[![Docker构建](https://github.com/work-design/rails_doc/actions/workflows/cd.yml/badge.svg)](https://github.com/work-design/rails_doc/actions/workflows/cd.yml)
-[![Gem](https://github.com/work-design/rails_doc/actions/workflows/gempush.yml/badge.svg)](https://github.com/work-design/rails_doc/actions/workflows/gempush.yml)
+[![测试](https://github.com/work-design/rails_finance/actions/workflows/test.yml/badge.svg)](https://github.com/work-design/rails_finance/actions/workflows/test.yml)
+[![Docker构建](https://github.com/work-design/rails_finance/actions/workflows/cd.yml/badge.svg)](https://github.com/work-design/rails_finance/actions/workflows/cd.yml)
+[![Gem](https://github.com/work-design/rails_finance/actions/workflows/gempush.yml/badge.svg)](https://github.com/work-design/rails_finance/actions/workflows/gempush.yml)
 
 财务管理
 
