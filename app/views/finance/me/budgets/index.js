@@ -1,11 +1,7 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 
 class BudgetController extends Controller {
   static targets = ['quantity', 'budget', 'price']
-
-  connect() {
-    console.debug(this.identifier, 'contented!')
-  }
 
   updatePrice(event) {
     let price = event.currentTarget
