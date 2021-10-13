@@ -1,13 +1,13 @@
 <td>
   <span style="width: <%= model.depth * 1.43 %>em; display: inline-block"></span>
   <% if !model.leaf? %>
-    <i class="fas fa-caret-down fa-fw" data-action="click->tree#collapse" style="cursor: pointer"></i>
+    <i class="fa-light fa-caret-down fa-fw" data-action="click->tree#collapse" style="cursor: pointer"></i>
   <% else %>
-    <i class="fas fa-minus fa-fw"></i>
+    <i class="fa-light fa-minus fa-fw"></i>
   <% end %>
   <span><%= model.name %></span>
   <% if model.organ != current_organ %>
-    <span aria-label="<%= model.organ.name %>"><i class="fas fa-angle-double-up has-text-grey-light"></i></span>
+    <span aria-label="<%= model.organ.name %>"><i class="fa-light fa-angle-double-up has-text-grey-light"></i></span>
   <% end %>
 </td>
 <td>
@@ -16,7 +16,7 @@
   <% end %>
   <p>
     <%= link_to({ controller: 'auditor/admin/verifiers', action: 'new', verifiable_type: 'Finance::FinancialTaxon', verifiable_id: model.id }, data: { turbo_frame: 'modal' }, class: 'button is-rounded is-small') do %>
-      <i class="fas fa-user-check"></i>
+      <i class="fa-light fa-user-check"></i>
     <% end %>
   </p>
 </td>
