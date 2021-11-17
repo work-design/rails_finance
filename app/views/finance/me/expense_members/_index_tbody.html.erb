@@ -2,7 +2,7 @@
 <td><%= expense_member.advance %></td>
 <td><%= expense_member.amount %></td>
 <td><%= expense_member.payment_method&.account_info %></td>
-<td><time><%= expense_member.created_at.to_s(:rfc822) %></time></td>
+<td><time><%= expense_member.created_at.to_s(:iso8601) %></time></td>
 <td class="tags">
   <span class="tag"><%= expense_member.state_i18n %></span>
 </td>
