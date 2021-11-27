@@ -1,4 +1,3 @@
-<%= render 'error_messages', target: f.object %>
 <%= f.text_field :subject, required: true %>
 <%= f.collection_select(:financial_taxon_id, @financial_taxons, :id, :name, { include_blank: true }) %>
 <%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
