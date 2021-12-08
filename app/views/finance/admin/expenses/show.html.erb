@@ -1,12 +1,3 @@
-<% content_for :breadcrumb do %>
-<div class="breadcrumb has-succeeds-separator">
-  <ul>
-    <li><%= link_to 'Back', admin_expenses_path(id: @expense.id) %></li>
-    <li class="is-active">Expense members</li>
-  </ul>
-</div>
-<% end %>
-
 <%= render 'nav_expense' %>
 
 <table class="ui attached basic large table">
@@ -45,18 +36,7 @@
 <table class="table is-hoverable is-fullwidth">
   <thead>
   <tr>
-    <th><%= ExpenseMember.human_attribute_name(:id) %></th>
-    <th>
-      <p><%= ExpenseMember.human_attribute_name(:member) %></p>
-      <p><%= Member.human_attribute_name(:department) %></p>
-    </th>
-    <th><%= ExpenseMember.human_attribute_name(:amount) %></th>
-    <th>
-      <p><%= ExpenseMember.human_attribute_name(:advance) %></p>
-      <p><%= ExpenseMember.human_attribute_name(:payout_amount) %></p>
-    </th>
-    <th><%= ExpenseMember.human_attribute_name(:state) %></th>
-    <th>Actions</th>
+  
   </tr>
   </thead>
   <tbody>
