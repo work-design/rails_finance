@@ -1,0 +1,11 @@
+<%= f.select :type, options_for_select(Finance::Expense.options_i18n(:type), f.object.type) %>
+<%= f.text_field :subject, required: true %>
+<%= f.collection_select :financial_taxon_id, @financial_taxons, :id, :name, include_blank: true %>
+<%= f.fields :expense_items, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
+  <%= render partial: 'item_form', locals: { ef: ef } %>
+<% end %>
+<%= f.fields :expense_members, wrap: { all: nil, input: 'field is-narrow' }, on: { label: false, placeholder: true } do |ef| %>
+  <%= render partial: 'member_form', locals: { ef: ef } %>
+<% end %>
+<%= f.text_area :note %>
+<%= f.file_field :proof %>
