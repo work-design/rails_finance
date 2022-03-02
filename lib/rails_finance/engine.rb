@@ -7,6 +7,11 @@ module RailsFinance
       "#{config.root}/app/models/budget"
     ]
 
+    config.eager_load_paths += Dir[
+      "#{config.root}/app/models/expense",
+      "#{config.root}/app/models/budget"
+    ]
+
     config.generators do |g|
       g.rails = {
         assets: false,
@@ -14,10 +19,6 @@ module RailsFinance
         helper: false,
         resource_route: false,
         jbuilder: true
-      }
-      g.test_unit = {
-        fixture: true,
-        fixture_replacement: :factory_girl
       }
       g.templates.unshift File.expand_path('lib/templates', RailsCom::Engine.root)
     end
