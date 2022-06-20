@@ -1,0 +1,13 @@
+<div class="tabs">
+  <ul>
+    <li class="<%= active_helper('finance/me/expenses': ['index'], active: 'is-active') %>">
+      <%= link_to t('finance.me.expenses.index.title'), { controller: 'expenses' } %>
+    </li>
+    <li class="<%= active_helper('finance/me/expenses': ['admin'], active: 'is-active') %>">
+      <%= link_to t('finance.me.expenses.admin.title'), { controller: 'expenses', action: 'admin' } %>
+    </li>
+    <li class="<%= active_helper('finance/me/expense_members': ['admin'], active: 'is-active') %>">
+      <%= link_to t('finance.me.expense_members.admin.title'), { controller: 'expense_members' } %>
+    </li>
+  </ul>
+</div>
