@@ -17,4 +17,4 @@ How to use my plugin.
 Contribution directions go here.
 
 ## 协议
-遵循 [MIT](https://opensource.org/licenses/MIT) 开源协议
+遵循 [MIT](LICENSE) 协议

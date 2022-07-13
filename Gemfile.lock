@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: dcc5d8fb83b9d830cc52830da8ed3774be1d0f8e
+  revision: e5eaf04a6aab4c5acc1bc11832712c0fad3cf18b
   specs:
     rails_com (1.3.0)
       acme-client
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 6136d1b90e9a295bbb80e203db78817fff750db4
+  revision: 0fec9966b0874242138aa3ca233ca57f54017909
   specs:
     rails_extend (1.0.1)
       rails (>= 5.0)
@@ -116,7 +116,7 @@ GEM
       with_advisory_lock (>= 4.0.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    debug (1.6.0)
+    debug (1.6.1)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
     default_where (2.2.0)
