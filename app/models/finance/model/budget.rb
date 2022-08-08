@@ -112,11 +112,11 @@ module Finance
     end
 
     def amount_sum
-      unless self.amount == self.expense_members.sum(&:amount)
+      unless self.amount == self.expense_members.sum(&->(i){ i.amount.to_d })
         self.errors.add :amount, 'Amount must equal to amount sum'
       end
 
-      unless self.amount == self.expense_items.sum(&:amount)
+      unless self.amount == self.expense_items.sum(&->(i){ i.amount.to_d })
         self.errors.add :amount, 'Amount must equal to cost sum'
       end
     end
