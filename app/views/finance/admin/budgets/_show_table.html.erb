@@ -53,7 +53,7 @@
   </td>
   <td>
     <% if @budget.init? %>
-      <%= link_to t('finance.me.budgets.submit.title'), { action: 'submit', id: @budget.id }, method: :patch, data: { confirm: t('.confirm') }, class: 'button is-small' %>
+      <%= link_to t('finance.me.budgets.submit.title'), { action: 'submit', id: @budget.id }, method: :patch, data: { turbo_confirm: t('.confirm') }, class: 'button is-small' %>
     <% end %>
     <% Expense.types.each do |_, type| %>
       <%= link_to "Transfer to #{Finance::Budget.enum_i18n(:type, type.to_s)}", { action: 'transfer', id: @budget.id, type: type }, method: :patch, class: 'button is-small' %>
