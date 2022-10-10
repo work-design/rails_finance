@@ -1,10 +1,10 @@
 <div class="<%= active_helper(modules: 'finance/admin', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu empty">
   <a class="menu-label" data-action="menu#toggle">
-    <i class="fa-solid fa-money-bill fa-fw"></i>
+    <i class="fa-solid fa-fw fa-money-bill"></i>
     <span><%= t('finance.admin.title') %></span>
     <i class="fa-solid dropdown"></i>
   </a>
-  <div class="menu-list">
+  <div class="menu-list" data-empty-target="content">
     <%= link_to t('finance.admin.funds.index.title'), { controller: 'finance/admin/funds' }, class: active_helper(controllers: ['funds', 'fund_budgets', 'fund_incomes', 'fund_expenses'], active: 'is-active') %>
     <%= link_to t('finance.admin.assessments.index.title'), { controller: 'finance/admin/assessments' }, class: active_helper(controllers: ['assessments', 'stocks'], active: 'is-active') %>
     <%= link_to t('finance.admin.budgets.index.title'), { controller: 'finance/admin/budgets' }, class: active_helper(controllers: 'budgets', active: 'is-active') %>
