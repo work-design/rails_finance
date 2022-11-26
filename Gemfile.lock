@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 0d9a5b79f6e0b7dcfb8eed5a2d62ec8c9416fbf2
+  revision: 76d35b6b1cc3f9659d15dd0b12d615ea03376bf4
   specs:
     rails_com (1.3.0)
       acme-client
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 167cd2432616972e1c340525c58b9b3175d4b8b2
+  revision: a36456f8c4e9135fbb2890ddf02b613d77cafa75
   specs:
     rails_design (0.0.1)
       rails
@@ -122,14 +122,14 @@ GEM
     default_where (2.2.0)
       activerecord (>= 4.0.0)
     erubi (1.11.0)
-    faraday (2.6.0)
+    faraday (2.7.1)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.1)
+    faraday-net_http (3.0.2)
     faraday-retry (1.0.3)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    http-2-next (0.5.0)
+    http-2-next (0.5.1)
     http-form_data (2.3.0)
     httpx (0.21.1)
       http-2-next (>= 0.4.1)

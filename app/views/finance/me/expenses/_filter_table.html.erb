@@ -2,9 +2,9 @@
   <tr>
     <th><%= Finance::Expense.human_attribute_name(:state) %></th>
     <td>
-      <%= link_to t('.all'), filter_params(except: [:state]), class: active_params(state: '', active: 'button is-info', item: 'button is-light') %>
+      <%= link_to t('.all'), filter_params(except: [:state]), class: active_helper(state: '', active: 'button is-info', item: 'button is-light') %>
       <% Finance::Expense.states.keys.each do |state| %>
-        <%= link_to Finance::Expense.enum_i18n(:state, state), filter_params(state: state), class: active_params(state: state, active: 'button is-info', item: 'button is-light') %>
+        <%= link_to Finance::Expense.enum_i18n(:state, state), filter_params(state: state), class: active_helper(state: state, active: 'button is-info', item: 'button is-light') %>
       <% end %>
     </td>
   </tr>
