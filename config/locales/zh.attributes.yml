@@ -18,6 +18,7 @@ zh:
         subject: 支出内容
         subject-like: 支出内容
         state: 状态
+        proof: 凭证
       finance/expense_item:
         financial_taxon_id: 分类
         budget_amount: 预算

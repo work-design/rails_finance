@@ -1,4 +1,4 @@
 <%= f.text_field :name %>
 <%= render partial: 'com/nodes/siblings_select', locals: { f: f, node: @financial_taxon_root } %>
-<%= f.check_box :take_stock, label_position: 'before' %>
+<%= f.check_box :take_stock %>
 <%= f.check_box :individual %>

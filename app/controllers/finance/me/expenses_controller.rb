@@ -3,6 +3,7 @@ module Finance
     include FinanceController::Me
     before_action :set_expense, only: [:show, :edit, :update, :submit, :confirm, :bill, :destroy]
     before_action :prepare_form
+    before_action :set_new_expense, only: [:new, :create]
     # after_action only: [:create, :update, :destroy] do
     #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
     # end
@@ -31,11 +32,8 @@ module Finance
     end
 
     def create
-      @expense = current_member.created_expenses.build(expense_params)
-
-      unless @expense.save
-        render :new, locals: { model: @expense }, status: :unprocessable_entity
-      end
+      binding.b
+      @expense.save
     end
 
     def financial_taxons
@@ -49,9 +47,6 @@ module Finance
       @taxon_options = @expense.financial_taxon.children.map { |i| [i.name, i.id] }
     end
 
-    def show
-    end
-
     def edit
       if @expense.expense_members.count == 0
         @expense.expense_members.build(member_id: current_member.id)
@@ -62,14 +57,6 @@ module Finance
         @payment_methods = []
       end
       @taxon_options = FinancialTaxon.roots.map { |i| [i.name, i.id] }
-    end
-
-    def update
-      @expense.assign_attributes(expense_params)
-
-      unless @expense.save
-        render :edit, locals: { model: @expense }, status: :unprocessable_entity
-      end
     end
 
     def confirm
@@ -95,13 +82,13 @@ module Finance
       end
     end
 
-    def destroy
-      @expense.destroy
-    end
-
     private
     def set_expense
       @expense = Expense.find(params[:id])
+    end
+
+    def set_new_expense
+      @expense = current_member.created_expenses.build(expense_params)
     end
 
     def prepare_form

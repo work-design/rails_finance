@@ -1,0 +1,5 @@
+<%= f.select :type, options_for_select(Finance::Expense.options_i18n(:type), f.object.type) %>
+<%= f.text_area :subject, required: true %>
+<%= f.collection_select :financial_taxon_id, @financial_taxons, :id, :name, include_blank: true %>
+<%= f.text_area :note %>
+<%= f.file_field :proof %>
