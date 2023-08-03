@@ -31,10 +31,6 @@ module Finance
       @taxon_options = []
     end
 
-    def create
-      binding.b
-      @expense.save
-    end
 
     def financial_taxons
       q = expense_params['expense_items_attributes'].each do |_, v|
