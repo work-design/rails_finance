@@ -3,7 +3,7 @@
   <%= f.number_field :advance %>
   <div class="inline fields">
     <%= f.collection_select :payment_method_id, @payment_methods, :id, :account_info, {on: {wrapper_all: false}} %>
-    <%= link_to 'Add', new_my_payment_method_path, class: 'ui button' %>
+    <%= link_to 'Add', new_my_payment_method_path, class: 'button' %>
   </div>
   <%= f.submit %>
 <% end %>
