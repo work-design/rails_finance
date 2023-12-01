@@ -1,8 +1,8 @@
 require 'prawn'
 class PrepayExpensePdf
 	include Prawn::View
-	include PdfTextHelper
-	include PdfTableHelper
+	#include PdfTextHelper
+	#include PdfTableHelper
 
 	attr_reader :document, :expense_member
 
