@@ -1,7 +1,7 @@
 <th>
   <p><%= Finance::Expense.human_attribute_name(:subject) %></p>
-  <p><%= ExpenseMember.human_attribute_name(:member) %></p>
-  <p><%= Member.human_attribute_name(:department) %></p>
+  <p><%= Finance::ExpenseMember.human_attribute_name(:member) %></p>
+  <p><%= Org::Member.human_attribute_name(:department) %></p>
 </th>
 <th><%= Finance::ExpenseMember.human_attribute_name(:amount) %></th>
 <th>

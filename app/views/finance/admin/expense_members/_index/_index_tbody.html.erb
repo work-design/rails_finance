@@ -38,7 +38,7 @@
     <div class="ui mini buttons">
       <%= link_to 'Approve', new_check_path('ExpenseMember', expense_member.id, state: expense_member.next_state(:state)), class: 'ui mini positive button' %>
       <div class="or"></div>
-      <%= link_to ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), class: 'ui mini negative button' %>
+      <%= link_to Finance::ExpenseMember.enum_i18n(:state, 'rejected'), new_check_path('Expense', expense_member.id, state: 'rejected'), class: 'ui mini negative button' %>
     </div>
   <% end %>
 </td>
