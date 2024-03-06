@@ -1,35 +1,35 @@
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:subject) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:subject) %></td>
   <td>
     <%= @budget.subject %>
   </td>
 </tr>
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:state) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:state) %></td>
   <td>
     <span class="ui label"><%= @budget.state_i18n %></span>
   </td>
 </tr>
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:expense_items) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:expense_items) %></td>
   <td class="positive">
     <%= render partial: 'items', locals: { expense_items: @budget.expense_items } %>
   </td>
 </tr>
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:amount) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:amount) %></td>
   <td>
     <%= @budget.amount %>
   </td>
 </tr>
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:note) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:note) %></td>
   <td>
     <%= @budget.note %>
   </td>
 </tr>
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:checks) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:checks) %></td>
   <td>
     <table class="table is-fullwidth is-borderless">
       <% @budget.all_verifications.each do |verification| %>
@@ -43,7 +43,7 @@
   </td>
 </tr>
 <tr>
-  <td class="has-text-right"><%= Finance::Budget.human_attribute_name(:items) %></td>
+  <td><%= Finance::Budget.human_attribute_name(:items) %></td>
   <td>
     <%= link_to 'items', direct_data_list_table_lists_path('BudgetItemExport', expense_id: @budget.id, format: 'xlsx') %>
   </td>

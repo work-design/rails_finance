@@ -10,30 +10,30 @@
   </thead>
   <tbody>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:type) %></td>
+      <td><%= Expense.human_attribute_name(:type) %></td>
       <td><%= @expense.type_i18n %></td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:subject) %></td>
+      <td><%= Expense.human_attribute_name(:subject) %></td>
       <td>
         <%= @expense.subject %>
       </td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:state) %></td>
+      <td><%= Expense.human_attribute_name(:state) %></td>
       <td>
         <span class="ui label"><%= @expense.state_i18n %></span>
       </td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:expense_items) %></td>
+      <td><%= Expense.human_attribute_name(:expense_items) %></td>
       <td class="positive">
         <%= render partial: 'finance/me/expense_members/items', locals: { expense_items: @expense.expense_items } %>
       </td>
     </tr>
     <% if @expense.financial_taxon&.individual %>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:expense_members) %></td>
+      <td><%= Expense.human_attribute_name(:expense_members) %></td>
       <td class="negative">
         <table class="table">
           <tr>
@@ -57,19 +57,19 @@
     </tr>
     <% end %>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:amount) %></td>
+      <td><%= Expense.human_attribute_name(:amount) %></td>
       <td>
         <%= @expense.amount %>
       </td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:note) %></td>
+      <td><%= Expense.human_attribute_name(:note) %></td>
       <td>
         <%= @expense.note %>
       </td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:checks) %></td>
+      <td><%= Expense.human_attribute_name(:checks) %></td>
       <td>
         <table class="ui very basic table">
           <% @expense.all_verifications.each do |verification| %>
@@ -84,7 +84,7 @@
     </tr>
     <% if @expense.payment_method %>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:payment_method) %></td>
+      <td><%= Expense.human_attribute_name(:payment_method) %></td>
       <td>
         <p><%= @expense.payment_method.account_name %></p>
         <p><%= @expense.payment_method.account_num %></p>
@@ -94,14 +94,14 @@
     <% end %>
     <% if @expense.type == 'PayableExpense' %>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:invoices) %></td>
+      <td><%= Expense.human_attribute_name(:invoices) %></td>
       <td>
         <%= link_to 'pdf', bill_me_expense_path(@expense, format: 'pdf') %>
       </td>
     </tr>
     <% end %>
     <tr>
-      <td class="has-text-right"><%= Expense.human_attribute_name(:items) %></td>
+      <td><%= Expense.human_attribute_name(:items) %></td>
       <td>
         <%= link_to 'items', direct_data_list_table_lists_path('ExpenseItemExport', expense_id: @expense.id, format: 'xlsx') %>
       </td>
