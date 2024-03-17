@@ -4,12 +4,12 @@
     <span class="has-text-grey"><%= t('finance.me.title') %></span>
   </div>
   <div class="weui-panel__bd">
-    <div class="columns is-4-mobile is-flex is-vcentered is-centered m-0 is-shadow" data-empty-target="content">
+    <div class="columns is-4-mobile flex is-vcentered is-centered m-0 is-shadow" data-empty-target="content">
       <%= link_to({ controller: 'finance/me/expenses' }, class: 'column has-column-centered') do %>
         <div class="has-text-primary">
           <i class="fa-solid fa-fw fa-xl fa-users"></i>
         </div>
-        <div class="has-text-grey is-size-7 mt-1"><%= t('finance.me.expenses.index.title') %></div>
+        <div class="has-text-grey size-7 mt-1"><%= t('finance.me.expenses.index.title') %></div>
       <% end %>
     </div>
   </div>

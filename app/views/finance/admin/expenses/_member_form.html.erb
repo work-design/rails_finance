@@ -8,7 +8,7 @@
     <%= ef.select :member_id, options_for_select([[ef.object.member&.name, ef.object.member_id]], ef.object.member_id), include_blank: true, wrap: { input: 'three wide field' }, disabled: ef.object.persisted? %>
     <%= ef.number_field :advance, readonly: true %>
     <%= ef.number_field :amount %>
-    <div class="field has-addons is-flex">
+    <div class="field has-addons flex">
       <i class="fa-solid fa-plus" style="cursor: pointer" data-action="click->field#add"></i>
       <i class="fa-solid fa-minus" style="cursor: pointer" data-action="click->field#remove"></i>
     </div>

@@ -9,7 +9,7 @@
   <%= ef.number_field :quantity, step: 1, data: { action: 'budget#updateQuantity' } %>
   <%= ef.number_field :price, step: 0.01, data: { action: 'budget#updatePrice' } %>
   <%= ef.number_field :budget_amount, step: 0.01, data: { action: 'budget#updateBudgetAmount' } %>
-  <div class="field has-addons is-flex">
+  <div class="field has-addons flex">
     <i class="fa-solid fa-plus" data-action="click->field#add" style="cursor: pointer"></i>
     <i class="fa-solid fa-minus" data-action="click->field#add" style="cursor: pointer"></i>
   </div>
