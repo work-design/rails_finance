@@ -1,16 +1,16 @@
-<tr>
-  <td><%= Finance::Fund.human_attribute_name(:name) %></td>
-  <td><%= @fund.name %></td>
-</tr>
-<tr>
-  <td><%= Finance::Fund.human_attribute_name(:budget_amount) %></td>
-  <td><%= @fund.budget_amount %></td>
-</tr>
-<tr>
-  <td><%= Finance::Fund.human_attribute_name(:amount) %></td>
-  <td><%= @fund.amount %></td>
-</tr>
-<tr>
-  <td><%= Finance::Fund.human_attribute_name(:note) %></td>
-  <td><%= @fund.note %></td>
-</tr>
+<div>
+  <dt><%= Finance::Fund.human_attribute_name(:name) %></dt>
+  <dd><%= @fund.name %></dd>
+</div>
+<div>
+  <dt><%= Finance::Fund.human_attribute_name(:budget_amount) %></dt>
+  <dd><%= @fund.budget_amount %></dd>
+</div>
+<div>
+  <dt><%= Finance::Fund.human_attribute_name(:amount) %></dt>
+  <dd><%= @fund.amount %></dd>
+</div>
+<div>
+  <dt><%= Finance::Fund.human_attribute_name(:note) %></dt>
+  <dd><%= @fund.note %></dd>
+</div>

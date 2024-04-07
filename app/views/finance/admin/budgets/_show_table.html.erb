@@ -1,54 +1,54 @@
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:subject) %></td>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:subject) %></dt>
   <td>
     <%= @budget.subject %>
   </td>
-</tr>
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:state) %></td>
+</div>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:state) %></dt>
   <td>
     <span class="ui label"><%= @budget.state_i18n %></span>
   </td>
-</tr>
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:expense_items) %></td>
+</div>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:expense_items) %></dt>
   <td class="positive">
     <%= render partial: 'items', locals: { expense_items: @budget.expense_items } %>
   </td>
-</tr>
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:amount) %></td>
+</div>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:amount) %></dt>
   <td>
     <%= @budget.amount %>
   </td>
-</tr>
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:note) %></td>
+</div>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:note) %></dt>
   <td>
     <%= @budget.note %>
   </td>
-</tr>
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:checks) %></td>
+</div>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:checks) %></dt>
   <td>
     <table class="table is-fullwidth is-borderless">
       <% @budget.all_verifications.each do |verification| %>
-        <tr>
-          <td><%= Finance::Budget.enum_i18n(:state, verification.state) %></td>
-          <td><%= verification.note %></td>
-          <td><%= verification.member&.name %></td>
-        </tr>
+        <div>
+          <dt><%= Finance::Budget.enum_i18n(:state, verification.state) %></dt>
+          <dt><%= verification.note %></dd>
+          <dt><%= verification.member&.name %></dd>
+        </div>
       <% end %>
     </table>
   </td>
-</tr>
-<tr>
-  <td><%= Finance::Budget.human_attribute_name(:items) %></td>
+</div>
+<div>
+  <dt><%= Finance::Budget.human_attribute_name(:items) %></dt>
   <td>
     <%= link_to 'items', direct_data_list_table_lists_path('BudgetItemExport', expense_id: @budget.id, format: 'xlsx') %>
   </td>
-</tr>
-<tr>
+</div>
+<div>
   <td>
   </td>
   <td>
@@ -59,4 +59,4 @@
       <%= link_to "Transfer to #{Finance::Budget.enum_i18n(:type, type.to_s)}", { action: 'transfer', id: @budget.id, type: type }, method: :patch, class: 'button is-small' %>
     <% end %>
   </td>
-</tr>
+</div>

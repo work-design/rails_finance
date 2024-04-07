@@ -1,12 +1,12 @@
-<tr>
-  <td><%= Finance::FundIncome.human_attribute_name(:amount) %></td>
-  <td><%= @fund_income.amount %></td>
-</tr>
-<tr>
-  <td><%= Finance::FundIncome.human_attribute_name(:user_id) %></td>
-  <td><%= @fund_income.user_id %></td>
-</tr>
-<tr>
-  <td><%= Finance::FundIncome.human_attribute_name(:proof) %></td>
-  <td><%= @fund_income.proof %></td>
-</tr>
+<div>
+  <dt><%= Finance::FundIncome.human_attribute_name(:amount) %></dt>
+  <dd><%= @fund_income.amount %></dd>
+</div>
+<div>
+  <dt><%= Finance::FundIncome.human_attribute_name(:user_id) %></dt>
+  <dd><%= @fund_income.user_id %></dd>
+</div>
+<div>
+  <dt><%= Finance::FundIncome.human_attribute_name(:proof) %></dt>
+  <dd><%= @fund_income.proof %></dd>
+</div>
