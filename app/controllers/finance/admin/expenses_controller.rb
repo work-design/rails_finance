@@ -1,7 +1,8 @@
 module Finance
   class Admin::ExpensesController < Admin::BaseController
     before_action :set_fund
-    before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy]
+    before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy, :actions]
+    before_action :set_new_expense, only: [:new, :create]
 
     def index
       q_params = {}
@@ -11,32 +12,9 @@ module Finance
       @expenses = Expense.default_where(q_params).page(params[:page])
     end
 
-    def new
-      @expense = Expense.new
-    end
-
-    def create
-      @expense = Expense.new(expense_params)
-
-      unless @expense.save
-        render :new, locals: { model: @expense }, status: :unprocessable_entity
-      end
-    end
-
     def show
       @expense_members = @expense.expense_members
       @expense_items = @expense.expense_items.where(member_id: nil)
-    end
-
-    def edit
-    end
-
-    def update
-      @expense.assign_attributes expense_params
-
-      unless @expense.save
-        render :edit, locals: { model: @expense }, status: :unprocessable_entity
-      end
     end
 
     def next
@@ -47,10 +25,6 @@ module Finance
       @expense.do_trigger(state: params[:state], auditor_id: current_member.id)
     end
 
-    def destroy
-      @expense.destroy
-    end
-
     private
     def set_fund
       @fund = Fund.find params[:fund_id] if params[:fund_id]
@@ -58,6 +32,10 @@ module Finance
 
     def set_expense
       @expense = Expense.find(params[:id])
+    end
+
+    def set_new_expense
+      @expense = Expense.new(expense_params)
     end
 
     def expense_params

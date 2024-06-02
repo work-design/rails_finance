@@ -7,20 +7,6 @@ module Finance
       @expense_members = @expense.expense_members.page(params[:page])
     end
 
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @expense_member.assign_attribute(expense_member_params)
-
-      unless @expense_member.save
-        render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
-      end
-    end
-
     def to_advance_pay
       unless @expense_member.to_advance_payout
         render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
@@ -31,10 +17,6 @@ module Finance
       unless @expense_member.to_payout
         render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
       end
-    end
-
-    def destroy
-      @expense_member.destroy
     end
 
     private
