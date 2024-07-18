@@ -36,7 +36,7 @@ module Finance
       has_one_attached :proof
       has_one_attached :invoice
 
-      enum state: {
+      enum :state, {
         init: 'init',
         verifying: 'verifying',
         paying: 'paying',
@@ -44,7 +44,7 @@ module Finance
         invoice_verifying: 'invoice_verifying',
         finished: 'finished',
         rejected: 'rejected'
-      }, _default: 'init'
+      }, default: 'init'
 
       acts_as_notify(
         :default,

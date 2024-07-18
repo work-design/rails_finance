@@ -7,10 +7,10 @@ module Finance
       attribute :visible, :boolean, default: false
       attribute :note, :string
 
-      enum state: {
+      enum :state, {
         init: 'init',
         done: 'done'
-      }, _default: 'init'
+      }, default: 'init'
 
       belongs_to :fund
       belongs_to :user, optional: true

@@ -17,14 +17,14 @@ module Finance
 
       validates :member_id, uniqueness: { scope: [:expense_id] }
 
-      enum state: {
+      enum :state, {
         pending_borrow: 'pending_borrow',
         advance_pay: 'advance_pay',
         advance_paid: 'advance_paid',
         pending_reimburse: 'pending_reimburse',
         to_pay: 'to_pay',
         paid: 'paid'
-      }, _default: 'pending_borrow'
+      }, default: 'pending_borrow'
 
       acts_as_notify(
         :default,
