@@ -1,2 +1,3 @@
-<%= link_to t('finance.admin.financial_taxons.index.title'), { controller: 'finance/admin/financial_taxons' }, class: active_helper(controllers: 'financial_taxons', active: 'is-active') %>
-<%= link_to t('finance.admin.assessments.index.title'), { controller: 'finance/admin/assessments' }, class: active_helper(controllers: ['assessments', 'stocks'], active: 'is-active') %>
+<div class="section">
+  <%= render 'index_column' %>
+</div>

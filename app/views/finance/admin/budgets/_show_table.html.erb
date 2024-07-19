@@ -1,62 +1,55 @@
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:subject) %></dt>
-  <td>
-    <%= @budget.subject %>
-  </td>
+  <dd><%= @budget.subject %></dd>
 </div>
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:state) %></dt>
-  <td>
-    <span class="ui label"><%= @budget.state_i18n %></span>
-  </td>
+  <dd><span class="tag"><%= @budget.state_i18n %></span></dd>
 </div>
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:expense_items) %></dt>
-  <td class="positive">
+  <dd class="positive">
     <%= render partial: 'items', locals: { expense_items: @budget.expense_items } %>
-  </td>
+  </dd>
 </div>
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:amount) %></dt>
-  <td>
-    <%= @budget.amount %>
-  </td>
+  <dd><%= @budget.amount %></dd>
 </div>
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:note) %></dt>
-  <td>
-    <%= @budget.note %>
-  </td>
+  <dd><%= @budget.note %></dd>
 </div>
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:checks) %></dt>
-  <td>
+  <dd>
     <table class="table is-fullwidth is-borderless">
       <% @budget.all_verifications.each do |verification| %>
         <div>
           <dt><%= Finance::Budget.enum_i18n(:state, verification.state) %></dt>
-          <dt><%= verification.note %></dd>
-          <dt><%= verification.member&.name %></dd>
+          <dd>
+            <span><%= verification.note %></span>
+            <span><%= verification.member&.name %></span>
+          </dd>
         </div>
       <% end %>
     </table>
-  </td>
+  </dd>
 </div>
 <div>
   <dt><%= Finance::Budget.human_attribute_name(:items) %></dt>
-  <td>
+  <dd>
     <%= link_to 'items', direct_data_list_table_lists_path('BudgetItemExport', expense_id: @budget.id, format: 'xlsx') %>
-  </td>
+  </dd>
 </div>
 <div>
-  <td>
-  </td>
-  <td>
+  <dt></dt>
+  <dd>
     <% if @budget.init? %>
       <%= link_to t('finance.me.budgets.submit.title'), { action: 'submit', id: @budget.id }, method: :patch, data: { turbo_confirm: t('.destroy.confirm') }, class: 'button is-small' %>
     <% end %>
     <% Expense.types.each do |_, type| %>
       <%= link_to "Transfer to #{Finance::Budget.enum_i18n(:type, type.to_s)}", { action: 'transfer', id: @budget.id, type: type }, method: :patch, class: 'button is-small' %>
     <% end %>
-  </td>
+  </dd>
 </div>

@@ -9,7 +9,6 @@
     <% end %>
   </div>
   <div class="menu-list">
-    <%= link_to t('finance.admin.funds.index.title'), { controller: 'finance/admin/funds' }, class: active_helper(controllers: ['funds', 'fund_budgets', 'fund_incomes', 'fund_expenses'], active: 'is-active') %>
     <%= link_to t('finance.admin.budgets.index.title'), { controller: 'finance/admin/budgets' }, class: active_helper(controllers: 'budgets', active: 'is-active') %>
     <%= link_to t('finance.admin.expenses.index.title'), { controller: 'finance/admin/expenses' }, class: active_helper(controllers: 'expenses', active: 'is-active') %>
   </div>

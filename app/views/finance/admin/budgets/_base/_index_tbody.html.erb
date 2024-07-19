@@ -1,15 +1,15 @@
 <td><%= model.subject %></td>
-<td><%= model.member.name %></td>
+<td><%= model.member&.name %></td>
 <td><%= model.amount %></td>
 <td class="tags">
   <span class="tag"><%= model.state_i18n %></span>
   <% if model.can_operate?(current_member) %>
     <div class="buttons has-addons">
-      <%= link_to({ controller: 'auditor/admin/verifications', verifiable_type: 'Budget', verifiable_id: model.id }, class: 'button is-primary') do %>
+      <%= button_to({ controller: 'auditor/admin/verifications', verified_type: 'Budget', verified_id: model.id }, class: 'button is-primary') do %>
         <i></i><span>Approve</span>
       <% end %>
-      <%= link_to({ controller: 'auditor/admin/verifications', verifiable_type: 'Budget', verifiable_id: model.id, state: 'rejected' }, class: 'button is-danger') do %>
-        <i></i><span><%= Budget.enum_i18n(:state, 'rejected') %></span>
+      <%= button_to({ controller: 'auditor/admin/verifications', verified_type: 'Budget', verified_id: model.id, state: 'rejected' }, class: 'button is-danger') do %>
+        <i></i><span><%= Finance::Budget.enum_i18n(:state, 'rejected') %></span>
       <% end %>
     </div>
   <% end %>

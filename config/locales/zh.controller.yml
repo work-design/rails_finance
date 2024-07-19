@@ -3,6 +3,9 @@ zh:
     title: 财务
     admin:
       title: 财务管理
+      home:
+        index:
+          title: 财务管理
       assessments:
         index:
           title: 估值
