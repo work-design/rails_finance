@@ -14,7 +14,7 @@ module Finance
 
       before_save :sync_verifier, if: -> { parent_id_changed? && parent }
 
-      acts_as_list
+      positioned
     end
 
     private
