@@ -3,11 +3,11 @@
 <table class="ui attached basic large table">
   <tbody>
     <tr>
-      <td class="six wide has-text-right"><%= Finance::Expense.human_attribute_name(:subject) %></td>
+      <td class="six wide text-right"><%= Finance::Expense.human_attribute_name(:subject) %></td>
       <td><%= @budget.subject %></td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Finance::Expense.human_attribute_name(:checks) %></td>
+      <td class="text-right"><%= Finance::Expense.human_attribute_name(:checks) %></td>
       <td>
         <table class="ui very basic table">
           <% @budget.verifications.each do |check| %>
@@ -21,11 +21,11 @@
       </td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Finance::Expense.human_attribute_name(:amount) %></td>
+      <td class="text-right"><%= Finance::Expense.human_attribute_name(:amount) %></td>
       <td><%= @budget.amount %></td>
     </tr>
     <tr>
-      <td class="has-text-right"><%= Finance::Expense.human_attribute_name(:expense_items) %></td>
+      <td class="text-right"><%= Finance::Expense.human_attribute_name(:expense_items) %></td>
       <td>
         <%= render partial: 'finance/admin/expenses/items', locals: { expense_items: @budget.expense_items } %>
       </td>

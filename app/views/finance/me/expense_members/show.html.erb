@@ -15,36 +15,36 @@
   </thead>
   <tbody>
   <tr>
-    <td class="has-text-right"><%= Expense.human_attribute_name(:type) %></td>
+    <td class="text-right"><%= Expense.human_attribute_name(:type) %></td>
     <td><%= @expense_member.expense.type_i18n %></td>
   </tr>
   <tr>
-    <td class="has-text-right"><%= Expense.human_attribute_name(:subject) %></td>
+    <td class="text-right"><%= Expense.human_attribute_name(:subject) %></td>
     <td>
       <%= @expense_member.expense.subject %>
       <%= link_to 'more', my_expense_path(@expense_member.expense_id) %>
     </td>
   </tr>
   <tr>
-    <td class="has-text-right"><%= Expense.human_attribute_name(:expense_items) %></td>
+    <td class="text-right"><%= Expense.human_attribute_name(:expense_items) %></td>
     <td class="positive">
       <%= render partial: 'items', locals: { expense_items: @expense_member.expense_items } %>
     </td>
   </tr>
   <tr>
-    <td class="has-text-right"><%= ExpenseMember.human_attribute_name(:amount) %></td>
+    <td class="text-right"><%= ExpenseMember.human_attribute_name(:amount) %></td>
     <td>
       <%= @expense_member.amount %>
     </td>
   </tr>
   <tr>
-    <td class="has-text-right"><%= Expense.human_attribute_name(:note) %></td>
+    <td class="text-right"><%= Expense.human_attribute_name(:note) %></td>
     <td>
       <%= @expense_member.note %>
     </td>
   </tr>
   <tr>
-    <td class="has-text-right"><%= ExpenseMember.human_attribute_name(:invoices) %></td>
+    <td class="text-right"><%= ExpenseMember.human_attribute_name(:invoices) %></td>
     <td>
       <% if @expense_member.advance.to_d > 0 %>
         <p><%= link_to 'Borrow', bill_my_expense_member_path(@expense_member, type: 'borrow', format: 'pdf') %></p>
@@ -53,7 +53,7 @@
     </td>
   </tr>
   <tr>
-    <td class="has-text-right"><%= ExpenseMember.human_attribute_name(:items) %></td>
+    <td class="text-right"><%= ExpenseMember.human_attribute_name(:items) %></td>
     <td>
       <%= link_to 'items', direct_data_list_table_lists_path('ExpenseItemExport', expense_member_id: @expense_member.id, format: 'xlsx') %>
     </td>
