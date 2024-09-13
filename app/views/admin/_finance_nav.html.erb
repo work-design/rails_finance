@@ -1,4 +1,4 @@
-<div class="menu ex-accordion is-active">
+<div data-controller="menu" class="<%= role_permit?(business: 'finance', namespace: 'admin') ? 'menu ex-accordion is-active' : 'display-none' %>">
   <div class="menu-label">
     <div>
       <i class="fa-solid fa-fw fa-money-bill"></i>
@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="menu-list">
-    <%= link_to t('finance.admin.budgets.index.title'), { controller: 'finance/admin/budgets' }, class: active_helper(controllers: 'budgets', active: 'is-active') %>
-    <%= link_to t('finance.admin.expenses.index.title'), { controller: 'finance/admin/expenses' }, class: active_helper(controllers: 'expenses', active: 'is-active') %>
+    <%= link_to t('finance.admin.budgets.index.title'), { controller: 'finance/admin/budgets' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'budgets', active: 'is-active') %>
+    <%= link_to t('finance.admin.expenses.index.title'), { controller: 'finance/admin/expenses' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'expenses', active: 'is-active') %>
   </div>
 </div>
