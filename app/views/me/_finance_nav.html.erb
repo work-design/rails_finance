@@ -1,11 +1,13 @@
-<div class="menu-label">
-  <span><%= t('finance.me.title') %></span>
-  <%= link_to({ controller: 'finance/admin/expenses' }, aria: { label: '管理' }) do %>
-    <i class="fa-solid fa-cog"></i>
-  <% end %>
-</div>
-<div class="menu-list">
-  <%= link_to t('finance.me.expense_members.index.title'), { controller: 'finance/me/expense_members' }, class: active_helper(controllers: ['expense_members', 'payment_methods'], active: 'is-active') %>
-  <%= link_to t('finance.me.budgets.index.title'), { controller: 'finance/me/budgets' }, class: active_helper(controllers: ['budgets'], active: 'is-active') %>
-  <%= link_to t('finance.me.expenses.index.title'), { controller: 'finance/me/expenses' }, class: active_helper(controllers: ['expenses'], active: 'is-active') %>
-</div>
+<% if role_permit?(business: 'crm', namespace: 'admin') %>
+  <div class="menu-label">
+    <span><%= t('finance.me.title') %></span>
+    <%= link_to({ controller: 'finance/admin/expenses' }, aria: { label: '管理' }) do %>
+      <i class="fa-solid fa-cog"></i>
+    <% end %>
+  </div>
+  <div class="menu-list">
+    <%= link_to t('finance.me.expense_members.index.title'), { controller: 'finance/me/expense_members' }, class: active_helper(controllers: ['expense_members', 'payment_methods'], active: 'is-active') %>
+    <%= link_to t('finance.me.budgets.index.title'), { controller: 'finance/me/budgets' }, class: active_helper(controllers: ['budgets'], active: 'is-active') %>
+    <%= link_to t('finance.me.expenses.index.title'), { controller: 'finance/me/expenses' }, class: active_helper(controllers: ['expenses'], active: 'is-active') %>
+  </div>
+<% end %>
