@@ -1,4 +1,4 @@
-<% if role_permit?(business: 'crm', namespace: 'admin') %>
+<% if role_permit?(business: 'finance', namespace: 'me') %>
   <div class="menu-label">
     <span><%= t('finance.me.title') %></span>
     <%= link_to({ controller: 'finance/admin/expenses' }, aria: { label: '管理' }) do %>
