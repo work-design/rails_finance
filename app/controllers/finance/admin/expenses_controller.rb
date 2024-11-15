@@ -3,6 +3,7 @@ module Finance
     before_action :set_fund
     before_action :set_expense, only: [:show, :edit, :update, :trigger, :destroy, :actions]
     before_action :set_new_expense, only: [:new, :create]
+    before_action :set_taxons, only: [:new, :create, :edit, :update]
 
     def index
       q_params = {}
@@ -36,6 +37,10 @@ module Finance
 
     def set_new_expense
       @expense = Expense.new(expense_params)
+    end
+
+    def set_taxons
+      @taxons = FinancialTaxon.default_where(default_params)
     end
 
     def expense_params

@@ -1,6 +1,5 @@
 module Finance
   class Me::ExpensesController < Admin::ExpensesController
-    include FinanceController::Me
     before_action :set_expense, only: [:show, :edit, :update, :submit, :confirm, :bill, :destroy]
     before_action :prepare_form
     before_action :set_new_expense, only: [:new, :create]
