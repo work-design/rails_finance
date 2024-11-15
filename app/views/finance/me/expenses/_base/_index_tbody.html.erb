@@ -2,7 +2,7 @@
 <td><%= link_to model.subject, {action: 'show', id: model.id } %></td>
 <td><%= model.amount %></td>
 <td>
-  <%= link_to model.proof.filename, rails_blob_path(model.proof, disposition: 'attachment') if model.proof.attached? %>
+  <%= link_to model.proof.filename, rails_blob_path(model.proof, disposition: 'attachment'), target: '_blank' if model.proof.attached? %>
 </td>
 <td>
   <span class="tag"><%= model.state_i18n %></span>
