@@ -13,11 +13,6 @@ module Finance
       @expenses = Expense.default_where(q_params).page(params[:page])
     end
 
-    def show
-      @expense_members = @expense.expense_members
-      @expense_items = @expense.expense_items.where(member_id: nil)
-    end
-
     def next
       @expense.do_next(state: params[:state], auditor_id: current_member.id)
     end
@@ -33,6 +28,8 @@ module Finance
 
     def set_expense
       @expense = Expense.find(params[:id])
+      #@expense_items = @expense.expense_items.where(member_id: nil)
+
     end
 
     def set_new_expense

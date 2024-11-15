@@ -12,6 +12,7 @@ module Finance
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
       belongs_to :creator, class_name: 'Org::Member'
+      belongs_to :payment_method, class_name: 'Trade::PaymentMethod', optional: true
 
       belongs_to :financial, polymorphic: true, optional: true
       belongs_to :budget, optional: true
@@ -20,7 +21,6 @@ module Finance
       belongs_to :financial_taxon
       belongs_to :payout, optional: true
       belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id
-      belongs_to :payment_method, optional: true
 
       has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, class_name: 'Auditor::Verifier', primary_key: :financial_taxon_id, foreign_key: :verifiable_id
       has_many :expense_members, dependent: :destroy

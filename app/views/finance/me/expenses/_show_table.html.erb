@@ -1,124 +1,87 @@
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <div>
-      <th></th>
-      <th>
-        <%= link_to t('.destroy.confirm'), confirm_me_expense_path(@expense), class: 'ui mini green right floated button' %>
-        <%= link_to t('.edit.title'), edit_me_expense_path(@expense), class: 'ui mini blue right floated button' %>
-      </th>
-    </div>
-  </thead>
-  <tbody>
-    <div>
-      <dt><%= Expense.human_attribute_name(:type) %></dt>
-      <dd><%= @expense.type_i18n %></dd>
-    </div>
-    <div>
-      <dt><%= Expense.human_attribute_name(:subject) %></dt>
-      <td>
-        <%= @expense.subject %>
-      </td>
-    </div>
-    <div>
-      <dt><%= Expense.human_attribute_name(:state) %></dt>
-      <td>
-        <span class="ui label"><%= @expense.state_i18n %></span>
-      </td>
-    </div>
-    <div>
-      <dt><%= Expense.human_attribute_name(:expense_items) %></dt>
-      <td class="positive">
-        <%= render partial: 'finance/me/expense_members/items', locals: { expense_items: @expense.expense_items } %>
-      </td>
-    </div>
-    <% if @expense.financial_taxon&.individual %>
-    <div>
-      <dt><%= Expense.human_attribute_name(:expense_members) %></dt>
-      <td class="negative">
-        <table class="table">
-          <div>
-            <th><%= ExpenseMember.human_attribute_name(:member) %></th>
-            <th><%= ExpenseMember.human_attribute_name(:advance) %></th>
-            <th><%= ExpenseMember.human_attribute_name(:amount) %></th>
-            <th><%= ExpenseMember.human_attribute_name(:payout_amount) %></th>
-            <th></th>
-          </div>
-          <% @expense.expense_members.each do |member| %>
-            <div>
-              <dt><%= member.member.name %></dd>
-              <dt><%= member.advance %></dd>
-              <dt><%= member.amount %></dd>
-              <dt><%= member.payout_amount %></dd>
-              <td></td>
-            </div>
-          <% end %>
-        </table>
-      </td>
-    </div>
-    <% end %>
-    <div>
-      <dt><%= Expense.human_attribute_name(:amount) %></dt>
-      <td>
-        <%= @expense.amount %>
-      </td>
-    </div>
-    <div>
-      <dt><%= Expense.human_attribute_name(:note) %></dt>
-      <td>
-        <%= @expense.note %>
-      </td>
-    </div>
-    <div>
-      <dt><%= Expense.human_attribute_name(:checks) %></dt>
-      <td>
-        <table class="ui very basic table">
-          <% @expense.all_verifications.each do |verification| %>
-            <div>
-              <dt><%= Expense.enum_i18n(:state, verification.state) %></dt>
-              <dt><%= verification.note %></dd>
-              <dt><%= verification.member&.name %></dd>
-            </div>
-          <% end %>
-        </table>
-      </td>
-    </div>
-    <% if @expense.payment_method %>
-    <div>
-      <dt><%= Expense.human_attribute_name(:payment_method) %></dt>
-      <td>
-        <p><%= @expense.payment_method.account_name %></p>
-        <p><%= @expense.payment_method.account_num %></p>
-        <p><%= @expense.payment_method.bank %></p>
-      </td>
-    </div>
-    <% end %>
-    <% if @expense.type == 'PayableExpense' %>
-    <div>
-      <dt><%= Expense.human_attribute_name(:invoices) %></dt>
-      <td>
-        <%= link_to 'pdf', bill_me_expense_path(@expense, format: 'pdf') %>
-      </td>
-    </div>
-    <% end %>
-    <div>
-      <dt><%= Expense.human_attribute_name(:items) %></dt>
-      <td>
-        <%= link_to 'items', direct_data_list_table_lists_path('ExpenseItemExport', expense_id: @expense.id, format: 'xlsx') %>
-      </td>
-    </div>
-  </tbody>
-  <tfoot>
-    <div>
-      <td>
-      </td>
-      <td>
-        <% if @expense.init? %>
-          <%= link_to 'Request', requested_me_expense_path(@expense), method: :patch, data: { confirm: 'Confirm!' }, class: 'ui pink label' %>
-        <% end %>
-        <% @expense.next_states(:type).each do |type| %>
-          <%= link_to "Transfer to #{Expense.enum_i18n(:type, type)}", transfer_me_expense_path(@expense, type: type), method: :patch, class: 'ui mini blue right floated button' %>
-        <% end %>
-      </td>
-    </div>
-  </tfoot>
-</table>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:type) %></dt>
+  <dd><%= @expense.type_i18n %></dd>
+</div>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:subject) %></dt>
+  <dd><%= @expense.subject %></dd>
+</div>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:state) %></dt>
+  <dd><span class="tag"><%= @expense.state_i18n %></span></dd>
+</div>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:expense_items) %></dt>
+  <dd class="text-danger">
+    <%# render partial: 'finance/me/expense_members/items', locals: { expense_items: @expense.expense_items } %>
+  </dd>
+</div>
+<% if @expense.financial_taxon&.individual %>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:expense_members) %></dt>
+  <dd>
+    <table class="table">
+      <tr>
+        <th><%= Finance::ExpenseMember.human_attribute_name(:member) %></th>
+        <th><%= Finance::ExpenseMember.human_attribute_name(:advance) %></th>
+        <th><%= Finance::ExpenseMember.human_attribute_name(:amount) %></th>
+        <th><%= Finance::ExpenseMember.human_attribute_name(:payout_amount) %></th>
+      </tr>
+      <% @expense.expense_members.each do |member| %>
+        <tr>
+          <td><%= member.member.name %></td>
+          <td><%= member.advance %></td>
+          <td><%= member.amount %></td>
+          <td><%= member.payout_amount %></td>
+        </tr>
+      <% end %>
+    </table>
+  </dd>
+</div>
+<% end %>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:amount) %></dt>
+  <dd><%= @expense.amount.to_money.format.html_safe %></dd>
+</div>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:note) %></dt>
+  <dd><%= @expense.note %></dd>
+</div>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:checks) %></dt>
+  <dd>
+    <table>
+      <% @expense.all_verifications.each do |verification| %>
+        <tr>
+          <td><%= Finance::Expense.enum_i18n(:state, verification.state) %></td>
+          <td><%= verification.note %></td>
+          <td><%= verification.member&.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </dd>
+</div>
+<% if @expense.payment_method %>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:payment_method) %></dt>
+  <dd>
+    <p><%= @expense.payment_method.account_name %></p>
+    <p><%= @expense.payment_method.account_num %></p>
+    <p><%= @expense.payment_method.bank %></p>
+  </dd>
+</div>
+<% end %>
+<% if @expense.type == 'PayableExpense' %>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:invoices) %></dt>
+  <dd>
+    <%# link_to 'pdf', bill_me_expense_path(@expense, format: 'pdf') %>
+  </dd>
+</div>
+<% end %>
+<div>
+  <dt><%= Finance::Expense.human_attribute_name(:items) %></dt>
+  <dd>
+    <%# link_to 'items', direct_data_list_table_lists_path('ExpenseItemExport', expense_id: @expense.id, format: 'xlsx') %>
+  </dd>
+</div>

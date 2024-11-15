@@ -1,0 +1,12 @@
+<%= link_to t('.destroy.confirm'), confirm_me_expense_path(@expense), class: 'ui mini green right floated button' %>
+<%= link_to t('.edit.title'), edit_me_expense_path(@expense), class: 'ui mini blue right floated button' %>
+
+
+<td>
+  <% if @expense.init? %>
+    <%= link_to 'Request', requested_me_expense_path(@expense), method: :patch, data: { confirm: 'Confirm!' }, class: 'ui pink label' %>
+  <% end %>
+  <% @expense.next_states(:type).each do |type| %>
+    <%= link_to "Transfer to #{Expense.enum_i18n(:type, type)}", transfer_me_expense_path(@expense, type: type), method: :patch, class: 'ui mini blue right floated button' %>
+  <% end %>
+</td>
