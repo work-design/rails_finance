@@ -1,11 +1,11 @@
 <div data-controller="menu" class="<%= role_permit?(business: 'finance', namespace: 'admin') ? 'menu ex-accordion is-active' : 'display-none' %>">
   <div class="menu-label">
-    <div>
-      <i class="fa-solid fa-fw fa-money-bill"></i>
-      <span><%= t('finance.admin.title') %></span>
-    </div>
-    <%= link_to({ controller: 'finance/admin/home' }, aria: { label: '设置' }) do %>
-      <i class="fa-solid fa-cog"></i>
+
+    <%= link_to({ controller: 'finance/admin/home' }, text: true, class: 'menu-label') do %>
+      <div>
+        <i class="fa-solid fa-fw fa-money-bill"></i>
+        <span><%= t('finance.admin.title') %></span>
+      </div>
     <% end %>
   </div>
   <div class="menu-list">

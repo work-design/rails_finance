@@ -3,11 +3,16 @@
     <%= link_to({ controller: 'financial_taxons' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.financial_taxons.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'finance/admin/assessments' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'assessments' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.assessments.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'finance/admin/funds' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'funds' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.funds.index.title') %></span>
+    <% end %>
+  </div>
+  <div class="grid">
+    <%= link_to({ controller: 'expenses' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.expenses.index.title') %></span>
     <% end %>
   </div>
 </div>
