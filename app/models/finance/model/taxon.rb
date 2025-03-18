@@ -1,5 +1,5 @@
 module Finance
-  module Model::FinancialTaxon
+  module Model::Taxon
     extend ActiveSupport::Concern
 
     included do

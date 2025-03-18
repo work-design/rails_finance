@@ -12,18 +12,6 @@ module Finance
       @budgets = Budget.default_where(q_params).page(params[:page])
     end
 
-    def new
-      @budget = Budget.new
-    end
-
-    def create
-      @budget = Budget.new(budget_params)
-
-      unless @budget.save
-        render :new, locals: { model: @budget }, status: :unprocessable_entity
-      end
-    end
-
     def show
       @budget_members = @budget.budget_members
       @budget_items = @budget.budget_items.where(member_id: nil)
@@ -34,14 +22,6 @@ module Finance
         @budget.expense_items.build
       end
       @taxon_options = FinancialTaxon.roots.map { |i| [i.name, i.id] }
-    end
-
-    def update
-      @budget.assign_attributes budget_params
-
-      unless @budget.save
-        render :edit, locals: { model: @budget }, status: :unprocessable_entity
-      end
     end
 
     def next
