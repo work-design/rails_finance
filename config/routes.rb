@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :finance, defaults: { business: 'finance' } do
       namespace :admin, defaults: { namespace: 'admin' } do
         root 'home#index'
-        resources :financial_taxons
+        resources :taxons
         resources :funds do
           resources :fund_incomes
         end
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       namespace :me, defaults: { namespace: 'me' } do
         resources :budgets do
           collection do
-            match :financial_taxons, via: [:get, :post]
+            match :taxons, via: [:get, :post]
             get :admin
           end
           member do
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
         end
         resources :expenses do
           collection do
-            get :financial_taxons
+            get :taxons
             get :admin
           end
           member do
