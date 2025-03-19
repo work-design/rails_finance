@@ -12,7 +12,7 @@ zh:
       stocks:
         index:
           title: 股权托管
-      financial_taxons:
+      taxons:
         index:
           title: 类别
       budgets:
