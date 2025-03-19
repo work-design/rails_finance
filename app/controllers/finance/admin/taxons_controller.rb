@@ -9,7 +9,7 @@ module Finance
       q_params.merge! default_ancestors_params
       q_params.merge! params.permit(:name)
 
-      @taxons = FinancialTaxon.roots.default_where(q_params).page(params[:page])
+      @taxons = Taxon.roots.default_where(q_params).page(params[:page])
     end
 
     private

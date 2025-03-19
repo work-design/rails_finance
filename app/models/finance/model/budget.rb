@@ -15,7 +15,7 @@ module Finance
       belongs_to :stock, optional: true
 
       belongs_to :financial_taxon, optional: true
-      belongs_to :taxon, class_name: 'FinancialTaxon', foreign_key: :financial_taxon_id, optional: true
+      belongs_to :taxon, foreign_key: :financial_taxon_id, optional: true
 
       has_many :verifiers, -> { where(verifiable_type: 'FinancialTaxon').order(position: :asc) }, class_name: 'Auditor::Verifier', primary_key: :financial_taxon_id, foreign_key: :verifiable_id
       has_many :expense_items, dependent: :destroy

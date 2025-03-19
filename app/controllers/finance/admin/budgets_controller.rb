@@ -21,7 +21,7 @@ module Finance
       if @budget.expense_items.size == 0
         @budget.expense_items.build
       end
-      @taxon_options = FinancialTaxon.roots.map { |i| [i.name, i.id] }
+      @taxon_options = Taxon.roots.map { |i| [i.name, i.id] }
     end
 
     def next
@@ -49,7 +49,7 @@ module Finance
       q_params = {}
       q_params.merge! default_params
 
-      @financial_taxons = FinancialTaxon.default_where(q_params)
+      @financial_taxons = Taxon.default_where(q_params)
     end
 
     def budget_params
