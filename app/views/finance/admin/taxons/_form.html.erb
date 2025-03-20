@@ -1,4 +1,4 @@
-<%= f.text_field :name %>
+<%= f.text_field :name, autofocus: true %>
 <%= render partial: 'com/nodes/siblings_select', locals: { f: f, node: @taxon_root } %>
 <%= f.check_box :take_stock %>
 <%= f.check_box :individual %>

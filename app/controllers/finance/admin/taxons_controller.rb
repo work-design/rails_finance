@@ -26,7 +26,7 @@ module Finance
     end
 
     def financial_taxon_params
-      p = params.fetch(:financial_taxon, {}).permit(
+      p = params.fetch(:taxon, {}).permit(
         :name,
         :position,
         :verifier_id,
