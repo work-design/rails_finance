@@ -20,24 +20,6 @@ module Finance
       end
     end
 
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @stock.assign_attributes(stock_params)
-
-      unless @stock.save
-        render :edit, locals: { model: @stock }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @stock.destroy
-    end
-
     private
     def set_assessment
       @assessment = Assessment.find params[:assessment_id]
