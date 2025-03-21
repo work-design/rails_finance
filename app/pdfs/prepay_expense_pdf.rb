@@ -1,21 +1,12 @@
 class PrepayExpensePdf < BasePdf
-
   attr_reader :document, :expense_member
 
   def initialize(expense_member_id: nil)
-		super
+    super
     @expense_member = ExpenseMember.find expense_member_id
-	end
-
-	def run
-		write_content
-	end
-
-  def render
-    @document.render
   end
 
-  def write_content
+  def run
     stroke do
       dash [8, 4]
       horizontal_line -36, (margin_box.width + 36), at: (160.mm - 36)

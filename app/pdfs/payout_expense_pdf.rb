@@ -9,14 +9,6 @@ class PayoutExpensePdf < BasePdf
   end
 
   def run
-    write_content
-  end
-
-  def render
-    @document.render
-  end
-
-  def write_content
     stroke do
       dash [8, 4]
       horizontal_line -36, (margin_box.width + 36), at: (160.mm - 36)
