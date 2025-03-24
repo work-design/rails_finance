@@ -1,5 +1,4 @@
 class BorrowExpensePdf < BasePdf
-
   attr_reader :document, :expense_member
 
   def initialize(expense_member_id: nil)

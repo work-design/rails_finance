@@ -1,5 +1,4 @@
 class PayoutExpensePdf < BasePdf
-
   attr_reader :document, :expense
 
   def initialize(expense_id:)
