@@ -2,7 +2,7 @@ module Finance
   class Me::BudgetsController < Admin::BudgetsController
     include FinanceController::Me
     before_action :set_budget, only: [:show, :edit, :update, :submit, :transfer, :bill, :destroy]
-    before_action :prepare_form
+    before_action :set_taxons
     # after_action only: [:create, :update, :destroy] do
     #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
     # end
@@ -46,19 +46,8 @@ module Finance
       @financial_taxons = @budget.financial_taxon.children.map { |i| [i.name, i.id] }
     end
 
-    def show
-    end
-
     def edit
       @taxon_options = FinancialTaxon.roots.map { |i| [i.name, i.id] }
-    end
-
-    def update
-      @budget.assign_attributes(budget_params)
-
-      unless @budget.save
-        render :edit, locals: { model: @budget }, status: :unprocessable_entity
-      end
     end
 
     def transfer
@@ -81,20 +70,16 @@ module Finance
       end
     end
 
-    def destroy
-      @budget.destroy
-    end
-
     private
     def set_budget
       @budget = Budget.find params[:id]
     end
 
-    def prepare_form
+    def set_taxons
       q_params = {}
       q_params.merge! default_params
 
-      @financial_taxons = FinancialTaxon.default_where(q_params)
+      @taxons = Taxon.default_where(q_params)
     end
 
     def budget_params

@@ -1,7 +1,7 @@
 module Finance
   class Me::ExpensesController < Admin::ExpensesController
     before_action :set_expense, only: [:show, :edit, :update, :submit, :confirm, :bill, :destroy]
-    before_action :prepare_form
+    before_action :set_taxons
     before_action :set_new_expense, only: [:new, :create]
     # after_action only: [:create, :update, :destroy] do
     #   mark_audits(Purchase, include: [:purchase_items], note: 'record test')
@@ -86,11 +86,11 @@ module Finance
       @expense = current_member.created_expenses.build(expense_params)
     end
 
-    def prepare_form
+    def set_taxons
       q_params = {}
       q_params.merge! default_params
 
-      @financial_taxons = FinancialTaxon.default_where(q_params)
+      @taxons = Taxon.default_where(q_params)
     end
 
     def expense_params

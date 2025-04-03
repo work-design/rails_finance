@@ -17,9 +17,6 @@ module Finance
       @expense_members = ExpenseMember.default_where(q_params).page(params[:page])
     end
 
-    def show
-    end
-
     def bill
       disposition = params[:disposition] || 'inline'
       if params[:type] == 'borrow'
@@ -46,12 +43,6 @@ module Finance
 
     def edit
       @payment_methods = current_member.payment_methods
-    end
-
-    def update
-      unless @expense_member.update(expense_member_params)
-        render :edit, locals: { model: @expense_member }, status: :unprocessable_entity
-      end
     end
 
     private
