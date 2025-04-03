@@ -37,7 +37,7 @@ module Finance
     end
 
     def set_taxons
-      @taxons = FinancialTaxon.default_where(default_params)
+      @taxons = Taxon.default_where(default_params)
     end
 
     def expense_params
